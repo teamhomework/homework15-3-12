@@ -12,3 +12,6 @@
 如需上傳文檔到GUBHUB 可以嘗試使用 markdown  
 
 開發人員請看DOC檔案內的编码规范 待修改中
+本軟件用C#開發 VS2010  SQL SERVER 2005
+代碼在code文檔
+
