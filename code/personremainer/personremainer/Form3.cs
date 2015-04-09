@@ -9,27 +9,23 @@ using System.Windows.Forms;
 
 namespace personremainer
 {
-    public partial class Form2 : Form
+    public partial class Form3 : Form
     {
-        public Form2()
+        public Form3()
         {
             InitializeComponent();
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Application.OpenForms[1].Close();
             Application.OpenForms[1].Dispose();
+           //Label  = textBox1.Text;
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
+          personremainer.commo_data.cash = textBox1.Text;
         }
     }
 }

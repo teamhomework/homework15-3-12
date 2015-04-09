@@ -7,3 +7,4 @@ C:\Users\user\Desktop\personremainer\personremainer\obj\x86\Debug\personremainer
 C:\Users\user\Desktop\personremainer\personremainer\obj\x86\Debug\personremainer.pdb
 C:\Users\user\Desktop\personremainer\personremainer\obj\x86\Debug\personremainer.csprojResolveAssemblyReference.cache
 C:\Users\user\Desktop\personremainer\personremainer\obj\x86\Debug\personremainer.Form2.resources
+C:\Users\user\Desktop\personremainer\personremainer\obj\x86\Debug\personremainer.Form3.resources

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Data.OleDb;
+using System.Data.SqlClient;
 
 namespace personremainer
 {
@@ -16,7 +18,8 @@ namespace personremainer
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-           
+            
+            
         }
     }
 }

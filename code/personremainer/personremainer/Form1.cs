@@ -6,8 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
-
+using System.Data.SqlClient;
+using System.Data.OleDb;
+using System.IO;
 
 namespace personremainer
 {
@@ -45,6 +46,7 @@ namespace personremainer
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboBox1.Show();
+            
    
         }
 
@@ -93,7 +95,7 @@ namespace personremainer
 
         private void 股票收益ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (false == show_StoGra)
+              if (false == show_StoGra)
                 show_StoGra = true;
             else if (true == show_StoGra)
                 show_StoGra = false;
@@ -118,21 +120,74 @@ namespace personremainer
         }
         //搜索TEXT
         private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
+        {      
+ 
         }
+
+ 
 
         private void button2_Click(object sender, EventArgs e)
         {
-        
-            frm2.ShowDialog();
-          
+            personremainer.create_form.create_changeOpData();   
         }
 
         private void change_data_Load(object sender, EventArgs e)
         {
 
         }
+        //導入EXECL
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            string filename;//EXECL文件名
+            filename = openFileDialog1.FileName;
+           testsad(filename, "sheet1");
+            //導入文件代碼
+            
+        }
+
+        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            personremainer.create_form.create_cash();
+
+            label1.Text = "本金:" + personremainer.commo_data.cash;
+        }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+
+        //導入部份代碼測試
+        // <param name="ExcelStr">文件的全路径</param>
+        // <param name="SheetName">Excel文档里的表名称</param>
+        public void testsad(string ExcelStr, string SheetName)
+        {
+            OleDbConnection MyConn_E = new OleDbConnection();
+            OleDbCommand MyComm_E = new OleDbCommand();
+            OleDbDataAdapter MyAdap = new OleDbDataAdapter();
+
+            DataSet MyTable = new DataSet();
+
+            string Conn_Str = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + ExcelStr + ";Extended Properties='Excel 8.0;HDR=Yes;'";
+
+            MyConn_E.ConnectionString = Conn_Str;
+            MyConn_E.Open();
+
+            MyComm_E.Connection = MyConn_E;
+            MyComm_E.CommandText = "select * from [" + SheetName + "$]";
+
+
+            MyAdap.SelectCommand = MyComm_E;
+
+            MyAdap.Fill(MyTable);
+        }
+
 
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace personremainer
 {
-    partial class Form1
+   public partial class Form1
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -57,6 +57,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
@@ -80,7 +81,6 @@
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -180,6 +180,7 @@
             this.splitContainer1.Panel1.Controls.Add(this.label3);
             this.splitContainer1.Panel1.Controls.Add(this.label2);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
+            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
             // splitContainer1.Panel2
             // 
@@ -190,7 +191,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.panel3);
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Size = new System.Drawing.Size(991, 454);
-            this.splitContainer1.SplitterDistance = 25;
+            this.splitContainer1.SplitterDistance = 221;
             this.splitContainer1.TabIndex = 1;
             // 
             // comboBox1
@@ -269,6 +270,7 @@
             this.label1.Size = new System.Drawing.Size(35, 12);
             this.label1.TabIndex = 1;
             this.label1.Text = "本金:";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // textBox1
             // 
@@ -279,6 +281,17 @@
             this.textBox1.Visible = false;
             this.textBox1.WordWrap = false;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(861, 18);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "搜索";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel2
             // 
@@ -324,6 +337,7 @@
             this.dataGridView3.RowTemplate.Height = 23;
             this.dataGridView3.Size = new System.Drawing.Size(840, 150);
             this.dataGridView3.TabIndex = 5;
+            this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
             // 
             // Column9
             // 
@@ -500,17 +514,6 @@
             this.chart2.TabIndex = 0;
             this.chart2.Text = "chart2";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(861, 18);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "搜索";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // panel1
             // 
             this.panel1.AutoScroll = true;
@@ -590,6 +593,7 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // Form1
             // 
@@ -636,7 +640,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem 股票收益ToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
@@ -675,33 +678,22 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        public System.Windows.Forms.Button button1;
+        public System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridViewButtonColumn Column15;
+        private System.Windows.Forms.DataGridViewButtonColumn Column16;
+        private System.Windows.Forms.Button button2;
+        public System.Windows.Forms.Label label1;
 
 
 
-        //自行加代碼部份
-        //窗口狀態
-        bool show_PerFor = false;//個人資信
-        bool show_TakSto = false;//持倉情況
-        bool show_StoInf = false;//股票資訊
-        bool show_StoGra = false; //股票收益
-
-               //=_=from2
 
 
-      static Form2 frm2 = new Form2();
- 
-            
-            
-
-
-
-        //新函數
-   
         void Display(System.Windows.Forms.Panel target)
         {
+
             button1.Visible = true;
             textBox1.Visible = true;
-
             panel1.Visible = false;
             panel2.Visible = false;
             panel3.Visible = false;
@@ -718,12 +710,11 @@
 
         }
 
-        public System.Windows.Forms.Button button1;
-        public System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridViewButtonColumn Column15;
-        private System.Windows.Forms.DataGridViewButtonColumn Column16;
-        private System.Windows.Forms.Button button2;
-
+        //窗口狀態
+        bool show_PerFor = false;//個人資信
+        bool show_TakSto = false;//持倉情況
+        bool show_StoInf = false;//股票資訊
+        bool show_StoGra = false; //股票收益
 
 
 
