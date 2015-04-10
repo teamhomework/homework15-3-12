@@ -138,9 +138,9 @@ namespace personremainer
         //導入EXECL
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
-            string filename;//EXECL文件名
-            filename = openFileDialog1.FileName;
-           testsad(filename, "sheet1");
+            
+            personremainer.commo_data.filename = openFileDialog1.FileName;
+            testsad(personremainer.commo_data.filename, "sheet1");
             //導入文件代碼
             
         }

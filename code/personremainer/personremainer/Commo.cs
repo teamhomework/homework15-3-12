@@ -19,7 +19,8 @@ namespace personremainer
         //其他數據
         public static string cash;//本金
         //搜索關鍵字
-        string find_key_word;//股票號或股票名 用作搜索
+        public static string find_key_word;//股票號或股票名 用作搜索
+        public static string filename;//EXECL文件名
     }
 
     public class create_form
