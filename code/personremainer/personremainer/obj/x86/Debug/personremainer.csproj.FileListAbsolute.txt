@@ -10,3 +10,5 @@ C:\Users\user\Desktop\personremainer\personremainer\obj\x86\Debug\personremainer
 C:\Users\user\Desktop\personremainer\personremainer\obj\x86\Debug\personremainer.Form3.resources
 C:\Users\user\Documents\GitHub\homework15-3-12\code\personremainer\personremainer\obj\x86\Debug\personremainer.exe
 C:\Users\user\Documents\GitHub\homework15-3-12\code\personremainer\personremainer\obj\x86\Debug\personremainer.pdb
+D:\project\homework\homework15-3-12\homework15-3-12\code\personremainer\personremainer\obj\x86\Debug\personremainer.exe
+D:\project\homework\homework15-3-12\homework15-3-12\code\personremainer\personremainer\obj\x86\Debug\personremainer.pdb
