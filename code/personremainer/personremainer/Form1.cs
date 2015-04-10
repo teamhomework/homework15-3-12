@@ -140,9 +140,10 @@ namespace personremainer
         {
             
             personremainer.commo_data.filename = openFileDialog1.FileName;
-            testsad(personremainer.commo_data.filename, "sheet1");
+            //testsad(personremainer.commo_data.filename, "sheet1");
             //導入文件代碼
-            
+            OptExcel optExcel = new OptExcel();
+            optExcel.Open(personremainer.commo_data.filename);
         }
 
         private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -166,7 +167,7 @@ namespace personremainer
         //導入部份代碼測試
         // <param name="ExcelStr">文件的全路径</param>
         // <param name="SheetName">Excel文档里的表名称</param>
-        public void testsad(string ExcelStr, string SheetName)
+        /*public void testsad(string ExcelStr, string SheetName)
         {
             OleDbConnection MyConn_E = new OleDbConnection();
             OleDbCommand MyComm_E = new OleDbCommand();
@@ -186,7 +187,7 @@ namespace personremainer
             MyAdap.SelectCommand = MyComm_E;
 
             MyAdap.Fill(MyTable);
-        }
+        }*/
 
 
     }

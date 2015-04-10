@@ -12,3 +12,11 @@ C:\Users\user\Documents\GitHub\homework15-3-12\code\personremainer\personremaine
 C:\Users\user\Documents\GitHub\homework15-3-12\code\personremainer\personremainer\obj\x86\Debug\personremainer.pdb
 D:\project\homework\homework15-3-12\homework15-3-12\code\personremainer\personremainer\obj\x86\Debug\personremainer.exe
 D:\project\homework\homework15-3-12\homework15-3-12\code\personremainer\personremainer\obj\x86\Debug\personremainer.pdb
+D:\project\homework\homework15-3-12\homework15-3-12\code\personremainer\personremainer\bin\Debug\personremainer.exe
+D:\project\homework\homework15-3-12\homework15-3-12\code\personremainer\personremainer\bin\Debug\personremainer.pdb
+D:\project\homework\homework15-3-12\homework15-3-12\code\personremainer\personremainer\obj\x86\Debug\personremainer.csprojResolveAssemblyReference.cache
+D:\project\homework\homework15-3-12\homework15-3-12\code\personremainer\personremainer\obj\x86\Debug\personremainer.Form1.resources
+D:\project\homework\homework15-3-12\homework15-3-12\code\personremainer\personremainer\obj\x86\Debug\personremainer.Form2.resources
+D:\project\homework\homework15-3-12\homework15-3-12\code\personremainer\personremainer\obj\x86\Debug\personremainer.Form3.resources
+D:\project\homework\homework15-3-12\homework15-3-12\code\personremainer\personremainer\obj\x86\Debug\personremainer.Properties.Resources.resources
+D:\project\homework\homework15-3-12\homework15-3-12\code\personremainer\personremainer\obj\x86\Debug\personremainer.csproj.GenerateResource.Cache
