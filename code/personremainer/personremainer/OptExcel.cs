@@ -1,67 +1,83 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Reflection;
-using Excel=Microsoft.Office.Interop.Excel;
+using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Data.OleDb;
+using System.IO;
+
 
 namespace personremainer
 {
     class OptExcel
     {
-        //Sheet文件
-        Excel.Application xlApp;
-        Excel.Workbook workbook;
-        Excel.Worksheet xlsSheet;
-        Excel.Range xlsRange;
-        string sExPath;
 
-        //打开文件
-        public bool Open(string sExcelPath)
-        {
-            sExPath = sExcelPath;
-            try
-            {
-                xlApp = new Excel.Application();
-                workbook = xlApp.Workbooks.Open(sExPath, 0, false, 5, "", "", false, Excel.XlPlatform.xlWindows, "", true, false, 0, true, 1, 0);
-                xlsSheet = (Excel.Worksheet)workbook.Sheets[1];
-                Console.WriteLine("打开exce");
+        public static string[] SheetName=new string[10];
+        public static DataTable MyTable = new DataTable();
+        public static DataSet MySet = new DataSet();//表
+        //導入部份代碼測試
+        // <param name="ExcelStr">文件的全路径</param>
+        // <param name="SheetName">Excel文档里的表名称</param>
+        public bool Open_Excel(string ExcelStr)
+        {  
+                OleDbConnection MyConn_E = new OleDbConnection();//連接
+                OleDbCommand MyComm_E = new OleDbCommand();
+                OleDbDataAdapter MyAdap = new OleDbDataAdapter();
+               
+                
+            int TableNum=0;
+             try   
+             {
+            //連接EXCEL  IMEX 1 readonly  0 writer only  2  read+writer
+                string Conn_Str = "Provider=Microsoft.Jet.Oledb.4.0;Data Source=" + ExcelStr + ";Extended Properties='Excel 8.0;HDR=Yes;IMEX=1;'";
+                MyConn_E.ConnectionString = Conn_Str;
+            //打開EXCEL
+                MyConn_E.Open();
+                MyTable = MyConn_E.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+            //獲取表名 
+                foreach (DataRow row in MyTable.Rows)
+                {
+
+                    //遍历弹出各Sheet的名称
+                SheetName[TableNum] =(string) row["TABLE_NAME"];
+                MessageBox.Show(SheetName[TableNum]);
+                TableNum++;
+                }
+        
+                MyComm_E.Connection = MyConn_E;
+                MyComm_E.CommandText = "select * from ["+SheetName[0]+"]" ;
+                MessageBox.Show(MyComm_E.CommandText);
+                MyAdap.SelectCommand = MyComm_E;
+
+                MyAdap.Fill(MyTable);
+                MyAdap.Fill(MySet);
+                MyConn_E.Close();
+
                 return true;
-            }
-            catch (Exception ex)
+        }
+                       catch (Exception err)
             {
-                Console.WriteLine(ex);
+                MessageBox.Show("数据绑定Excel失败!失败原因：" + err.Message, "提示信息",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
-        }
-        //读取文件
-        public string ReadCell(int iRow, int iCln)
-        {
-            xlsRange = (Excel.Range)xlsSheet.Cells[iRow, iCln];
-            object obj = (object)xlsRange.Value;
-            if (obj is string)
-            {
-                return xlsRange.Value;
-            }
-            else if (null == obj)
-            {
-                return "";
-            }
-            else
-            {
-                return xlsRange.Value.ToString();
-            }
 
         }
 
-        //关闭文件
-        public bool Close()
+
+        public string Read_ExData(int row, int col)
         {
-            if (null != workbook)
-            {
-                workbook.Close();
-            }
-            return true;
+            
+            string ss = MySet.Tables[0].Rows[row][col].ToString();
+            MessageBox.Show(ss);
+            return MySet.Tables[0].Rows[row][col].ToString();
+
         }
+    
+    
     }
 }

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data.OleDb;
 using System.IO;
-
+using Microsoft.Office.Interop.Excel;
 namespace personremainer
 {
   
@@ -140,21 +140,22 @@ namespace personremainer
         {
             
             personremainer.commo_data.filename = openFileDialog1.FileName;
-            //testsad(personremainer.commo_data.filename, "sheet1");
-            //導入文件代碼
-            OptExcel optExcel = new OptExcel();
-            optExcel.Open(personremainer.commo_data.filename);
-            try
-            {
-                optExcel.ReadCell(2, 5);
-                label1.Text = "11111";
-            }
-            catch
-            {
-                label1.Text = "0000";
-            }
-        }
+          
 
+            //導入文件代碼
+           OptExcel optExcel = new OptExcel();
+           optExcel.Open_Excel(personremainer.commo_data.filename);
+           for (int i = 0; i < 5; i++)
+           {
+               for (int j = 0; j < 8; j++)
+               {
+                   //返回string
+                    optExcel.Read_ExData(i, j);
+               }
+           }
+            
+        }
+            
         private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -173,31 +174,42 @@ namespace personremainer
         }
 
 
-        //導入部份代碼測試
-        // <param name="ExcelStr">文件的全路径</param>
-        // <param name="SheetName">Excel文档里的表名称</param>
-        /*public void testsad(string ExcelStr, string SheetName)
+
+
+        public static DataSet LoadDataFromExcel(string filePath)
         {
-            OleDbConnection MyConn_E = new OleDbConnection();
-            OleDbCommand MyComm_E = new OleDbCommand();
-            OleDbDataAdapter MyAdap = new OleDbDataAdapter();
+            try
+            {
+                string strConn;
+                strConn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath + ";Extended Properties='Excel 8.0;HDR=False;IMEX=1'";
+                OleDbConnection OleConn = new OleDbConnection(strConn);
+                OleConn.Open();
+                String sql = "SELECT * FROM  [Sheet1$]";//可是更改Sheet名称，比如sheet2，等等   
 
-            DataSet MyTable = new DataSet();
+                OleDbDataAdapter OleDaExcel = new OleDbDataAdapter(sql, OleConn);
+                DataSet OleDsExcle = new DataSet();
+                OleDaExcel.Fill(OleDsExcle, "Sheet1");
+                OleConn.Close();
+                return OleDsExcle;
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("数据绑定Excel失败!失败原因：" + err.Message, "提示信息",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return null;
+            }
+        }
 
-            string Conn_Str = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + ExcelStr + ";Extended Properties='Excel 8.0;HDR=Yes;'";
-
-            MyConn_E.ConnectionString = Conn_Str;
-            MyConn_E.Open();
-
-            MyComm_E.Connection = MyConn_E;
-            MyComm_E.CommandText = "select * from [" + SheetName + "$]";
 
 
-            MyAdap.SelectCommand = MyComm_E;
 
-            MyAdap.Fill(MyTable);
-        }*/
+
+
 
 
     }
+
+
+
+
 }
