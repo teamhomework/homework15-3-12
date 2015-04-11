@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-//using System.Reflection;
+using System.Reflection;
 using Excel=Microsoft.Office.Interop.Excel;
 
 namespace personremainer
@@ -25,11 +25,12 @@ namespace personremainer
                 xlApp = new Excel.Application();
                 workbook = xlApp.Workbooks.Open(sExPath, 0, false, 5, "", "", false, Excel.XlPlatform.xlWindows, "", true, false, 0, true, 1, 0);
                 xlsSheet = (Excel.Worksheet)workbook.Sheets[1];
+                Console.WriteLine("打开exce");
                 return true;
             }
             catch (Exception ex)
             {
-                //Console.WriteLine(ex);
+                Console.WriteLine(ex);
                 return false;
             }
         }

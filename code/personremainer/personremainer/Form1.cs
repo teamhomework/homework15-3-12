@@ -144,6 +144,15 @@ namespace personremainer
             //導入文件代碼
             OptExcel optExcel = new OptExcel();
             optExcel.Open(personremainer.commo_data.filename);
+            try
+            {
+                optExcel.ReadCell(2, 5);
+                label1.Text = "11111";
+            }
+            catch
+            {
+                label1.Text = "0000";
+            }
         }
 
         private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
