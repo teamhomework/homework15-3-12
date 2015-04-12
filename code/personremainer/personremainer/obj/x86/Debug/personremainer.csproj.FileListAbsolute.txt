@@ -30,3 +30,13 @@ C:\Users\user\Desktop\人工智能實驗平臺\personremainer\personremainer\obj
 C:\Users\user\Desktop\人工智能實驗平臺\personremainer\personremainer\obj\x86\Debug\personremainer.Form3.resources
 C:\Users\user\Desktop\人工智能實驗平臺\personremainer\personremainer\obj\x86\Debug\personremainer.Properties.Resources.resources
 C:\Users\user\Desktop\人工智能實驗平臺\personremainer\personremainer\obj\x86\Debug\personremainer.csproj.GenerateResource.Cache
+C:\Users\acer\Desktop\personremainer\personremainer\obj\x86\Debug\personremainer.exe
+C:\Users\acer\Desktop\personremainer\personremainer\obj\x86\Debug\personremainer.pdb
+C:\Users\acer\Desktop\personremainer\personremainer\bin\Debug\personremainer.exe
+C:\Users\acer\Desktop\personremainer\personremainer\bin\Debug\personremainer.pdb
+C:\Users\acer\Desktop\personremainer\personremainer\obj\x86\Debug\personremainer.csprojResolveAssemblyReference.cache
+C:\Users\acer\Desktop\personremainer\personremainer\obj\x86\Debug\personremainer.Form1.resources
+C:\Users\acer\Desktop\personremainer\personremainer\obj\x86\Debug\personremainer.Form2.resources
+C:\Users\acer\Desktop\personremainer\personremainer\obj\x86\Debug\personremainer.Form3.resources
+C:\Users\acer\Desktop\personremainer\personremainer\obj\x86\Debug\personremainer.Properties.Resources.resources
+C:\Users\acer\Desktop\personremainer\personremainer\obj\x86\Debug\personremainer.csproj.GenerateResource.Cache

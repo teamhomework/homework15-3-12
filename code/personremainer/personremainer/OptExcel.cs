@@ -32,7 +32,7 @@ namespace personremainer
             int TableNum=0;
              try   
              {
-            //連接EXCEL  IMEX 1 readonly  0 writer only  2  read+writer
+            //連接EXCEL  IMEX = 1 readonly; = 0 writer only; = 2  read+writer   
                 string Conn_Str = "Provider=Microsoft.Jet.Oledb.4.0;Data Source=" + ExcelStr + ";Extended Properties='Excel 8.0;HDR=Yes;IMEX=1;'";
                 MyConn_E.ConnectionString = Conn_Str;
             //打開EXCEL
@@ -44,16 +44,16 @@ namespace personremainer
 
                     //遍历弹出各Sheet的名称
                 SheetName[TableNum] =(string) row["TABLE_NAME"];
-                MessageBox.Show(SheetName[TableNum]);
+              //  MessageBox.Show(SheetName[TableNum]);
                 TableNum++;
                 }
         
                 MyComm_E.Connection = MyConn_E;
                 MyComm_E.CommandText = "select * from ["+SheetName[0]+"]" ;
-                MessageBox.Show(MyComm_E.CommandText);
+               // MessageBox.Show(MyComm_E.CommandText);//測試用
                 MyAdap.SelectCommand = MyComm_E;
 
-                MyAdap.Fill(MyTable);
+              //  MyAdap.Fill(MyTable);
                 MyAdap.Fill(MySet);
                 MyConn_E.Close();
 
@@ -71,10 +71,17 @@ namespace personremainer
 
         public string Read_ExData(int row, int col)
         {
-            
-            string ss = MySet.Tables[0].Rows[row][col].ToString();
-            MessageBox.Show(ss);
-            return MySet.Tables[0].Rows[row][col].ToString();
+            try
+            {
+
+                //string ss = MySet.Tables[0].Rows[row][col].ToString();//測試用
+                //MessageBox.Show(ss);//測試用
+                return MySet.Tables[0].Rows[row][col].ToString();
+            }
+            catch (Exception err)
+            {
+                return "";
+            }
 
         }
     

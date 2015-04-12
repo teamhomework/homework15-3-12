@@ -140,20 +140,71 @@ namespace personremainer
         {
             
             personremainer.commo_data.filename = openFileDialog1.FileName;
-          
 
             //導入文件代碼
            OptExcel optExcel = new OptExcel();
            optExcel.Open_Excel(personremainer.commo_data.filename);
-           for (int i = 0; i < 5; i++)
+           /*int row = 0;
+            while(optExcel.Read_ExData(row,0) !="" || optExcel.Read_ExData(row+1,0)!="")
            {
-               for (int j = 0; j < 8; j++)
+              //判斷 空行不讀取
+               if (optExcel.Read_ExData(row, 0) != "")
                {
-                   //返回string
-                    optExcel.Read_ExData(i, j);
+                   for (int j = 0; j < 8; j++)
+                   {
+                       //返回string
+                       optExcel.Read_ExData(row, j);
+                   }
                }
-           }
-            
+                   row++;
+               
+           }*/
+           OptrecordNode recordnode = new OptrecordNode();
+          //找总行数
+          int ROW = 1;
+          while (true)
+          {
+              if (optExcel.Read_ExData(ROW, 1) == "" && optExcel.Read_ExData(ROW + 1, 1) == "")
+              {
+                  break;
+              }
+              else
+              {
+                  ROW++;
+              }
+          }
+          for (int rowi = 2; rowi < ROW; rowi++)
+          {
+              if (recordnode != null)
+              {
+                  recordnode.next = new OptrecordNode();
+                  recordnode = recordnode.next;
+              }
+              if (optExcel.Read_ExData(rowi, 1) != "")
+              {
+                  recordnode.stockname = optExcel.Read_ExData(rowi, 1);
+                  recordnode.stockcode = optExcel.Read_ExData(rowi, 2);
+                  recordnode.optdate = optExcel.Read_ExData(rowi, 3);
+                  recordnode.opttype = optExcel.Read_ExData(rowi, 4);
+                  recordnode.stockprice = optExcel.Read_ExData(rowi, 5);
+                  recordnode.stocknumber = optExcel.Read_ExData(rowi, 6);
+                  recordnode.rate = optExcel.Read_ExData(rowi, 7);
+                  recordnode.commission = optExcel.Read_ExData(rowi, 8);
+                  //recordnode.next = new OptrecordNode();
+                  // recordnode = recordnode.next;
+              }
+          }
+          //optExcel.Close();
+          //readRnode(recordnode);
+        }
+        //读取链表
+        public void readRnode(OptrecordNode o)
+        {
+
+            if (o.next != null)
+            {
+                readRnode(o.next);
+            }
         }
             
         private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
