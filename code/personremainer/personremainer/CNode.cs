@@ -31,7 +31,7 @@ namespace personremainer
             y.rate = o.rate;
             y.commission = o.commission;
             y.next = o.next;
-            this.next = y;
+         //   this.next = y;
         }
 
     }

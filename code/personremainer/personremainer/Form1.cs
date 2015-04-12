@@ -144,22 +144,9 @@ namespace personremainer
             //導入文件代碼
            OptExcel optExcel = new OptExcel();
            optExcel.Open_Excel(personremainer.commo_data.filename);
-           /*int row = 0;
-            while(optExcel.Read_ExData(row,0) !="" || optExcel.Read_ExData(row+1,0)!="")
-           {
-              //判斷 空行不讀取
-               if (optExcel.Read_ExData(row, 0) != "")
-               {
-                   for (int j = 0; j < 8; j++)
-                   {
-                       //返回string
-                       optExcel.Read_ExData(row, j);
-                   }
-               }
-                   row++;
-               
-           }*/
+
            OptrecordNode recordnode = new OptrecordNode();
+           OptrecordNode recordnode_hand = recordnode;
           //找总行数
           int ROW = 1;
           while (true)
@@ -175,11 +162,6 @@ namespace personremainer
           }
           for (int rowi = 0; rowi < ROW; rowi++)
           {
-              if (recordnode != null)
-              {
-                  recordnode.next = new OptrecordNode();
-                  recordnode = recordnode.next;
-              }
               if (optExcel.Read_ExData(rowi, 1) != "")
               {
                   recordnode.stockname = optExcel.Read_ExData(rowi, 0);
@@ -192,10 +174,15 @@ namespace personremainer
                   recordnode.commission = optExcel.Read_ExData(rowi, 7);
                   //recordnode.next = new OptrecordNode();
                   // recordnode = recordnode.next;
+                  if (recordnode != null)
+                  {
+                      recordnode.next = new OptrecordNode();
+                      recordnode = recordnode.next;
+                  }
               }
           }
           //optExcel.Close();
-          //readRnode(recordnode);
+          readRnode(recordnode_hand);
         }
         //读取链表
         public void readRnode(OptrecordNode o)
