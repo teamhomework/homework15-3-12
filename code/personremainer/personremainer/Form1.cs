@@ -164,7 +164,7 @@ namespace personremainer
           int ROW = 1;
           while (true)
           {
-              if (optExcel.Read_ExData(ROW, 1) == "" && optExcel.Read_ExData(ROW + 1, 1) == "")
+              if (optExcel.Read_ExData(ROW, 0) == "" && optExcel.Read_ExData(ROW + 1, 0) == "")
               {
                   break;
               }
@@ -173,7 +173,7 @@ namespace personremainer
                   ROW++;
               }
           }
-          for (int rowi = 2; rowi < ROW; rowi++)
+          for (int rowi = 0; rowi < ROW; rowi++)
           {
               if (recordnode != null)
               {
@@ -182,14 +182,14 @@ namespace personremainer
               }
               if (optExcel.Read_ExData(rowi, 1) != "")
               {
-                  recordnode.stockname = optExcel.Read_ExData(rowi, 1);
-                  recordnode.stockcode = optExcel.Read_ExData(rowi, 2);
-                  recordnode.optdate = optExcel.Read_ExData(rowi, 3);
-                  recordnode.opttype = optExcel.Read_ExData(rowi, 4);
-                  recordnode.stockprice = optExcel.Read_ExData(rowi, 5);
-                  recordnode.stocknumber = optExcel.Read_ExData(rowi, 6);
-                  recordnode.rate = optExcel.Read_ExData(rowi, 7);
-                  recordnode.commission = optExcel.Read_ExData(rowi, 8);
+                  recordnode.stockname = optExcel.Read_ExData(rowi, 0);
+                  recordnode.stockcode = optExcel.Read_ExData(rowi, 1);
+                  recordnode.optdate = optExcel.Read_ExData(rowi, 2);
+                  recordnode.opttype = optExcel.Read_ExData(rowi, 3);
+                  recordnode.stockprice = optExcel.Read_ExData(rowi, 4);
+                  recordnode.stocknumber = optExcel.Read_ExData(rowi, 5);
+                  recordnode.rate = optExcel.Read_ExData(rowi, 6);
+                  recordnode.commission = optExcel.Read_ExData(rowi, 7);
                   //recordnode.next = new OptrecordNode();
                   // recordnode = recordnode.next;
               }
