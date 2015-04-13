@@ -10,6 +10,10 @@ using System.Data.SqlClient;
 using System.Data.OleDb;
 using System.IO;
 using Microsoft.Office.Interop.Excel;
+using System.Web;
+using System.Net.Sockets;
+using System.Net;
+
 namespace personremainer
 {
   
@@ -117,6 +121,8 @@ namespace personremainer
         private void button1_Click(object sender, EventArgs e)
         {
 
+            Display(panel2);
+            
         }
         //搜索TEXT
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -179,6 +185,7 @@ namespace personremainer
                       recordnode.next = new OptrecordNode();
                       recordnode = recordnode.next;
                   }
+
               }
           }
           //optExcel.Close();
@@ -211,43 +218,6 @@ namespace personremainer
 
         }
 
-
-
-
-        public static DataSet LoadDataFromExcel(string filePath)
-        {
-            try
-            {
-                string strConn;
-                strConn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + filePath + ";Extended Properties='Excel 8.0;HDR=False;IMEX=1'";
-                OleDbConnection OleConn = new OleDbConnection(strConn);
-                OleConn.Open();
-                String sql = "SELECT * FROM  [Sheet1$]";//可是更改Sheet名称，比如sheet2，等等   
-
-                OleDbDataAdapter OleDaExcel = new OleDbDataAdapter(sql, OleConn);
-                DataSet OleDsExcle = new DataSet();
-                OleDaExcel.Fill(OleDsExcle, "Sheet1");
-                OleConn.Close();
-                return OleDsExcle;
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show("数据绑定Excel失败!失败原因：" + err.Message, "提示信息",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return null;
-            }
-        }
-
-
-
-
-
-
-
-
     }
-
-
-
 
 }

@@ -50,3 +50,13 @@ D:\project\homework\homework15-3-12\code\personremainer\personremainer\obj\x86\D
 D:\project\homework\homework15-3-12\code\personremainer\personremainer\obj\x86\Debug\personremainer.Form3.resources
 D:\project\homework\homework15-3-12\code\personremainer\personremainer\obj\x86\Debug\personremainer.Properties.Resources.resources
 D:\project\homework\homework15-3-12\code\personremainer\personremainer\obj\x86\Debug\personremainer.csproj.GenerateResource.Cache
+C:\Users\user\Desktop\软件调研\personremainer\personremainer\obj\x86\Debug\personremainer.exe
+C:\Users\user\Desktop\软件调研\personremainer\personremainer\obj\x86\Debug\personremainer.pdb
+C:\Users\user\Desktop\软件调研\personremainer\personremainer\bin\Debug\personremainer.exe
+C:\Users\user\Desktop\软件调研\personremainer\personremainer\bin\Debug\personremainer.pdb
+C:\Users\user\Desktop\软件调研\personremainer\personremainer\obj\x86\Debug\personremainer.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\软件调研\personremainer\personremainer\obj\x86\Debug\personremainer.Form1.resources
+C:\Users\user\Desktop\软件调研\personremainer\personremainer\obj\x86\Debug\personremainer.Form2.resources
+C:\Users\user\Desktop\软件调研\personremainer\personremainer\obj\x86\Debug\personremainer.Form3.resources
+C:\Users\user\Desktop\软件调研\personremainer\personremainer\obj\x86\Debug\personremainer.Properties.Resources.resources
+C:\Users\user\Desktop\软件调研\personremainer\personremainer\obj\x86\Debug\personremainer.csproj.GenerateResource.Cache
