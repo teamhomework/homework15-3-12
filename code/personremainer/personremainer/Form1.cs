@@ -120,7 +120,9 @@ namespace personremainer
         //搜索
         private void button1_Click(object sender, EventArgs e)
         {
-
+            // show graph code
+       //  GetNetStockData LoadGraph = new GetNetStockData();
+        // KLineGraph.ImageLocation = @LoadGraph.GetNetGraph(1,"000001");
             Display(panel2);
             
         }
@@ -217,6 +219,19 @@ namespace personremainer
         {
 
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+
 
     }
 
