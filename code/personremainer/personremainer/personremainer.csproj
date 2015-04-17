@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataBase.cs" />
+    <Compile Include="DataView.cs" />
     <Compile Include="GetNetStockData.cs" />
     <Compile Include="CNode.cs" />
     <Compile Include="Commo.cs" />

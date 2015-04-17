@@ -115,17 +115,42 @@ namespace personremainer
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            //test
+        
         }
         //搜索
         private void button1_Click(object sender, EventArgs e)
         {
-            // show graph code
-       //  GetNetStockData LoadGraph = new GetNetStockData();
-        // KLineGraph.ImageLocation = @LoadGraph.GetNetGraph(1,"000001");
-            Display(panel2);
+            /*string StockNum = textBox1.Text;
             
+            // show graph code
+         GetNetStockData LoadGraph = new GetNetStockData();
+         KLineGraph.ImageLocation = @LoadGraph.GetNetGraph(StockNum,0);*/
+            //查找數據庫返回顯然資料
+            
+            //跳轉到股票資訊界面
+           show_StoInf = true;
+            Display(panel2);
+
+            //test
+     /*       DataBase test = new DataBase();
+            GetNetStockData ND =new GetNetStockData();
+            test.CreateTable();
+           string s = ND.GetNetData("000001");
+           string[] D = ND.TreatmentString(s);
+          test.AddStockData(D,"000001");*/
+
+
         }
+          
+
+
+
+
+
+
+
+    
         //搜索TEXT
         private void textBox1_TextChanged(object sender, EventArgs e)
         {      
@@ -146,62 +171,61 @@ namespace personremainer
         //導入EXECL
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
-            
+
             personremainer.commo_data.filename = openFileDialog1.FileName;
 
             //導入文件代碼
-           OptExcel optExcel = new OptExcel();
-           optExcel.Open_Excel(personremainer.commo_data.filename);
+            OptExcel optExcel = new OptExcel();
+            optExcel.Open_Excel(personremainer.commo_data.filename);
 
-           OptrecordNode recordnode = new OptrecordNode();
-           OptrecordNode recordnode_hand = recordnode;
-          //找总行数
-          int ROW = 1;
-          while (true)
-          {
-              if (optExcel.Read_ExData(ROW, 0) == "" && optExcel.Read_ExData(ROW + 1, 0) == "")
-              {
-                  break;
-              }
-              else
-              {
-                  ROW++;
-              }
-          }
-          for (int rowi = 0; rowi < ROW; rowi++)
-          {
-              if (optExcel.Read_ExData(rowi, 1) != "")
-              {
-                  recordnode.stockname = optExcel.Read_ExData(rowi, 0);
-                  recordnode.stockcode = optExcel.Read_ExData(rowi, 1);
-                  recordnode.optdate = optExcel.Read_ExData(rowi, 2);
-                  recordnode.opttype = optExcel.Read_ExData(rowi, 3);
-                  recordnode.stockprice = optExcel.Read_ExData(rowi, 4);
-                  recordnode.stocknumber = optExcel.Read_ExData(rowi, 5);
-                  recordnode.rate = optExcel.Read_ExData(rowi, 6);
-                  recordnode.commission = optExcel.Read_ExData(rowi, 7);
-                  //recordnode.next = new OptrecordNode();
-                  // recordnode = recordnode.next;
-                  if (recordnode != null)
-                  {
-                      recordnode.next = new OptrecordNode();
-                      recordnode = recordnode.next;
-                  }
-
-              }
-          }
-          //optExcel.Close();
-          readRnode(recordnode_hand);
-        }
-        //读取链表
-        public void readRnode(OptrecordNode o)
-        {
-
-            if (o.next != null)
+            OptrecordNode recordnode = new OptrecordNode();
+            OptrecordNode recordnode_hand = recordnode;
+            //找总行数
+            int ROW = 1;
+            while (true)
             {
-                readRnode(o.next);
+                if (optExcel.Read_ExData(ROW, 0) == "" && optExcel.Read_ExData(ROW + 1, 0) == "")
+                {
+                    break;
+                }
+                else
+                {
+                    ROW++;
+                }
             }
+            for (int rowi = 0; rowi < ROW; rowi++)
+            {
+                if (optExcel.Read_ExData(rowi, 1) != "")
+                {
+                    recordnode.stockname = optExcel.Read_ExData(rowi, 0);
+                    recordnode.stockcode = optExcel.Read_ExData(rowi, 1);
+                    recordnode.optdate = optExcel.Read_ExData(rowi, 2);
+                    recordnode.opttype = optExcel.Read_ExData(rowi, 3);
+                    recordnode.stockprice = optExcel.Read_ExData(rowi, 4);
+                    recordnode.stocknumber = optExcel.Read_ExData(rowi, 5);
+                    recordnode.rate = optExcel.Read_ExData(rowi, 6);
+                    recordnode.commission = optExcel.Read_ExData(rowi, 7);
+                    //recordnode.next = new OptrecordNode();
+                    // recordnode = recordnode.next;
+                    if (recordnode != null)
+                    {
+                        recordnode.next = new OptrecordNode();
+                        recordnode = recordnode.next;
+                    }
+                }
+            }
+
+            DataBase opdata = new DataBase();
+            opdata.CreateTable();
+            opdata.AddUserOp(recordnode_hand);
+
+
+
         }
+
+
+        
+
             
         private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

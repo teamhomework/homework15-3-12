@@ -63,7 +63,7 @@ namespace personremainer
         */
         //抓股票圖表   pictureBox1.ImageLocation = @"http://image.sinajs.cn/newchart/min/n/sh000001.gif";
         //分=0 日=1 周=2 月=3
-        public string GetNetGraph(int n,string StockNum)
+        public string GetNetGraph(string StockNum,int n)
         {
             if (null == client)
             {
@@ -96,9 +96,13 @@ namespace personremainer
             {
                 StockNum = "weekly/n/" + StockNum;
             }
-           else if (3 == n)
+            else if (3 == n)
             {
                 StockNum = "monthly/n/" + StockNum;
+            }
+            else
+            {
+                n = 0;
             }
 
 

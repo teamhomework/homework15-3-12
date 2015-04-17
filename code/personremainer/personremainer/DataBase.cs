@@ -1,0 +1,172 @@
+﻿using System;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using System.Data.SqlClient;
+
+using System.Windows.Forms;
+
+
+
+namespace personremainer
+{
+    class DataBase
+    {
+
+        //測試用
+    /*    public string ConectDB()
+        {
+            // string connectionString = "server=.\\SQLEXPRESS;uid=数据库用户名;pwd=数据库密码;database=数据库名称";
+            string ConnectionString = "server = .\\SQLEXPRESS;uid =chanmen;pwd=123456;database=test";
+ 
+            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlCommand sqlComm =new SqlCommand();
+            conn.Open();
+            sqlComm.Connection = conn;
+         sqlComm.CommandText  = "select * from test2";
+         sqlComm.CommandType = CommandType.Text;
+         SqlDataReader sdr = sqlComm.ExecuteReader();
+        //    string a= sdr[0].ToString();
+      //   MessageBox.Show(a);
+         sdr.Read();
+             string a= sdr[0].ToString();
+            MessageBox.Show(a);
+         return "1";
+
+
+        }*/
+        // 有點權限問題不好搞  所以不另行新創數據庫
+   /*     public void CreateDB()
+        {
+            //連接數據庫SQLEXPRESS  "server=.;database=master;integrated security=SSPI"; 
+            string consqlser = "server = .\\SQLEXPRESS;integrated security=SSPI;database=test";
+            SqlConnection conn = new SqlConnection(consqlser);
+            //SqlCommand sqlComm =new SqlCommand();
+
+            if (conn.State != ConnectionState.Open)
+            {
+                conn.Open();
+            }
+
+            string createtablesql = "CREATE DATABASE MyDB ON PRIMARY" + "(name=UserOpTable, filename =  'C:\\Users\\user\\Desktop\\ss\\UserOpTable.mdf', size=3," + "maxsize=5, filegrowth=10%)log on" + "(name=mydbb_log, filename='C:\\Users\\user\\Desktop\\ss\\UserOpTable_log.ldf',size=3," + "maxsize=20,filegrowth=1)";
+            SqlCommand comsql = new SqlCommand(createtablesql, conn);
+            try
+            {
+                comsql.ExecuteNonQuery();
+            }
+            catch (SqlException err)
+            {
+                MessageBox.Show(err.Message.ToString());
+            }
+        }*/
+
+
+        //創表
+        public void CreateTable()
+        {
+            //連接數據庫SQLEXPRESS  "server=.;database=master;integrated security=SSPI"; 
+            string consqlser = "server = .\\SQLEXPRESS;integrated security=SSPI;database=test";
+            SqlConnection conn = new SqlConnection(consqlser);
+            if (conn.State != ConnectionState.Open)
+            {
+                conn.Open();
+            }
+
+            string createuseroptabble = "CREATE TABLE UserOp"+  "(name CHAR(10),id INT, date CHAR(20), type  CHAR(10),price float,quantity int,taxrate varchar(10),commission varchar(10))";
+            string createstotable = "CREATE TABLE StockInf" + "( name char(10)," + "id int CONSTRAINT PKeyid PRIMARY KEY,"  +  "openingpriceT float,closepriceY float,maxprice float,minprice float,increase varchar(10) )";
+            
+            SqlCommand comsql = new SqlCommand(createuseroptabble, conn);
+            SqlCommand comsql2 = new SqlCommand(createstotable,conn);
+
+            try
+            {
+                comsql.ExecuteNonQuery();
+                comsql2.ExecuteNonQuery();
+            }
+            catch (SqlException err)
+            {
+                MessageBox.Show(err.Message.ToString());
+            }
+            conn.Close();
+        }
+        //向用戶操作表增加數據
+        public void AddUserOp(OptrecordNode UserOp_hand)
+        {
+            OptrecordNode UserOp = UserOp_hand;
+
+
+            string consqlser = "server = .\\SQLEXPRESS;integrated security=SSPI;database=test";
+            SqlConnection conn = new SqlConnection(consqlser);
+
+
+            if (conn.State != ConnectionState.Open)
+            {
+                conn.Open();
+            }
+
+            while (UserOp != null && UserOp.stockcode !=null)
+            {
+                string insertsql = "INSERT INTO UserOP(name,id, date, type ,price ,quantity ,taxrate ,commission)" + "VALUES ( " + "'" + UserOp.stockname + "','" + UserOp.stockcode + "','" + UserOp.optdate + "','" + UserOp.opttype + "','" + UserOp.stockprice + "','" + UserOp.stocknumber + "','" + UserOp.rate + "','" + UserOp.commission + "'" + ")";
+
+                SqlCommand sqlcomm = new SqlCommand(insertsql, conn);
+                try
+                {
+                    sqlcomm.ExecuteNonQuery();
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message.ToString());
+                }
+                UserOp = UserOp.next;
+            }
+
+            conn.Close();
+
+        }
+
+
+
+
+        //向股票資料表增加數據
+        public void AddStockData(string[] StockInf,string Stockcode)
+        { 
+            string consqlser = "server = .\\SQLEXPRESS;integrated security=SSPI;database=test";
+            SqlConnection conn = new SqlConnection(consqlser);
+
+            if (conn.State != ConnectionState.Open)
+            {
+                conn.Open();
+            }
+            string T = StockInf[1];
+            string N = StockInf[3];
+
+            float Increase,priceT,priceN;
+            priceT =float.Parse( T);
+            priceN = float.Parse(N);
+            Increase = priceN - priceT;
+
+         
+
+            string insertsql = "INSERT INTO StockInf(name , id ,openingpriceT,closepriceY ,maxprice ,minprice ,increase  )" + "VALUES ( " + "'" + StockInf[0] + "','" + Stockcode + "','" + StockInf[1] + "','" + StockInf[2] + "','" + StockInf[4] + "','" + StockInf[5] + "','" + Increase + "'"  + ")";
+
+           // string insertsql = "INSERT INTO StockInf(id   )" + "VALUES ( " + "'" + StockInf[1] +"'"+ ")";
+
+
+                SqlCommand sqlcomm = new SqlCommand(insertsql, conn);
+                try
+                {
+                    sqlcomm.ExecuteNonQuery();
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message.ToString());
+                }
+
+        }
+        
+
+
+    }
+}

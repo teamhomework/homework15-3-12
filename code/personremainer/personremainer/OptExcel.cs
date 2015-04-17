@@ -42,7 +42,7 @@ namespace personremainer
                 foreach (DataRow row in MyTable.Rows)
                 {
 
-                    //遍历弹出各Sheet的名称
+                    //遍历各Sheet的名称
                 SheetName[TableNum] =(string) row["TABLE_NAME"];
               //  MessageBox.Show(SheetName[TableNum]);
                 TableNum++;
@@ -53,7 +53,6 @@ namespace personremainer
                // MessageBox.Show(MyComm_E.CommandText);//測試用
                 MyAdap.SelectCommand = MyComm_E;
 
-              //  MyAdap.Fill(MyTable);
                 MyAdap.Fill(MySet);
                 MyConn_E.Close();
 

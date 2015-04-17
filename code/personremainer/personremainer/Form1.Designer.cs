@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,14 +63,6 @@
             this.KLineGraph = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column15 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Column16 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.label8 = new System.Windows.Forms.Label();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
@@ -83,6 +75,13 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tax = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.commission = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.change = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.del = new System.Windows.Forms.DataGridViewButtonColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -179,8 +178,8 @@
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.textBox1);
             this.splitContainer1.Panel2.Controls.Add(this.button1);
-            this.splitContainer1.Panel2.Controls.Add(this.panel3);
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
+            this.splitContainer1.Panel2.Controls.Add(this.panel3);
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Size = new System.Drawing.Size(991, 454);
             this.splitContainer1.SplitterDistance = 25;
@@ -294,7 +293,7 @@
             this.panel3.Controls.Add(this.chart2);
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1278, 790);
+            this.panel3.Size = new System.Drawing.Size(1475, 965);
             this.panel3.TabIndex = 4;
             this.panel3.Visible = false;
             // 
@@ -343,16 +342,16 @@
             // 
             // chart2
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chart2.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart2.Legends.Add(legend1);
             this.chart2.Location = new System.Drawing.Point(464, 142);
             this.chart2.Name = "chart2";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chart2.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart2.Series.Add(series1);
             this.chart2.Size = new System.Drawing.Size(300, 300);
             this.chart2.TabIndex = 0;
             this.chart2.Text = "chart2";
@@ -369,7 +368,7 @@
             this.panel2.Controls.Add(this.richTextBox1);
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(929, 546);
+            this.panel2.Size = new System.Drawing.Size(1286, 897);
             this.panel2.TabIndex = 3;
             this.panel2.Visible = false;
             // 
@@ -396,66 +395,19 @@
             // 
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column9,
-            this.Column10,
-            this.Column11,
-            this.Column12,
-            this.Column13,
-            this.Column14,
-            this.Column15,
-            this.Column16});
+            this.date,
+            this.price,
+            this.quantity,
+            this.tax,
+            this.commission,
+            this.change,
+            this.del});
             this.dataGridView3.Location = new System.Drawing.Point(86, 393);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowTemplate.Height = 23;
-            this.dataGridView3.Size = new System.Drawing.Size(840, 150);
+            this.dataGridView3.Size = new System.Drawing.Size(745, 150);
             this.dataGridView3.TabIndex = 5;
             this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "日期";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "類型";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "價格";
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "數量";
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            // 
-            // Column13
-            // 
-            this.Column13.HeaderText = "稅率";
-            this.Column13.Name = "Column13";
-            this.Column13.ReadOnly = true;
-            // 
-            // Column14
-            // 
-            this.Column14.HeaderText = "佣金";
-            this.Column14.Name = "Column14";
-            this.Column14.ReadOnly = true;
-            // 
-            // Column15
-            // 
-            this.Column15.HeaderText = "修改";
-            this.Column15.Name = "Column15";
-            // 
-            // Column16
-            // 
-            this.Column16.HeaderText = "刪除";
-            this.Column16.Name = "Column16";
             // 
             // label8
             // 
@@ -491,7 +443,7 @@
             this.panel1.Controls.Add(this.chart1);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1506, 811);
+            this.panel1.Size = new System.Drawing.Size(1506, 947);
             this.panel1.TabIndex = 2;
             this.panel1.Visible = false;
             // 
@@ -545,16 +497,16 @@
             // 
             // chart1
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chart1.Legends.Add(legend4);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(114, 220);
             this.chart1.Name = "chart1";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chart1.Series.Add(series4);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(559, 209);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -563,6 +515,46 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
+            // date
+            // 
+            this.date.HeaderText = "日期";
+            this.date.Name = "date";
+            this.date.ReadOnly = true;
+            // 
+            // price
+            // 
+            this.price.HeaderText = "價格";
+            this.price.Name = "price";
+            this.price.ReadOnly = true;
+            // 
+            // quantity
+            // 
+            this.quantity.HeaderText = "數量";
+            this.quantity.Name = "quantity";
+            this.quantity.ReadOnly = true;
+            // 
+            // tax
+            // 
+            this.tax.HeaderText = "稅率";
+            this.tax.Name = "tax";
+            this.tax.ReadOnly = true;
+            // 
+            // commission
+            // 
+            this.commission.HeaderText = "佣金";
+            this.commission.Name = "commission";
+            this.commission.ReadOnly = true;
+            // 
+            // change
+            // 
+            this.change.HeaderText = "修改";
+            this.change.Name = "change";
+            // 
+            // del
+            // 
+            this.del.HeaderText = "刪除";
+            this.del.Name = "del";
             // 
             // Form1
             // 
@@ -635,19 +627,11 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         public System.Windows.Forms.Button button1;
         public System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridViewButtonColumn Column15;
-        private System.Windows.Forms.DataGridViewButtonColumn Column16;
         private System.Windows.Forms.Button button2;
         public System.Windows.Forms.Label label1;
 
@@ -681,7 +665,14 @@
         bool show_TakSto = false;//持倉情況
         bool show_StoInf = false;//股票資訊
         bool show_StoGra = false;
-        private System.Windows.Forms.PictureBox KLineGraph; //股票收益
+        private System.Windows.Forms.PictureBox KLineGraph;
+        private System.Windows.Forms.DataGridViewTextBoxColumn date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tax;
+        private System.Windows.Forms.DataGridViewTextBoxColumn commission;
+        private System.Windows.Forms.DataGridViewButtonColumn change;
+        private System.Windows.Forms.DataGridViewButtonColumn del; //股票收益
 
 
 
