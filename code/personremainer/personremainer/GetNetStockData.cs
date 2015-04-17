@@ -28,6 +28,12 @@ namespace personremainer
             {
                 client = new WebClient();
             }
+            char[] test = StockNum.ToArray();
+            if (test.LongLength < 6)
+            {
+                StockNum = "00" + StockNum;
+            }
+
             if("60" == StockNum.Substring(0,2))
             {
                 StockNum = "sh" + StockNum;
@@ -40,12 +46,7 @@ namespace personremainer
             {
                 StockNum = "sz" + StockNum;
             }
-           /* else if("00" == StockNum.Substring(0,2))
-            {
-                string tip = "請在編號前增加 sh 或 sz 或 sz";
-                MessageBox.Show(tip);
-                return "";
-            }*/
+ 
 
             string url = string.Format(UrlList,StockNum);
             string StockData = client.DownloadString(url);
@@ -69,6 +70,14 @@ namespace personremainer
             {
                 client = new WebClient();
             }
+
+            char[] test = StockNum.ToArray();
+            if (test.LongLength < 6)
+            {
+                StockNum = "00" + StockNum;
+            }
+
+
             if("60" == StockNum.Substring(0,2))
             {
                 StockNum = "sh" + StockNum;
@@ -81,6 +90,7 @@ namespace personremainer
             {
                 StockNum = "sz" + StockNum;
             }
+            
 
             StockNum = StockNum + GraphUrlEnd;
 

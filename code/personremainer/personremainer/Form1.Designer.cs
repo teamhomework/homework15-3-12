@@ -52,6 +52,20 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.KLineGraph = new System.Windows.Forms.PictureBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tax = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.commission = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.change = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.del = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.label8 = new System.Windows.Forms.Label();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
@@ -59,13 +73,6 @@
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.KLineGraph = new System.Windows.Forms.PictureBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.label8 = new System.Windows.Forms.Label();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,24 +82,17 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tax = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.commission = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.change = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.del = new System.Windows.Forms.DataGridViewButtonColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.KLineGraph)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -284,6 +284,125 @@
             this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // panel2
+            // 
+            this.panel2.AutoScroll = true;
+            this.panel2.AutoSize = true;
+            this.panel2.Controls.Add(this.KLineGraph);
+            this.panel2.Controls.Add(this.button2);
+            this.panel2.Controls.Add(this.dataGridView3);
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.richTextBox2);
+            this.panel2.Controls.Add(this.richTextBox1);
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1286, 897);
+            this.panel2.TabIndex = 3;
+            this.panel2.Visible = false;
+            // 
+            // KLineGraph
+            // 
+            this.KLineGraph.Location = new System.Drawing.Point(18, 47);
+            this.KLineGraph.Name = "KLineGraph";
+            this.KLineGraph.Size = new System.Drawing.Size(538, 315);
+            this.KLineGraph.TabIndex = 7;
+            this.KLineGraph.TabStop = false;
+            this.KLineGraph.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(839, 364);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "增添交易記錄";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.date,
+            this.price,
+            this.quantity,
+            this.tax,
+            this.commission,
+            this.change,
+            this.del});
+            this.dataGridView3.Location = new System.Drawing.Point(86, 393);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.RowTemplate.Height = 23;
+            this.dataGridView3.Size = new System.Drawing.Size(745, 150);
+            this.dataGridView3.TabIndex = 5;
+            this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
+            // 
+            // date
+            // 
+            this.date.HeaderText = "日期";
+            this.date.Name = "date";
+            this.date.ReadOnly = true;
+            // 
+            // price
+            // 
+            this.price.HeaderText = "價格";
+            this.price.Name = "price";
+            this.price.ReadOnly = true;
+            // 
+            // quantity
+            // 
+            this.quantity.HeaderText = "數量";
+            this.quantity.Name = "quantity";
+            this.quantity.ReadOnly = true;
+            // 
+            // tax
+            // 
+            this.tax.HeaderText = "稅率";
+            this.tax.Name = "tax";
+            this.tax.ReadOnly = true;
+            // 
+            // commission
+            // 
+            this.commission.HeaderText = "佣金";
+            this.commission.Name = "commission";
+            this.commission.ReadOnly = true;
+            // 
+            // change
+            // 
+            this.change.HeaderText = "修改";
+            this.change.Name = "change";
+            // 
+            // del
+            // 
+            this.del.HeaderText = "刪除";
+            this.del.Name = "del";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(84, 18);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(41, 12);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "label8";
+            // 
+            // richTextBox2
+            // 
+            this.richTextBox2.Location = new System.Drawing.Point(585, 52);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.Size = new System.Drawing.Size(100, 96);
+            this.richTextBox2.TabIndex = 3;
+            this.richTextBox2.Text = "";
+            this.richTextBox2.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(585, 170);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(200, 161);
+            this.richTextBox1.TabIndex = 2;
+            this.richTextBox1.Text = "";
+            // 
             // panel3
             // 
             this.panel3.AutoScroll = true;
@@ -355,85 +474,6 @@
             this.chart2.Size = new System.Drawing.Size(300, 300);
             this.chart2.TabIndex = 0;
             this.chart2.Text = "chart2";
-            // 
-            // panel2
-            // 
-            this.panel2.AutoScroll = true;
-            this.panel2.AutoSize = true;
-            this.panel2.Controls.Add(this.KLineGraph);
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.dataGridView3);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.richTextBox2);
-            this.panel2.Controls.Add(this.richTextBox1);
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1286, 897);
-            this.panel2.TabIndex = 3;
-            this.panel2.Visible = false;
-            // 
-            // KLineGraph
-            // 
-            this.KLineGraph.Location = new System.Drawing.Point(18, 47);
-            this.KLineGraph.Name = "KLineGraph";
-            this.KLineGraph.Size = new System.Drawing.Size(538, 315);
-            this.KLineGraph.TabIndex = 7;
-            this.KLineGraph.TabStop = false;
-            this.KLineGraph.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(839, 364);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "增添交易記錄";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // dataGridView3
-            // 
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.date,
-            this.price,
-            this.quantity,
-            this.tax,
-            this.commission,
-            this.change,
-            this.del});
-            this.dataGridView3.Location = new System.Drawing.Point(86, 393);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.RowTemplate.Height = 23;
-            this.dataGridView3.Size = new System.Drawing.Size(745, 150);
-            this.dataGridView3.TabIndex = 5;
-            this.dataGridView3.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(84, 18);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(41, 12);
-            this.label8.TabIndex = 4;
-            this.label8.Text = "label8";
-            // 
-            // richTextBox2
-            // 
-            this.richTextBox2.Location = new System.Drawing.Point(585, 52);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(100, 96);
-            this.richTextBox2.TabIndex = 3;
-            this.richTextBox2.Text = "";
-            this.richTextBox2.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(585, 170);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(200, 161);
-            this.richTextBox1.TabIndex = 2;
-            this.richTextBox1.Text = "";
             // 
             // panel1
             // 
@@ -516,46 +556,6 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
-            // date
-            // 
-            this.date.HeaderText = "日期";
-            this.date.Name = "date";
-            this.date.ReadOnly = true;
-            // 
-            // price
-            // 
-            this.price.HeaderText = "價格";
-            this.price.Name = "price";
-            this.price.ReadOnly = true;
-            // 
-            // quantity
-            // 
-            this.quantity.HeaderText = "數量";
-            this.quantity.Name = "quantity";
-            this.quantity.ReadOnly = true;
-            // 
-            // tax
-            // 
-            this.tax.HeaderText = "稅率";
-            this.tax.Name = "tax";
-            this.tax.ReadOnly = true;
-            // 
-            // commission
-            // 
-            this.commission.HeaderText = "佣金";
-            this.commission.Name = "commission";
-            this.commission.ReadOnly = true;
-            // 
-            // change
-            // 
-            this.change.HeaderText = "修改";
-            this.change.Name = "change";
-            // 
-            // del
-            // 
-            this.del.HeaderText = "刪除";
-            this.del.Name = "del";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -575,13 +575,13 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.KLineGraph)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
@@ -653,10 +653,12 @@
         {
             button1.Visible = false;
             textBox1.Visible = false;
-
             panel1.Visible = false;
             panel2.Visible = false;
             panel3.Visible = false;
+            show_PerFor = false;
+            show_StoGra = false;
+            show_StoInf = false;
 
         }
 

@@ -15,6 +15,8 @@ namespace personremainer
     class DataBase
     {
 
+        string consqlser = "server = .\\SQLEXPRESS;integrated security=SSPI;database=test";
+
         //測試用
     /*    public string ConectDB()
         {
@@ -63,11 +65,12 @@ namespace personremainer
         }*/
 
 
+
+
         //創表
         public void CreateTable()
         {
             //連接數據庫SQLEXPRESS  "server=.;database=master;integrated security=SSPI"; 
-            string consqlser = "server = .\\SQLEXPRESS;integrated security=SSPI;database=test";
             SqlConnection conn = new SqlConnection(consqlser);
             if (conn.State != ConnectionState.Open)
             {
@@ -75,7 +78,7 @@ namespace personremainer
             }
 
             string createuseroptabble = "CREATE TABLE UserOp"+  "(name CHAR(10),id INT, date CHAR(20), type  CHAR(10),price float,quantity int,taxrate varchar(10),commission varchar(10))";
-            string createstotable = "CREATE TABLE StockInf" + "( name char(10)," + "id int CONSTRAINT PKeyid PRIMARY KEY,"  +  "openingpriceT float,closepriceY float,maxprice float,minprice float,increase varchar(10) )";
+            string createstotable = "CREATE TABLE StockInf" + "( name char(10)," + "id int CONSTRAINT PKeyid PRIMARY KEY,"  +  "openingpriceT float,closepriceY float,maxprice float,minprice float,increase varchar(max) )";
             
             SqlCommand comsql = new SqlCommand(createuseroptabble, conn);
             SqlCommand comsql2 = new SqlCommand(createstotable,conn);
@@ -95,12 +98,7 @@ namespace personremainer
         public void AddUserOp(OptrecordNode UserOp_hand)
         {
             OptrecordNode UserOp = UserOp_hand;
-
-
-            string consqlser = "server = .\\SQLEXPRESS;integrated security=SSPI;database=test";
             SqlConnection conn = new SqlConnection(consqlser);
-
-
             if (conn.State != ConnectionState.Open)
             {
                 conn.Open();
@@ -131,30 +129,42 @@ namespace personremainer
 
         //向股票資料表增加數據
         public void AddStockData(string[] StockInf,string Stockcode)
-        { 
-            string consqlser = "server = .\\SQLEXPRESS;integrated security=SSPI;database=test";
-            SqlConnection conn = new SqlConnection(consqlser);
+        {
 
+           // string consqlser = "server = .\\SQLEXPRESS;integrated security=SSPI;database=test";
+            SqlConnection conn = new SqlConnection(consqlser);
             if (conn.State != ConnectionState.Open)
             {
                 conn.Open();
             }
+            char[] test = Stockcode.ToArray();
+            if (test.LongLength < 6)
+            {
+                Stockcode = "00" + Stockcode;
+            }
             string T = StockInf[1];
             string N = StockInf[3];
-
             float Increase,priceT,priceN;
             priceT =float.Parse( T);
             priceN = float.Parse(N);
             Increase = priceN - priceT;
+     
+      
 
-         
+            string commsql =null;
+            //檢查股票是否已存 如果是則更新 否則 插入新記錄
+            DataSet ds = ReadDB("StockInf", "id", "id", Stockcode);
+           
+            if (ds.Tables[0].Rows.Count.ToString() == "0")
+            {
+                commsql = "INSERT INTO StockInf(name , id ,openingpriceT,closepriceY ,maxprice ,minprice ,increase  )" + "VALUES ( " + "'" + StockInf[0] + "','" + Stockcode + "','" + StockInf[1] + "','" + StockInf[2] + "','" + StockInf[4] + "','" + StockInf[5] + "','" + Increase + "'" + ")";
+            }
+            else
+            {
+               commsql = "update StockInf set " + " name = " + "'" + Stockcode[0]+ "'," + " id = " + "'" + Stockcode +"'," + " openingpriceT = " + "'" + Stockcode[1] + "'," + "closepriceY = " + "'" + Stockcode[2] + "'," + "maxprice = " + "'" + Stockcode[4] + "'," + "minprice = " + "'" + Stockcode[5] + "'," + "increase = " + "'" + Stockcode + "'" + "where " + "( id = " + "'" + Stockcode + "'" + ")";          
+             }  
 
-            string insertsql = "INSERT INTO StockInf(name , id ,openingpriceT,closepriceY ,maxprice ,minprice ,increase  )" + "VALUES ( " + "'" + StockInf[0] + "','" + Stockcode + "','" + StockInf[1] + "','" + StockInf[2] + "','" + StockInf[4] + "','" + StockInf[5] + "','" + Increase + "'"  + ")";
-
-           // string insertsql = "INSERT INTO StockInf(id   )" + "VALUES ( " + "'" + StockInf[1] +"'"+ ")";
-
-
-                SqlCommand sqlcomm = new SqlCommand(insertsql, conn);
+                SqlCommand sqlcomm = new SqlCommand(commsql, conn);
                 try
                 {
                     sqlcomm.ExecuteNonQuery();
@@ -163,10 +173,86 @@ namespace personremainer
                 {
                     MessageBox.Show(err.Message.ToString());
                 }
-
+                conn.Close();
         }
         
 
+
+        //讀數據庫
+        public DataSet ReadDB(string tablename, string search)
+        {
+            SqlConnection conn = new SqlConnection(consqlser);
+
+            if (conn.State != ConnectionState.Open)
+            {
+                conn.Open();
+            }
+
+            try
+            {
+                string searchsql;
+                if (search != "*")
+                {
+                    searchsql = " select" + "\"" + search + "\"" + "from" + "\"" + tablename + "\"";
+                }
+                else
+                {
+                    searchsql = " select * from" + "\"" + tablename + "\"";
+                }
+                SqlCommand comm = new SqlCommand(searchsql, conn);
+                SqlDataAdapter sda = new SqlDataAdapter();
+
+                sda.SelectCommand = comm;
+                DataSet DS = new DataSet();
+
+                sda.Fill(DS);
+
+                return DS;
+            }
+            catch (Exception err)
+            {
+                return null;
+            }
+            conn.Close();
+
+        }
+        //重載 讀數據字函數
+        public DataSet ReadDB(string tablename, string search, string condition,string vaule)
+        {
+            SqlConnection conn = new SqlConnection(consqlser);
+
+            if (conn.State != ConnectionState.Open)
+            {
+                conn.Open();
+            }
+
+            string searchsql = null;
+            try
+            {
+                if (search != "*")
+                {
+                    searchsql = " select" + "\"" + search + "\"" + "from" + "\"" + tablename + "\"" + "where" + "(\"" + condition + "\"" + "=" + "'" + vaule + "'" + ")";
+                }
+                else
+                {
+                    searchsql = " select * from" + "\"" + tablename + "\"" + "where" + "(\"" + condition + "\"" + "=" + "'" + vaule + "'" + ")";
+                }
+                SqlCommand comm = new SqlCommand(searchsql, conn);
+                SqlDataAdapter sda = new SqlDataAdapter();
+
+                sda.SelectCommand = comm;
+                DataSet DS = new DataSet();
+
+                sda.Fill(DS);
+
+                return DS;
+            }
+            catch (Exception err)
+            {
+                return null;
+            }
+            conn.Close();
+        }
 
     }
 }

@@ -133,13 +133,19 @@ namespace personremainer
             Display(panel2);
 
             //test
-     /*       DataBase test = new DataBase();
+         DataBase test = new DataBase();
             GetNetStockData ND =new GetNetStockData();
             test.CreateTable();
-           string s = ND.GetNetData("000001");
-           string[] D = ND.TreatmentString(s);
-          test.AddStockData(D,"000001");*/
+            DataSet aa;
 
+            string s = ND.GetNetData("601398");
+           string[] D = ND.TreatmentString(s);
+
+           test.AddStockData(D, "601398");
+            
+     //  DataSet DS =  test.ReadDB("StockInf","id","id","2");   
+     //  MessageBox.Show( DS.Tables[0].Rows[0][0].ToString());
+            
 
         }
           
@@ -216,9 +222,28 @@ namespace personremainer
             }
 
             DataBase opdata = new DataBase();
+            DataSet DS = new DataSet();
+            GetNetStockData GNS =new GetNetStockData();
             opdata.CreateTable();
             opdata.AddUserOp(recordnode_hand);
+            DS = opdata.ReadDB("UserOp", "id");
 
+
+            ROW = int.Parse( DS.Tables[0].Rows.Count.ToString());
+            for (int row =0; row<ROW;row++ )
+            {
+                string getstocaode = DS.Tables[0].Rows[row][0].ToString();
+
+                //新增股票記錄
+                    string stockdata = GNS.GetNetData(getstocaode);
+                    string[] temp = GNS.TreatmentString(stockdata);
+                    opdata.AddStockData(temp, getstocaode);
+                
+                
+
+            }
+            
+ 
 
 
         }
