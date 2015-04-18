@@ -14,7 +14,8 @@ namespace personremainer
 {
     class DataBase
     {
-
+        //可以用這句換掉現有的連接字身符串
+        //  string consqlser = "server = .;integrated security=SSPI;database=master";
         string consqlser = "server = .\\SQLEXPRESS;integrated security=SSPI;database=test";
 
         //測試用
@@ -161,8 +162,12 @@ namespace personremainer
             }
             else
             {
-               commsql = "update StockInf set " + " name = " + "'" + Stockcode[0]+ "'," + " id = " + "'" + Stockcode +"'," + " openingpriceT = " + "'" + Stockcode[1] + "'," + "closepriceY = " + "'" + Stockcode[2] + "'," + "maxprice = " + "'" + Stockcode[4] + "'," + "minprice = " + "'" + Stockcode[5] + "'," + "increase = " + "'" + Stockcode + "'" + "where " + "( id = " + "'" + Stockcode + "'" + ")";          
-             }  
+             //  commsql = "update StockInf set " + " name = " + "'" + StockInf[0]+ "'," + " id = " + "'" + StockInf +"'," + " openingpriceT = " + "'" + StockInf[1] + "'," + "closepriceY = " + "'" + StockInf[2] + "'," + "maxprice = " + "'" + StockInf[4] + "'," + "minprice = " + "'" + StockInf[5] + "'," + "increase = " + "'" +int.Parse(Stockcode) + "'" + "where " + "( id = " + "'" +int.Parse(Stockcode) + "'" + ")";          
+                commsql = "update StockInf set " + " name = " + "'" + StockInf[0] + "'," + " id = " + "'" + Stockcode + "'," + " openingpriceT = " + "'" + StockInf[1] + "'," + "closepriceY = " + "'" + StockInf[2] + "'," + "maxprice = " + "'" + StockInf[4] + "'," + "minprice = " + "'" + StockInf[5] + "'," + "increase = " + "'" + Increase+ "'" + "where " + "( id = " + "'" + Stockcode + "'" + ")";          
+          
+            
+            
+            }  
 
                 SqlCommand sqlcomm = new SqlCommand(commsql, conn);
                 try
@@ -206,14 +211,14 @@ namespace personremainer
                 DataSet DS = new DataSet();
 
                 sda.Fill(DS);
-
+                conn.Close();
                 return DS;
             }
             catch (Exception err)
             {
                 return null;
             }
-            conn.Close();
+           
 
         }
         //重載 讀數據字函數
@@ -244,14 +249,14 @@ namespace personremainer
                 DataSet DS = new DataSet();
 
                 sda.Fill(DS);
-
+                conn.Close();
                 return DS;
             }
             catch (Exception err)
             {
                 return null;
             }
-            conn.Close();
+          
         }
 
     }
