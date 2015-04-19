@@ -21,6 +21,7 @@ namespace personremainer
         //搜索關鍵字
         public static string find_key_word;//股票號或股票名 用作搜索
         public static string filename;//EXECL文件名
+        public static string stockcode;//股票編號
     }
 
     public class create_form

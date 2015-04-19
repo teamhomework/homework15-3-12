@@ -259,5 +259,53 @@ namespace personremainer
           
         }
 
+        //重載 讀數據庫 
+        public DataSet ReadDB(string tablename, string search,int i)
+        {
+            SqlConnection conn = new SqlConnection(consqlser);
+
+            if (conn.State != ConnectionState.Open)
+            {
+                conn.Open();
+            }
+
+            try
+            {
+                string searchsql;
+
+                if (search != "*")
+                {
+                    searchsql = " select distinct " + "\"" + search + "\"" + "from" + "\"" + tablename + "\"";
+                }
+                else
+                {
+                    searchsql = " select * from" + "\"" + tablename + "\"";
+                }
+                SqlCommand comm = new SqlCommand(searchsql, conn);
+                SqlDataAdapter sda = new SqlDataAdapter();
+
+                sda.SelectCommand = comm;
+                DataSet DS = new DataSet();
+
+                sda.Fill(DS);
+                conn.Close();
+                return DS;
+            }
+            catch (Exception err)
+            {
+                return null;
+            }
+
+
+        }
+
+
+
+
+
+
+
+
+
     }
 }

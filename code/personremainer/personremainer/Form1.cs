@@ -70,8 +70,22 @@ namespace personremainer
 
             if (true == show_TakSto)
             {
-
+                while (TaStodataView.Rows.Count != 0)
+                {
+                    TaStodataView.Rows.Clear();
+                }
                 Display(panel1);
+
+                DataSet DS = new DataSet();
+                DataBase DB = new DataBase();
+
+                DS = DB.ReadDB("userop", "id", 0);
+                int ROWS = int.Parse(DS.Tables[0].Rows.Count.ToString());
+                for (int row = 0; row < ROWS; row++)
+                {
+                    show_take_sto(DS.Tables[0].Rows[row][0].ToString());
+                }
+
             }
             else if (false == show_TakSto)
                 NotDisplay();
@@ -90,8 +104,13 @@ namespace personremainer
             if (true == show_StoInf)
             {
                 Display(panel2);
-                show_stock_data("601398");
-                show_take_sto("601398");
+                if (personremainer.commo_data.stockcode != null)
+                {
+                    show_stock_data(personremainer.commo_data.stockcode);
+                    show_take_sto(personremainer.commo_data.stockcode);
+                    show_take_sto_textbox(personremainer.commo_data.stockcode);
+                    show_take_kgraph(personremainer.commo_data.stockcode);
+                }
             }
             else if (false == show_StoInf)
                 NotDisplay();
@@ -107,6 +126,7 @@ namespace personremainer
             if (true == show_StoGra)
             {
                 show_sto_gra("601398");
+                show_gra_listbox();
                 Display(panel3);
             }
             else if (false == show_StoGra)
@@ -121,30 +141,32 @@ namespace personremainer
         //搜索
         private void button1_Click(object sender, EventArgs e)
         {
-            /*string StockNum = textBox1.Text;
-            
-            // show graph code
-         GetNetStockData LoadGraph = new GetNetStockData();
-         KLineGraph.ImageLocation = @LoadGraph.GetNetGraph(StockNum,0);*/
-            //查找數據庫返回顯然資料
-            
+            string StockNum = textBox1.Text;
             //跳轉到股票資訊界面
-           show_StoInf = true;
+            show_StoInf = true;
             Display(panel2);
 
-            //test
+            show_stock_data(StockNum);
+            show_take_sto(StockNum);
+            show_take_sto_textbox(StockNum);
+            show_take_kgraph(StockNum);
+
+
+            
+
+
+     /*       //test
          DataBase test = new DataBase();
             GetNetStockData ND =new GetNetStockData();
             test.CreateTable();
-            DataSet aa;
+   
 
             string s = ND.GetNetData("601398");
            string[] D = ND.TreatmentString(s);
 
-           test.AddStockData(D, "601398");
+           test.AddStockData(D, "601398");*/
             
-     //  DataSet DS =  test.ReadDB("StockInf","id","id","2");   
-     //  MessageBox.Show( DS.Tables[0].Rows[0][0].ToString());
+
             
 
         }
@@ -384,18 +406,41 @@ namespace personremainer
 
                string d = GNSD.GetNetData(stockcode);
                string[] price = GNSD.TreatmentString(d);
-              TaStodataView.Rows.Add(DS.Tables[0].Rows[row][0].ToString(),price[6],cost,"不會算","不會算");
-            
+
+
+                 TaStodataView.Rows.Add(DS.Tables[0].Rows[row][0].ToString(),price[6],cost,"不會算","不會算");
+             
+
+
+
             }
 
         }
         //持倉信息 文本框內容
         public void show_take_sto_textbox(string stockcode)
         {
+            GetNetStockData GNSD =new GetNetStockData();
+            DataBase DB =new DataBase();
+            DataSet DS =new DataSet();
 
+           string d = GNSD.GetNetData(stockcode);
+           string[] stoinf = GNSD.TreatmentString(d);
+
+            DS = DB.ReadDB("stockinf","*");
+
+           StoDataName.Text = stoinf[0].ToString();
+           StoInc.Text = DS.Tables[0].Rows[0][6].ToString();//股價
+            //richbox  \r\n  <<<換行符
+           StockDataInf.Text = "股票名:" + DS.Tables[0].Rows[0][0].ToString() + "\r\n" + "股票編號:" + DS.Tables[0].Rows[0][1].ToString() + "\r\n" + "今日開盤價:" + DS.Tables[0].Rows[0][2].ToString() + "\r\n" + "昨日收盤價:" + DS.Tables[0].Rows[0][3].ToString() + "\r\n" + "今日最高價:" + DS.Tables[0].Rows[0][4].ToString() + "\r\n" + "今日最低價:" + DS.Tables[0].Rows[0][5].ToString() + "\r\n" + "漲幅:" + DS.Tables[0].Rows[0][6].ToString();
 
         }
 
+        //持倉信息 K圖
+        public void show_take_kgraph(string stockcode)
+        {
+            GetNetStockData LoadGraph = new GetNetStockData();
+            KLineGraph.ImageLocation = @LoadGraph.GetNetGraph(stockcode, 0);
+        }
 
         //收益信息
         public void show_sto_gra(string stockcode)
@@ -475,10 +520,38 @@ namespace personremainer
                StoGradataView.Rows[0].SetValues(quantity, totallprice.ToString(), increase.ToString());
             
 
-
-
-
         }
+
+        public void show_gra_listbox()
+        {
+            DataSet DS =new DataSet();
+            DataBase DB=new DataBase();
+          
+            DS = DB.ReadDB("userop", "name",0);
+            DataTable DT = DS.Tables[0];
+            StoGralistBox.DataSource = DT;
+            StoGralistBox.ValueMember = "name";
+            StoGralistBox.DisplayMember = "name";
+
+            
+        }
+
+
+        private void StoGralistBox_DoubleClick(object sender, EventArgs e)
+        {
+            string stockname = StoGralistBox.SelectedValue.ToString();
+            DataBase DB = new DataBase();
+            DataSet DS = new DataSet();
+            DS = DB.ReadDB("stockinf", "id", "name", stockname);
+            personremainer.commo_data.stockcode  = DS.Tables[0].Rows[0][0].ToString();
+
+
+            show_sto_gra(personremainer.commo_data.stockcode);
+            
+            
+        }
+        
+        
 
 
 
