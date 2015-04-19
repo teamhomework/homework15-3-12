@@ -153,18 +153,6 @@ namespace personremainer
 
 
             
-
-
-     /*       //test
-         DataBase test = new DataBase();
-            GetNetStockData ND =new GetNetStockData();
-            test.CreateTable();
-   
-
-            string s = ND.GetNetData("601398");
-           string[] D = ND.TreatmentString(s);
-
-           test.AddStockData(D, "601398");*/
             
 
             
@@ -306,10 +294,16 @@ namespace personremainer
         //股票信息
         public void show_stock_data(string stockcode)
         {
+            
             DataBase DB = new DataBase();
             GetNetStockData GNSD = new GetNetStockData();
             DataSet DS =new DataSet();
             DS = DB.ReadDB("UserOp","*","id",stockcode);
+
+            if (stockdataView.Rows.Count != 0)
+            {
+                stockdataView.Rows.Clear();
+            }
 
             int ROWS = int.Parse(DS.Tables[0].Rows.Count.ToString());
             for (int row = 0; row < ROWS; row++)
@@ -327,76 +321,83 @@ namespace personremainer
             GetNetStockData GNSD = new GetNetStockData();
             DataSet DS = new DataSet();
             int bs;
-            float bsp= 0;//買賣
-            int sc = 0 ;//做空 補倉         买入      卖出      补仓      卖空 
+            float bsp = 0;//買賣
+            int sc = 0;//做空 補倉         买入      卖出      补仓      卖空 
             float scp = 0;
+            int quantity = 0;
 
-            int bstquantity = 0,sctquantity = 0;//交易量
-            float tax = 0, comm =  0, tcost = 0,cost = 0;
+            int bstquantity = 0, sctquantity = 0;//交易量
+            float tax = 0, comm = 0, tcost = 0, cost = 0,tcost2 =0,cost2 =0;
             string ttax, tcomm;
+           
             DS = DB.ReadDB("UserOp", "*", "id", stockcode);
 
 
             int row = int.Parse(DS.Tables[0].Rows.Count.ToString());
         //因為要計算持倉成本所以 由舊的記錄算起
-            for (row= row-1;row>0;row--)
+            for (row = row - 1; row > 0; row--)
             {
-              
-                if (DS.Tables[0].Rows[row][3].ToString().Substring(0,2) == "买入")
+
+                if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "买入")
                 {
                     //买入
-                    ttax =   DS.Tables[0].Rows[row][6].ToString();    
-                    tcomm =  DS.Tables[0].Rows[row][7].ToString();
-                
+                    ttax = DS.Tables[0].Rows[row][6].ToString();
+                    tcomm = DS.Tables[0].Rows[row][7].ToString();
+
                     tax = float.Parse(ttax.Substring(0, ttax.Length - 1)) / 100;
-                    comm = float.Parse(tcomm.Substring(0,tcomm.Length-1)) / 100;
+                    comm = float.Parse(tcomm.Substring(0, tcomm.Length - 1)) / 100;
 
-                    bs = int.Parse( DS.Tables[0].Rows[row][5].ToString());
+                    bs = int.Parse(DS.Tables[0].Rows[row][5].ToString());
                     bsp = float.Parse(DS.Tables[0].Rows[row][4].ToString());
-                    
 
-                    tcost = ( bstquantity * cost + ( bs *bsp *(1+tax)*(1+comm) ) ) / ( bstquantity + bs );               
+
+                   
+                    tcost = (bstquantity * cost + (bs * bsp * (1 + tax) * (1 + comm))) / (bstquantity + bs);
                     bstquantity = bstquantity + bs;
                     cost = tcost;
                     if (bstquantity == 0)
                     {
                         cost = 0;
                     }
-                          
+              
                 }
-                else if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "卖出")
+                else if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "补仓")
                 {
-                   //卖出
-                    bs = int.Parse( DS.Tables[0].Rows[row][5].ToString());
-                    bsp = float.Parse(DS.Tables[0].Rows[row][4].ToString());
-                    tcost = (bstquantity * cost - (bs * bsp * (1 + tax) * (1 + comm))) / (bstquantity - bs);
-                    bstquantity = bstquantity - bs;
-                    cost = tcost;
-
-                    if (bstquantity == 0)
+                    //补仓
+                    sc = int.Parse(DS.Tables[0].Rows[row][5].ToString());
+                    scp = float.Parse(DS.Tables[0].Rows[row][4].ToString());
+                    tcost2 = (sctquantity * cost - (sc * scp * (1 + tax) * (1 + comm))) / (sctquantity - sc);
+                    tcost2 = cost2;
+                    sctquantity = sctquantity + sc;
+                    if (sctquantity == 0)
                     {
                         cost = 0;
                     }
-                }
 
-            
-               else if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "补仓")
-               {
-                    //补仓
-                    sc = int.Parse( DS.Tables[0].Rows[row][5].ToString());
-                    scp = float.Parse(DS.Tables[0].Rows[row][4].ToString());
-                    sctquantity = sctquantity + sc;
-                  
+
 
                 }
-                else if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "卖空 ")
+                else if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "卖空")
                 {
                     //卖空 
-                    sc = int.Parse( DS.Tables[0].Rows[row][5].ToString());
+                    ttax = DS.Tables[0].Rows[row][6].ToString();
+                    tcomm = DS.Tables[0].Rows[row][7].ToString();
+
+                    tax = float.Parse(ttax.Substring(0, ttax.Length - 1)) / 100;
+                    comm = float.Parse(tcomm.Substring(0, tcomm.Length - 1)) / 100;
+
+                    sc = int.Parse(DS.Tables[0].Rows[row][5].ToString());
                     scp = float.Parse(DS.Tables[0].Rows[row][4].ToString());
+
+
+
+                    tcost = (sctquantity * cost + (sc * scp * (1 - tax) * (1 - comm))) / (sctquantity + sc);
                     sctquantity = sctquantity - sc;
-                  
-                 
+                    cost = tcost;
+                    if (sctquantity == 0)
+                    {
+                        cost = 0;
+                    }
                 }
             }
             if (bstquantity > 0)
@@ -406,11 +407,14 @@ namespace personremainer
 
                string d = GNSD.GetNetData(stockcode);
                string[] price = GNSD.TreatmentString(d);
-
-
-                 TaStodataView.Rows.Add(DS.Tables[0].Rows[row][0].ToString(),price[6],cost,"不會算","不會算");
+               TaStodataView.Rows.Add(DS.Tables[0].Rows[row][0].ToString(),price[6],cost,"不會算","不會算");
              
-
+            }
+            else if (sctquantity < 0)
+            {
+                string d = GNSD.GetNetData(stockcode);
+                string[] price = GNSD.TreatmentString(d);
+                TaStodataView.Rows.Add(DS.Tables[0].Rows[row][0].ToString(), price[6], cost, "不會算", "不會算");
 
 
             }
@@ -425,14 +429,45 @@ namespace personremainer
 
            string d = GNSD.GetNetData(stockcode);
            string[] stoinf = GNSD.TreatmentString(d);
+       
+            DS = DB.ReadDB("stockinf","*","id",stockcode);
+            if (DS.Tables[0].Rows.Count == 0 && stoinf[0].Length>2)
+            {
 
-            DS = DB.ReadDB("stockinf","*");
+            string T = stoinf[1];
+            string N = stoinf[3];
+            float Increase,priceT,priceN;
+            priceT =float.Parse( T);
+            priceN = float.Parse(N);
+            Increase = priceN - priceT;
 
-           StoDataName.Text = stoinf[0].ToString();
-           StoInc.Text = DS.Tables[0].Rows[0][6].ToString();//股價
-            //richbox  \r\n  <<<換行符
-           StockDataInf.Text = "股票名:" + DS.Tables[0].Rows[0][0].ToString() + "\r\n" + "股票編號:" + DS.Tables[0].Rows[0][1].ToString() + "\r\n" + "今日開盤價:" + DS.Tables[0].Rows[0][2].ToString() + "\r\n" + "昨日收盤價:" + DS.Tables[0].Rows[0][3].ToString() + "\r\n" + "今日最高價:" + DS.Tables[0].Rows[0][4].ToString() + "\r\n" + "今日最低價:" + DS.Tables[0].Rows[0][5].ToString() + "\r\n" + "漲幅:" + DS.Tables[0].Rows[0][6].ToString();
 
+                //抓數據
+                StoDataName.Text = stoinf[0].ToString();
+                StoInc.Text = stoinf[6].ToString();
+
+
+                StockDataInf.Text = "股票名:" + stoinf[0] + "\r\n" + "股票編號:" + stockcode + "\r\n" + "今日開盤價:" + stoinf[1] + "\r\n" + "昨日收盤價:" + stoinf[2] + "\r\n" + "今日最高價:" + stoinf[4] + "\r\n" + "今日最低價:" + stoinf[5] + "\r\n" + "漲幅:" + Increase;
+     
+
+            }
+            else
+            {
+                if (stoinf[0].Length < 2)
+                {
+                    MessageBox.Show("查無此股");
+
+                }
+                else
+                {
+
+                    StoDataName.Text = stoinf[0].ToString();
+                    StoInc.Text = DS.Tables[0].Rows[0][6].ToString();//股價
+                    //richbox  \r\n  <<<換行符
+                    StockDataInf.Text = "股票名:" + DS.Tables[0].Rows[0][0].ToString() + "\r\n" + "股票編號:" + DS.Tables[0].Rows[0][1].ToString() + "\r\n" + "今日開盤價:" + DS.Tables[0].Rows[0][2].ToString() + "\r\n" + "昨日收盤價:" + DS.Tables[0].Rows[0][3].ToString() + "\r\n" + "今日最高價:" + DS.Tables[0].Rows[0][4].ToString() + "\r\n" + "今日最低價:" + DS.Tables[0].Rows[0][5].ToString() + "\r\n" + "漲幅:" + DS.Tables[0].Rows[0][6].ToString();
+                }
+            }
+         
         }
 
         //持倉信息 K圖
@@ -456,7 +491,7 @@ namespace personremainer
             int quantity =0;
             
             int bstquantity = 0,sctquantity = 0;//交易量
-            float tax = 0, comm =  0, tcost = 0,cost = 0;
+            float tax = 0, comm =  0, tcost = 0,cost = 0,tcost2 =0,cost2 = 0;
             string ttax, tcomm;
            
             DS = DB.ReadDB("UserOp", "*", "id", stockcode);
@@ -466,7 +501,6 @@ namespace personremainer
        
             for (row = row - 1; row > 0; row--)
             {
-
                 if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "买入")
                 {
                     //买入
@@ -495,7 +529,7 @@ namespace personremainer
                     //卖出
                     bs = int.Parse(DS.Tables[0].Rows[row][5].ToString());
                     bsp = float.Parse(DS.Tables[0].Rows[row][4].ToString());
-                    tcost = (bstquantity * cost - (bs * bsp * (1 + tax) * (1 + comm))) / (bstquantity - bs);
+                    tcost = (bstquantity * cost - (bs * bsp * (1 - tax) * (1 - comm))) / (bstquantity - bs);
                     bstquantity = bstquantity - bs;
                     cost = tcost;
 
@@ -504,6 +538,51 @@ namespace personremainer
                         cost = 0;
                     }
                 }
+                else if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "补仓")
+                {
+                    //补仓
+                    sc = int.Parse(DS.Tables[0].Rows[row][5].ToString());
+                    scp = float.Parse(DS.Tables[0].Rows[row][4].ToString());
+                    tcost2 = (sctquantity * cost - (sc * scp * (1 + tax) * (1 + comm))) / (sctquantity - sc);
+                    tcost2 = cost2;
+                    sctquantity = sctquantity + sc;
+                    if (sctquantity == 0)
+                    {
+                        cost = 0;
+                    }
+
+
+
+                }
+                else if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "卖空")
+                {
+                    //卖空 
+                    ttax = DS.Tables[0].Rows[row][6].ToString();
+                    tcomm = DS.Tables[0].Rows[row][7].ToString();
+
+                    tax = float.Parse(ttax.Substring(0, ttax.Length - 1)) / 100;
+                    comm = float.Parse(tcomm.Substring(0, tcomm.Length - 1)) / 100;
+
+                    sc = int.Parse(DS.Tables[0].Rows[row][5].ToString());
+                    scp = float.Parse(DS.Tables[0].Rows[row][4].ToString());
+
+
+
+                    tcost = (sctquantity * cost + (sc * scp * (1 - tax) * (1 - comm))) / (sctquantity + sc);
+                    sctquantity = sctquantity - sc;
+                    cost = tcost;
+                    if (sctquantity == 0)
+                    {
+                        cost = 0;
+                    }
+
+                }
+
+
+
+
+
+
             }
 
                 row = int.Parse(DS.Tables[0].Rows.Count.ToString())-1;         
@@ -550,6 +629,7 @@ namespace personremainer
             
             
         }
+
         
         
 
