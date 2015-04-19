@@ -9,7 +9,6 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data.OleDb;
 using System.IO;
-using Microsoft.Office.Interop.Excel;
 using System.Web;
 using System.Net.Sockets;
 using System.Net;
@@ -90,8 +89,9 @@ namespace personremainer
 
             if (true == show_StoInf)
             {
-
                 Display(panel2);
+                show_stock_data("601398");
+                show_take_sto("601398");
             }
             else if (false == show_StoInf)
                 NotDisplay();
@@ -106,7 +106,7 @@ namespace personremainer
 
             if (true == show_StoGra)
             {
-
+                show_sto_gra("601398");
                 Display(panel3);
             }
             else if (false == show_StoGra)
@@ -278,6 +278,208 @@ namespace personremainer
         {
 
         }
+
+
+
+        //股票信息
+        public void show_stock_data(string stockcode)
+        {
+            DataBase DB = new DataBase();
+            GetNetStockData GNSD = new GetNetStockData();
+            DataSet DS =new DataSet();
+            DS = DB.ReadDB("UserOp","*","id",stockcode);
+
+            int ROWS = int.Parse(DS.Tables[0].Rows.Count.ToString());
+            for (int row = 0; row < ROWS; row++)
+            {
+                stockdataView.Rows.Add(DS.Tables[0].Rows[row][2].ToString(), DS.Tables[0].Rows[row][3].ToString(), DS.Tables[0].Rows[row][4].ToString(), DS.Tables[0].Rows[row][5].ToString(), DS.Tables[0].Rows[row][6].ToString(), DS.Tables[0].Rows[row][7].ToString());
+            }
+        }
+
+
+        //持倉信息  
+        public void show_take_sto(string stockcode)
+        {
+            //提取數據
+            DataBase DB = new DataBase();
+            GetNetStockData GNSD = new GetNetStockData();
+            DataSet DS = new DataSet();
+            int bs;
+            float bsp= 0;//買賣
+            int sc = 0 ;//做空 補倉         买入      卖出      补仓      卖空 
+            float scp = 0;
+
+            int bstquantity = 0,sctquantity = 0;//交易量
+            float tax = 0, comm =  0, tcost = 0,cost = 0;
+            string ttax, tcomm;
+            DS = DB.ReadDB("UserOp", "*", "id", stockcode);
+
+
+            int row = int.Parse(DS.Tables[0].Rows.Count.ToString());
+        //因為要計算持倉成本所以 由舊的記錄算起
+            for (row= row-1;row>0;row--)
+            {
+              
+                if (DS.Tables[0].Rows[row][3].ToString().Substring(0,2) == "买入")
+                {
+                    //买入
+                    ttax =   DS.Tables[0].Rows[row][6].ToString();    
+                    tcomm =  DS.Tables[0].Rows[row][7].ToString();
+                
+                    tax = float.Parse(ttax.Substring(0, ttax.Length - 1)) / 100;
+                    comm = float.Parse(tcomm.Substring(0,tcomm.Length-1)) / 100;
+
+                    bs = int.Parse( DS.Tables[0].Rows[row][5].ToString());
+                    bsp = float.Parse(DS.Tables[0].Rows[row][4].ToString());
+                    
+
+                    tcost = ( bstquantity * cost + ( bs *bsp *(1+tax)*(1+comm) ) ) / ( bstquantity + bs );               
+                    bstquantity = bstquantity + bs;
+                    cost = tcost;
+                    if (bstquantity == 0)
+                    {
+                        cost = 0;
+                    }
+                          
+                }
+                else if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "卖出")
+                {
+                   //卖出
+                    bs = int.Parse( DS.Tables[0].Rows[row][5].ToString());
+                    bsp = float.Parse(DS.Tables[0].Rows[row][4].ToString());
+                    tcost = (bstquantity * cost - (bs * bsp * (1 + tax) * (1 + comm))) / (bstquantity - bs);
+                    bstquantity = bstquantity - bs;
+                    cost = tcost;
+
+                    if (bstquantity == 0)
+                    {
+                        cost = 0;
+                    }
+                }
+
+            
+               else if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "补仓")
+               {
+                    //补仓
+                    sc = int.Parse( DS.Tables[0].Rows[row][5].ToString());
+                    scp = float.Parse(DS.Tables[0].Rows[row][4].ToString());
+                    sctquantity = sctquantity + sc;
+                  
+
+                }
+                else if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "卖空 ")
+                {
+                    //卖空 
+                    sc = int.Parse( DS.Tables[0].Rows[row][5].ToString());
+                    scp = float.Parse(DS.Tables[0].Rows[row][4].ToString());
+                    sctquantity = sctquantity - sc;
+                  
+                 
+                }
+            }
+            if (bstquantity > 0)
+            {
+                
+  //當前價上网現抓 第6個返回值
+
+               string d = GNSD.GetNetData(stockcode);
+               string[] price = GNSD.TreatmentString(d);
+              TaStodataView.Rows.Add(DS.Tables[0].Rows[row][0].ToString(),price[6],cost,"不會算","不會算");
+            
+            }
+
+        }
+        //持倉信息 文本框內容
+        public void show_take_sto_textbox(string stockcode)
+        {
+
+
+        }
+
+
+        //收益信息
+        public void show_sto_gra(string stockcode)
+        {
+                     //提取數據
+            DataBase DB = new DataBase();
+            GetNetStockData GNSD = new GetNetStockData();
+            DataSet DS = new DataSet();
+            int bs;
+            float bsp= 0;//買賣
+            int sc = 0 ;//做空 補倉         买入      卖出      补仓      卖空 
+            float scp = 0;
+            int quantity =0;
+            
+            int bstquantity = 0,sctquantity = 0;//交易量
+            float tax = 0, comm =  0, tcost = 0,cost = 0;
+            string ttax, tcomm;
+           
+            DS = DB.ReadDB("UserOp", "*", "id", stockcode);
+
+
+            int row = int.Parse(DS.Tables[0].Rows.Count.ToString());
+       
+            for (row = row - 1; row > 0; row--)
+            {
+
+                if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "买入")
+                {
+                    //买入
+                    ttax = DS.Tables[0].Rows[row][6].ToString();
+                    tcomm = DS.Tables[0].Rows[row][7].ToString();
+
+                    tax = float.Parse(ttax.Substring(0, ttax.Length - 1)) / 100;
+                    comm = float.Parse(tcomm.Substring(0, tcomm.Length - 1)) / 100;
+
+                    bs = int.Parse(DS.Tables[0].Rows[row][5].ToString());
+                    bsp = float.Parse(DS.Tables[0].Rows[row][4].ToString());
+
+
+                   
+                    tcost = (bstquantity * cost + (bs * bsp * (1 + tax) * (1 + comm))) / (bstquantity + bs);
+                    bstquantity = bstquantity + bs;
+                    cost = tcost;
+                    if (bstquantity == 0)
+                    {
+                        cost = 0;
+                    }
+              
+                }
+                else if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "卖出")
+                {
+                    //卖出
+                    bs = int.Parse(DS.Tables[0].Rows[row][5].ToString());
+                    bsp = float.Parse(DS.Tables[0].Rows[row][4].ToString());
+                    tcost = (bstquantity * cost - (bs * bsp * (1 + tax) * (1 + comm))) / (bstquantity - bs);
+                    bstquantity = bstquantity - bs;
+                    cost = tcost;
+
+                    if (bstquantity == 0)
+                    {
+                        cost = 0;
+                    }
+                }
+            }
+
+                row = int.Parse(DS.Tables[0].Rows.Count.ToString())-1;         
+                float costprice = float.Parse((DS.Tables[0].Rows[row][4].ToString()));
+                quantity = bstquantity + sctquantity;
+
+                string d = GNSD.GetNetData(stockcode);
+                string[] price = GNSD.TreatmentString(d);
+
+                float nowprice = float.Parse(price[6]);
+                float totallprice = nowprice * quantity;
+  
+                float increase = ((nowprice -costprice) / costprice) /100;
+               StoGradataView.Rows[0].SetValues(quantity, totallprice.ToString(), increase.ToString());
+            
+
+
+
+
+        }
+
 
 
 
