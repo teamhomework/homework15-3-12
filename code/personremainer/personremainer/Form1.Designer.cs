@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,18 +54,11 @@
             this.KLineGraph = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
             this.stockdataView = new System.Windows.Forms.DataGridView();
-            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tax = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.commission = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.change = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.del = new System.Windows.Forms.DataGridViewButtonColumn();
             this.StoDataName = new System.Windows.Forms.Label();
             this.StoInc = new System.Windows.Forms.RichTextBox();
             this.StockDataInf = new System.Windows.Forms.RichTextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.StoGrachart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.StoGralistBox = new System.Windows.Forms.ListBox();
             this.StoGradataView = new System.Windows.Forms.DataGridView();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -80,7 +73,14 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TaStochart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.StoGrachart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tax = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.commission = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.change = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.del = new System.Windows.Forms.DataGridViewButtonColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -90,11 +90,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.KLineGraph)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stockdataView)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.StoGrachart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StoGradataView)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TaStodataView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TaStochart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StoGrachart)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -337,51 +337,6 @@
             this.stockdataView.TabIndex = 5;
             this.stockdataView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
             // 
-            // date
-            // 
-            this.date.HeaderText = "日期";
-            this.date.Name = "date";
-            this.date.ReadOnly = true;
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "操作";
-            this.Column9.Name = "Column9";
-            // 
-            // price
-            // 
-            this.price.HeaderText = "價格";
-            this.price.Name = "price";
-            this.price.ReadOnly = true;
-            // 
-            // quantity
-            // 
-            this.quantity.HeaderText = "數量";
-            this.quantity.Name = "quantity";
-            this.quantity.ReadOnly = true;
-            // 
-            // tax
-            // 
-            this.tax.HeaderText = "稅率";
-            this.tax.Name = "tax";
-            this.tax.ReadOnly = true;
-            // 
-            // commission
-            // 
-            this.commission.HeaderText = "佣金";
-            this.commission.Name = "commission";
-            this.commission.ReadOnly = true;
-            // 
-            // change
-            // 
-            this.change.HeaderText = "修改";
-            this.change.Name = "change";
-            // 
-            // del
-            // 
-            this.del.HeaderText = "刪除";
-            this.del.Name = "del";
-            // 
             // StoDataName
             // 
             this.StoDataName.AutoSize = true;
@@ -419,6 +374,18 @@
             this.panel3.Size = new System.Drawing.Size(2188, 1076);
             this.panel3.TabIndex = 4;
             this.panel3.Visible = false;
+            // 
+            // StoGrachart
+            // 
+            chartArea5.Name = "ChartArea1";
+            this.StoGrachart.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.StoGrachart.Legends.Add(legend5);
+            this.StoGrachart.Location = new System.Drawing.Point(533, 176);
+            this.StoGrachart.Name = "StoGrachart";
+            this.StoGrachart.Size = new System.Drawing.Size(403, 300);
+            this.StoGrachart.TabIndex = 3;
+            this.StoGrachart.Text = "chart1";
             // 
             // StoGralistBox
             // 
@@ -528,10 +495,10 @@
             // 
             this.TaStochart.BackColor = System.Drawing.Color.Empty;
             this.TaStochart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            chartArea3.Name = "ChartArea1";
-            this.TaStochart.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.TaStochart.Legends.Add(legend3);
+            chartArea6.Name = "ChartArea1";
+            this.TaStochart.ChartAreas.Add(chartArea6);
+            legend6.Name = "Legend1";
+            this.TaStochart.Legends.Add(legend6);
             this.TaStochart.Location = new System.Drawing.Point(114, 220);
             this.TaStochart.Name = "TaStochart";
             this.TaStochart.Size = new System.Drawing.Size(559, 209);
@@ -544,17 +511,54 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
-            // StoGrachart
+            // date
             // 
-            chartArea4.Name = "ChartArea1";
-            this.StoGrachart.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.StoGrachart.Legends.Add(legend4);
-            this.StoGrachart.Location = new System.Drawing.Point(533, 176);
-            this.StoGrachart.Name = "StoGrachart";
-            this.StoGrachart.Size = new System.Drawing.Size(403, 300);
-            this.StoGrachart.TabIndex = 3;
-            this.StoGrachart.Text = "chart1";
+            this.date.HeaderText = "日期";
+            this.date.Name = "date";
+            this.date.ReadOnly = true;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "操作";
+            this.Column9.Name = "Column9";
+            // 
+            // price
+            // 
+            this.price.HeaderText = "價格";
+            this.price.Name = "price";
+            this.price.ReadOnly = true;
+            // 
+            // quantity
+            // 
+            this.quantity.HeaderText = "數量";
+            this.quantity.Name = "quantity";
+            this.quantity.ReadOnly = true;
+            // 
+            // tax
+            // 
+            this.tax.HeaderText = "稅率";
+            this.tax.Name = "tax";
+            this.tax.ReadOnly = true;
+            // 
+            // commission
+            // 
+            this.commission.HeaderText = "佣金";
+            this.commission.Name = "commission";
+            this.commission.ReadOnly = true;
+            // 
+            // change
+            // 
+            this.change.HeaderText = "修改";
+            this.change.Name = "change";
+            this.change.Text = "修改";
+            this.change.UseColumnTextForButtonValue = true;
+            // 
+            // del
+            // 
+            this.del.HeaderText = "刪除";
+            this.del.Name = "del";
+            this.del.Text = "刪除";
+            this.del.UseColumnTextForButtonValue = true;
             // 
             // Form1
             // 
@@ -580,11 +584,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.KLineGraph)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stockdataView)).EndInit();
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.StoGrachart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StoGradataView)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TaStodataView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TaStochart)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StoGrachart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -667,6 +671,7 @@
         bool show_StoInf = false;//股票資訊
         bool show_StoGra = false;//股票收益
         private System.Windows.Forms.PictureBox KLineGraph;
+        public System.Windows.Forms.DataVisualization.Charting.Chart StoGrachart;
         private System.Windows.Forms.DataGridViewTextBoxColumn date;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn price;
@@ -674,8 +679,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn tax;
         private System.Windows.Forms.DataGridViewTextBoxColumn commission;
         private System.Windows.Forms.DataGridViewButtonColumn change;
-        private System.Windows.Forms.DataGridViewButtonColumn del;
-        public System.Windows.Forms.DataVisualization.Charting.Chart StoGrachart; 
+        private System.Windows.Forms.DataGridViewButtonColumn del; 
 
 
 

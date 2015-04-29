@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace personremainer
 {
-    public partial class Form2 : Form
+    public partial class Form4 : Form
     {
-        public Form2()
+        public Form4()
         {
             InitializeComponent();
         }
@@ -43,7 +43,7 @@ namespace personremainer
             value[5] = personremainer.commo_data.qty.ToString();
             value[6] = "1%";
             value[7] = "0.3%";
-            DB.changeDB(0,value,value);
+            DB.changeDB(2,value,value);
 
 
             Application.OpenForms[1].Close();

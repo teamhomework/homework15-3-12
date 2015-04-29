@@ -143,23 +143,13 @@ namespace personremainer
         //搜索
         private void button1_Click(object sender, EventArgs e)
         {
-
-            //
-            WebClient myclient = new WebClient();
-            string url = "http://market.finance.sina.com.cn/pricehis.php?symbol=sh600900&startdate=2015-04-17&enddate=2015-04-17";
-            string data = myclient.DownloadString(url);
-            MessageBox.Show(data);
-
-
-
-
-
-            //
+            
             string StockNum = textBox1.Text;
+            
             //跳轉到股票資訊界面
             show_StoInf = true;
             Display(panel2);
-
+            personremainer.commo_data.Stocode = StockNum;
             show_stock_data(StockNum);
             show_take_sto(StockNum);
             show_take_sto_textbox(StockNum);
@@ -191,8 +181,11 @@ namespace personremainer
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Form2 frm2 = new Form2();
+            frm2.label1.Text = personremainer.commo_data.StoName;
+            frm2.ShowDialog();
 
-            personremainer.create_form.create_changeOpData();   
+           // personremainer.create_form.create_changeOpData();   
         }
 
         private void change_data_Load(object sender, EventArgs e)
@@ -279,7 +272,25 @@ namespace personremainer
             
         private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (stockdataView[e.ColumnIndex, e.RowIndex].Value == "修改")
+            {
+              Form4 frm4 = new Form4();
+              frm4.ShowDialog();
+                
+                
+            }
+            else if (stockdataView[e.ColumnIndex, e.RowIndex].Value == "刪除")
+            {
+              DataBase DB = new DataBase();
+                string[] Date =new string[1];
+                string[] Type =new string[1];
+                Type[0] = "date";
+                Date[0] = stockdataView[0, e.RowIndex].Value.ToString();
+                MessageBox.Show(Date[0]);
+                DB.changeDB(1,Type,Date);
+            }
 
+           
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -328,7 +339,9 @@ namespace personremainer
             {
                
                 stockdataView.Rows.Add(DS.Tables[0].Rows[row][2].ToString(), DS.Tables[0].Rows[row][3].ToString(), DS.Tables[0].Rows[row][4].ToString(), DS.Tables[0].Rows[row][5].ToString(), DS.Tables[0].Rows[row][6].ToString(), DS.Tables[0].Rows[row][7].ToString());
-            } 
+            }
+            personremainer.commo_data.StoName = DS.Tables[0].Rows[0][0].ToString();
+        
         }
 
 
@@ -514,6 +527,9 @@ namespace personremainer
 
                 StockDataInf.Text = "股票名:" + stoinf[0] + "\r\n" + "股票編號:" + stockcode + "\r\n" + "今日開盤價:" + stoinf[1] + "\r\n" + "昨日收盤價:" + stoinf[2] + "\r\n" + "今日最高價:" + stoinf[4] + "\r\n" + "今日最低價:" + stoinf[5] + "\r\n" + "漲幅:" + Increase;
      
+                //設數據
+               personremainer.commo_data.StoName = stoinf[0];
+                personremainer.commo_data.Stocode = stockcode;
 
             }
             else

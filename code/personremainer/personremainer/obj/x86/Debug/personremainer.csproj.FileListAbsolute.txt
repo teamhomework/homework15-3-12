@@ -60,3 +60,4 @@ C:\Users\user\Desktop\软件调研\personremainer\personremainer\obj\x86\Debug\p
 C:\Users\user\Desktop\软件调研\personremainer\personremainer\obj\x86\Debug\personremainer.Form3.resources
 C:\Users\user\Desktop\软件调研\personremainer\personremainer\obj\x86\Debug\personremainer.Properties.Resources.resources
 C:\Users\user\Desktop\软件调研\personremainer\personremainer\obj\x86\Debug\personremainer.csproj.GenerateResource.Cache
+C:\Users\user\Desktop\personremainer\personremainer\obj\x86\Debug\personremainer.Form4.resources
