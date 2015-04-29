@@ -23,6 +23,17 @@ namespace personremainer
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+            personremainer.commo_data.qty = 0;
+            personremainer.commo_data.price = 0;
+
+
+            label1.Text = personremainer.commo_data.StoName;
+            personremainer.commo_data.DATE = monthCalendar1.SelectionStart.ToString("yyyy/MM/dd");
+            personremainer.commo_data.price = float.Parse(textBox2.Text);
+            personremainer.commo_data.qty = int.Parse( textBox1.Text);
+            personremainer.commo_data.opt = comboBox1.Text;
+
             Application.OpenForms[1].Close();
             Application.OpenForms[1].Dispose();
         }

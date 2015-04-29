@@ -28,12 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,7 +71,6 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StoGrachart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel1 = new System.Windows.Forms.Panel();
             this.TaStodataView = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -83,6 +80,7 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TaStochart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.StoGrachart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -93,10 +91,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.stockdataView)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StoGradataView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StoGrachart)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TaStodataView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TaStochart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StoGrachart)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -179,9 +177,9 @@
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.textBox1);
             this.splitContainer1.Panel2.Controls.Add(this.button1);
+            this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Panel2.Controls.Add(this.panel3);
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Size = new System.Drawing.Size(991, 454);
             this.splitContainer1.SplitterDistance = 25;
             this.splitContainer1.TabIndex = 1;
@@ -389,9 +387,8 @@
             this.StoDataName.AutoSize = true;
             this.StoDataName.Location = new System.Drawing.Point(84, 18);
             this.StoDataName.Name = "StoDataName";
-            this.StoDataName.Size = new System.Drawing.Size(41, 12);
+            this.StoDataName.Size = new System.Drawing.Size(0, 12);
             this.StoDataName.TabIndex = 4;
-            this.StoDataName.Text = "label8";
             // 
             // StoInc
             // 
@@ -414,9 +411,9 @@
             // 
             this.panel3.AutoScroll = true;
             this.panel3.AutoSize = true;
+            this.panel3.Controls.Add(this.StoGrachart);
             this.panel3.Controls.Add(this.StoGralistBox);
             this.panel3.Controls.Add(this.StoGradataView);
-            this.panel3.Controls.Add(this.StoGrachart);
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(2188, 1076);
@@ -466,22 +463,6 @@
             this.Column8.HeaderText = "增幅";
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
-            // 
-            // StoGrachart
-            // 
-            chartArea7.Name = "ChartArea1";
-            this.StoGrachart.ChartAreas.Add(chartArea7);
-            legend7.Name = "Legend1";
-            this.StoGrachart.Legends.Add(legend7);
-            this.StoGrachart.Location = new System.Drawing.Point(464, 142);
-            this.StoGrachart.Name = "StoGrachart";
-            series7.ChartArea = "ChartArea1";
-            series7.Legend = "Legend1";
-            series7.Name = "Series1";
-            this.StoGrachart.Series.Add(series7);
-            this.StoGrachart.Size = new System.Drawing.Size(300, 300);
-            this.StoGrachart.TabIndex = 0;
-            this.StoGrachart.Text = "chart2";
             // 
             // panel1
             // 
@@ -545,24 +526,35 @@
             // 
             // TaStochart
             // 
-            chartArea8.Name = "ChartArea1";
-            this.TaStochart.ChartAreas.Add(chartArea8);
-            legend8.Name = "Legend1";
-            this.TaStochart.Legends.Add(legend8);
+            this.TaStochart.BackColor = System.Drawing.Color.Empty;
+            this.TaStochart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            chartArea3.Name = "ChartArea1";
+            this.TaStochart.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.TaStochart.Legends.Add(legend3);
             this.TaStochart.Location = new System.Drawing.Point(114, 220);
             this.TaStochart.Name = "TaStochart";
-            series8.ChartArea = "ChartArea1";
-            series8.Legend = "Legend1";
-            series8.Name = "Series1";
-            this.TaStochart.Series.Add(series8);
             this.TaStochart.Size = new System.Drawing.Size(559, 209);
             this.TaStochart.TabIndex = 0;
             this.TaStochart.Text = "chart1";
+            this.TaStochart.Click += new System.EventHandler(this.TaStochart_Click);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
+            // StoGrachart
+            // 
+            chartArea4.Name = "ChartArea1";
+            this.StoGrachart.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.StoGrachart.Legends.Add(legend4);
+            this.StoGrachart.Location = new System.Drawing.Point(533, 176);
+            this.StoGrachart.Name = "StoGrachart";
+            this.StoGrachart.Size = new System.Drawing.Size(403, 300);
+            this.StoGrachart.TabIndex = 3;
+            this.StoGrachart.Text = "chart1";
             // 
             // Form1
             // 
@@ -589,10 +581,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.stockdataView)).EndInit();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.StoGradataView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StoGrachart)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TaStodataView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TaStochart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StoGrachart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -628,11 +620,10 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ListBox StoGralistBox;
         private System.Windows.Forms.DataGridView StoGradataView;
-        private System.Windows.Forms.DataVisualization.Charting.Chart StoGrachart;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataGridView stockdataView;
-        private System.Windows.Forms.Label StoDataName;
+        public System.Windows.Forms.DataGridView stockdataView;
+        public System.Windows.Forms.Label StoDataName;
         private System.Windows.Forms.RichTextBox StoInc;
         private System.Windows.Forms.RichTextBox StockDataInf;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
@@ -683,7 +674,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn tax;
         private System.Windows.Forms.DataGridViewTextBoxColumn commission;
         private System.Windows.Forms.DataGridViewButtonColumn change;
-        private System.Windows.Forms.DataGridViewButtonColumn del; 
+        private System.Windows.Forms.DataGridViewButtonColumn del;
+        public System.Windows.Forms.DataVisualization.Charting.Chart StoGrachart; 
 
 
 

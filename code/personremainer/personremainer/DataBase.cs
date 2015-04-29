@@ -300,8 +300,64 @@ namespace personremainer
         }
 
 
+        //插入記錄
+        //"INSERT INTO StockInf(name , id ,openingpriceT,closepriceY ,maxprice ,minprice ,increase  )" + "VALUES ( " + "'" + StockInf[0] + "','" + Stockcode + "','" + StockInf[1] + "','" + StockInf[2] + "','" + StockInf[4] + "','" + StockInf[5] + "','" + Increase + "'" + ")";
+            
 
 
+        //修改記錄
+        //UPDATE    UserOpSET              id = 3 WHERE     (id = 601398)
+
+        //刪除記錄
+     //   DELETE FROM UserOp WHERE     (id = 3)
+        // op=0 插,op=1 刪,op=2 改
+        public bool changeDB(int op, string[] search, string[] value)
+        {
+
+            SqlConnection conn = new SqlConnection(consqlser);
+
+            if (conn.State != ConnectionState.Open)
+            {
+                conn.Open();
+            }
+
+            try
+            {
+                string commsql = null;
+                if(0 == op)
+                {
+                    //待測
+                    commsql = "INSERT INTO StockInf(name , id ,date,type ,price,quantity ,taxrate , commission  )" + "VALUES ( " + "'" + value[0] + "','" + value[1] + "','" + value[2] + "','" + value[3] + "','" + value[4] + "','" + value[5] + "','" + value[6] + "'" + "','" + value[7] + "','" + ")";
+                    
+
+                }
+
+                            //刪除記錄
+                //   DELETE FROM UserOp WHERE     (id = 3) DATA
+                else if(1 == op)
+                {//待測
+                    commsql = "DELETE FROM UserOp WHERE ("+ "\""+search[0]+"\""+"="+"'"+ value[0]+"'" +")";
+                }
+                else if(2 == op)
+                {
+                    //UPDATE    UserOpSET              id = 3 WHERE     (id = 601398)
+                    //SET              name = 1, id = 1, date = 0, type = 0, price = 0, quantity = 0, taxrate = 0, commission = 0
+                    //要改 日 操 價 量 稅 傭
+                    //待測
+                    commsql = "UPDATE    UserOp SET name =" +"'"+value[1]+"',"+"\""+" id ="+"'"+value[2]+"',"+" date ="+"'"+value[3]+"',"+" type = "+"'"+value[4]+"',"+" price ="+"'"+value[5]+"',"+" quantity ="+"'"+value[6]+"',"+" taxrate ="+"'"+value[7]+"',"+" commission ="+"'"+value[8]+"',"+"where("+"\""+search[0]+"\""+"="+"'"+value[0]+"'"+")";
+
+                }
+
+                SqlCommand sqlcomm = new SqlCommand(commsql, conn);
+                sqlcomm.ExecuteNonQuery();
+
+                return true;
+            }
+            catch (Exception err)
+            {
+                return false;
+            }
+        }
 
 
 
