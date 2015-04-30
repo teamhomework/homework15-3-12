@@ -36,7 +36,7 @@ namespace personremainer
             string[] value =new string[8];
             //name , id ,date,type ,price,quantity ,taxrate , commission 
             value[0] =personremainer.commo_data.StoName;
-            value[1] =personremainer.commo_data.Stocode;
+            value[1] = personremainer.commo_data.stockcode;
             value[2] =personremainer.commo_data.DATE;
             value[3] =personremainer.commo_data.opt;
             value[4] = personremainer.commo_data.price.ToString();

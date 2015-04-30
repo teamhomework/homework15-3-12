@@ -23,6 +23,22 @@ namespace personremainer
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string[] value = new string[12];
+            string[] search = new string[4];
+            //id type quantity date
+            search[0] = "id";
+            search[1] = "type";
+            search[2] = "quantity";
+            search[3] = "date";
+
+            value[0] = personremainer.commo_data.stockcode;
+            value[1] = personremainer.commo_data.opt;
+            value[2] = personremainer.commo_data.qty.ToString();
+            value[3] = personremainer.commo_data.DATE;
+
+
+
+            //新數據
 
             personremainer.commo_data.qty = 0;
             personremainer.commo_data.price = 0;
@@ -33,17 +49,18 @@ namespace personremainer
             personremainer.commo_data.opt = comboBox1.Text;
 
             DataBase DB = new DataBase();
-            string[] value =new string[8];
+
+
             //name , id ,date,type ,price,quantity ,taxrate , commission 
-            value[0] =personremainer.commo_data.StoName;
-            value[1] =personremainer.commo_data.Stocode;
-            value[2] =personremainer.commo_data.DATE;
-            value[3] =personremainer.commo_data.opt;
-            value[4] = personremainer.commo_data.price.ToString();
-            value[5] = personremainer.commo_data.qty.ToString();
-            value[6] = "1%";
-            value[7] = "0.3%";
-            DB.changeDB(2,value,value);
+            value[4] =personremainer.commo_data.StoName;
+            value[5] = personremainer.commo_data.stockcode;
+            value[6] =personremainer.commo_data.DATE;
+            value[7] =personremainer.commo_data.opt;
+            value[8] = personremainer.commo_data.price.ToString();
+            value[9] = personremainer.commo_data.qty.ToString();
+            value[10] = "1%";
+            value[11] = "0.3%";
+            DB.changeDB(2,search,value);
 
 
             Application.OpenForms[1].Close();

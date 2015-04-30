@@ -64,6 +64,18 @@ namespace personremainer
         //持倉
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
+            NotDisplay();
+            if (StoGrachart.Series.Count != 0)
+            {
+                StoGrachart.Series.Clear();
+            }
+
+            if (TaStochart.Series.Count != 0)
+            {
+                TaStochart.Series.Clear();
+
+            }
+
             if (false == show_TakSto)
                 show_TakSto = true;
             else if(true == show_TakSto)
@@ -98,6 +110,17 @@ namespace personremainer
         private void toolStripMenuItem5_Click(object sender, EventArgs e)
         {
 
+            NotDisplay();
+            if (StoGrachart.Series.Count != 0)
+            {
+                StoGrachart.Series.Clear();
+            }
+
+            if (TaStochart.Series.Count != 0)
+            {
+                TaStochart.Series.Clear();
+            }
+
             if (false == show_StoInf)
                 show_StoInf = true;
             else if(true == show_StoInf)
@@ -120,6 +143,17 @@ namespace personremainer
 
         private void 股票收益ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            NotDisplay();
+            if (StoGrachart.Series.Count != 0)
+            {
+                StoGrachart.Series.Clear();
+            }
+
+            if (TaStochart.Series.Count != 0)
+            {
+                TaStochart.Series.Clear();
+            }
+
               if (false == show_StoGra)
                 show_StoGra = true;
             else if (true == show_StoGra)
@@ -143,20 +177,30 @@ namespace personremainer
         //搜索
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            if (StoGrachart.Series.Count != 0)
+            {
+                StoGrachart.Series.Clear();
+            }
+
+            if (TaStochart.Series.Count != 0)
+            {
+                TaStochart.Series.Clear();
+           
+            }
             string StockNum = textBox1.Text;
             
             //跳轉到股票資訊界面
             show_StoInf = true;
+            NotDisplay();
             Display(panel2);
-            personremainer.commo_data.Stocode = StockNum;
+
             show_stock_data(StockNum);
             show_take_sto(StockNum);
             show_take_sto_textbox(StockNum);
             show_take_kgraph(StockNum);
 
+            personremainer.commo_data.stockcode = textBox1.Text;
 
-            
             
 
             
@@ -184,7 +228,7 @@ namespace personremainer
             Form2 frm2 = new Form2();
             frm2.label1.Text = personremainer.commo_data.StoName;
             frm2.ShowDialog();
-
+            show_stock_data(personremainer.commo_data.stockcode);
            // personremainer.create_form.create_changeOpData();   
         }
 
@@ -275,19 +319,45 @@ namespace personremainer
             if (stockdataView[e.ColumnIndex, e.RowIndex].Value == "修改")
             {
               Form4 frm4 = new Form4();
+              
+
+                //先傳數據給STATIC 再傳給文本
+
+
+              personremainer.commo_data.opt = stockdataView[1, e.RowIndex].Value.ToString();
+              personremainer.commo_data.qty = int.Parse( stockdataView[3, e.RowIndex].Value.ToString());
+              personremainer.commo_data.DATE = stockdataView[0, e.RowIndex].Value.ToString();
+                personremainer.commo_data.price = float.Parse( stockdataView[2, e.RowIndex].Value.ToString());
+
+              frm4.textBox1.Text = personremainer.commo_data.qty.ToString();
+              frm4.comboBox1.Text = personremainer.commo_data.opt;
+              frm4.monthCalendar1.SelectionStart = Convert.ToDateTime(personremainer.commo_data.DATE);
+              frm4.monthCalendar1.SelectionEnd =Convert.ToDateTime( personremainer.commo_data.DATE);
+              frm4.textBox2.Text = personremainer.commo_data.price.ToString();
               frm4.ShowDialog();
+
+              show_stock_data(personremainer.commo_data.stockcode);
                 
                 
             }
             else if (stockdataView[e.ColumnIndex, e.RowIndex].Value == "刪除")
             {
               DataBase DB = new DataBase();
-                string[] Date =new string[1];
-                string[] Type =new string[1];
+                string[] Date =new string[4];
+                string[] Type =new string[4];
                 Type[0] = "date";
+                Type[1] = "type";
+                Type[2] = "quantity";
+                Type[3] = "name";
                 Date[0] = stockdataView[0, e.RowIndex].Value.ToString();
-                MessageBox.Show(Date[0]);
+                Date[1] = stockdataView[1, e.RowIndex].Value.ToString();
+                Date[2] = stockdataView[3, e.RowIndex].Value.ToString();
+                Date[3] = personremainer.commo_data.StoName;
+           
                 DB.changeDB(1,Type,Date);
+
+                show_stock_data(personremainer.commo_data.stockcode);
+                
             }
 
            
@@ -340,8 +410,10 @@ namespace personremainer
                
                 stockdataView.Rows.Add(DS.Tables[0].Rows[row][2].ToString(), DS.Tables[0].Rows[row][3].ToString(), DS.Tables[0].Rows[row][4].ToString(), DS.Tables[0].Rows[row][5].ToString(), DS.Tables[0].Rows[row][6].ToString(), DS.Tables[0].Rows[row][7].ToString());
             }
-            personremainer.commo_data.StoName = DS.Tables[0].Rows[0][0].ToString();
-        
+            if (DS.Tables[0].Rows.Count != 0)
+            {
+                personremainer.commo_data.StoName = DS.Tables[0].Rows[0][0].ToString();
+            }
         }
 
 
@@ -527,9 +599,7 @@ namespace personremainer
 
                 StockDataInf.Text = "股票名:" + stoinf[0] + "\r\n" + "股票編號:" + stockcode + "\r\n" + "今日開盤價:" + stoinf[1] + "\r\n" + "昨日收盤價:" + stoinf[2] + "\r\n" + "今日最高價:" + stoinf[4] + "\r\n" + "今日最低價:" + stoinf[5] + "\r\n" + "漲幅:" + Increase;
      
-                //設數據
-               personremainer.commo_data.StoName = stoinf[0];
-                personremainer.commo_data.Stocode = stockcode;
+     
 
             }
             else
@@ -537,6 +607,7 @@ namespace personremainer
                 if (stoinf[0].Length < 2)
                 {
                     MessageBox.Show("查無此股");
+                    
 
                 }
                 else
@@ -548,6 +619,10 @@ namespace personremainer
                     StockDataInf.Text = "股票名:" + DS.Tables[0].Rows[0][0].ToString() + "\r\n" + "股票編號:" + DS.Tables[0].Rows[0][1].ToString() + "\r\n" + "今日開盤價:" + DS.Tables[0].Rows[0][2].ToString() + "\r\n" + "昨日收盤價:" + DS.Tables[0].Rows[0][3].ToString() + "\r\n" + "今日最高價:" + DS.Tables[0].Rows[0][4].ToString() + "\r\n" + "今日最低價:" + DS.Tables[0].Rows[0][5].ToString() + "\r\n" + "漲幅:" + DS.Tables[0].Rows[0][6].ToString();
                 }
             }
+            //設數據
+            personremainer.commo_data.StoName = stoinf[0];
+            personremainer.commo_data.stockcode = stockcode;
+
          
         }
 
@@ -578,13 +653,17 @@ namespace personremainer
             DS = DB.ReadDB("UserOp", "*", "id", stockcode);
 
             //畫圖
-            string stoname = DS.Tables[0].Rows[0][0].ToString();
+
+             string stoname = null;
             string StrDate;
+            if(DS.Tables[0].Rows.Count!=0)
+            {
+            stoname = DS.Tables[0].Rows[0][0].ToString();
             StoGrachart.Series.Clear();
          
             addstogrser(stoname);
             
-
+            }
             
                 string d = GNSD.GetNetData(stockcode);
                 string[] price = GNSD.TreatmentString(d);
@@ -676,32 +755,36 @@ namespace personremainer
                 quantity = bstquantity + sctquantity;
 
                 //畫收益圖
-                float change = ( cost / float.Parse(DS.Tables[0].Rows[test][4].ToString()) )-1;
-                if (quantity == 0)
+                if (DS.Tables[0].Rows.Count != 0)
                 {
-                    change = 0;
-                }
-                StrDate = DS.Tables[0].Rows[row][2].ToString();
-                DateTime Date = Convert.ToDateTime(StrDate);
-                StoGrachart.Series[stoname].Points.AddXY(Date,change );//改成收益率
-        
+                    float change = (cost / float.Parse(DS.Tables[0].Rows[test][4].ToString())) - 1;
+                    if (quantity == 0)
+                    {
+                        change = 0;
+                    }
+                    StrDate = DS.Tables[0].Rows[row][2].ToString();
+                    DateTime Date = Convert.ToDateTime(StrDate);
+                    StoGrachart.Series[stoname].Points.AddXY(Date, change);//改成收益率
 
+                }
 
             }
 
-                row = int.Parse(DS.Tables[0].Rows.Count.ToString())-1;         
-                float costprice = float.Parse((DS.Tables[0].Rows[row][4].ToString()));
-                quantity = bstquantity + sctquantity;
-            /*
-                string d = GNSD.GetNetData(stockcode);
-                string[] price = GNSD.TreatmentString(d);
+                row = int.Parse(DS.Tables[0].Rows.Count.ToString())-1;
+                if (row > 0)
+                {
+                    float costprice = float.Parse((DS.Tables[0].Rows[row][4].ToString()));
+                    quantity = bstquantity + sctquantity;
+                    /*
+                        string d = GNSD.GetNetData(stockcode);
+                        string[] price = GNSD.TreatmentString(d);
 
-                float nowprice = float.Parse(price[6]);*/
-                float totallprice = nowprice * quantity;
-  
-                float increase = ((nowprice -costprice) / costprice) / 100;
-               StoGradataView.Rows[0].SetValues(quantity, totallprice.ToString(), increase.ToString());
-            
+                        float nowprice = float.Parse(price[6]);*/
+                    float totallprice = nowprice * quantity;
+
+                    float increase = ((nowprice - costprice) / costprice) / 100;
+                    StoGradataView.Rows[0].SetValues(quantity, totallprice.ToString(), increase.ToString());
+                }
 
         }
 
@@ -726,8 +809,10 @@ namespace personremainer
             DataBase DB = new DataBase();
             DataSet DS = new DataSet();
             DS = DB.ReadDB("stockinf", "id", "name", stockname);
-            personremainer.commo_data.stockcode  = DS.Tables[0].Rows[0][0].ToString();
-
+            if (DS.Tables[0].Rows.Count != 0)
+            {
+                personremainer.commo_data.stockcode = DS.Tables[0].Rows[0][0].ToString();
+            }
 
             show_sto_gra(personremainer.commo_data.stockcode);
             
@@ -773,6 +858,11 @@ namespace personremainer
         }
 
         private void TaStochart_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
         {
 
         }

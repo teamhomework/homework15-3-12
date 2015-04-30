@@ -54,6 +54,14 @@
             this.KLineGraph = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
             this.stockdataView = new System.Windows.Forms.DataGridView();
+            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tax = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.commission = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.change = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.del = new System.Windows.Forms.DataGridViewButtonColumn();
             this.StoDataName = new System.Windows.Forms.Label();
             this.StoInc = new System.Windows.Forms.RichTextBox();
             this.StockDataInf = new System.Windows.Forms.RichTextBox();
@@ -73,14 +81,6 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TaStochart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tax = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.commission = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.change = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.del = new System.Windows.Forms.DataGridViewButtonColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -157,6 +157,7 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 25);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -183,6 +184,7 @@
             this.splitContainer1.Size = new System.Drawing.Size(991, 454);
             this.splitContainer1.SplitterDistance = 25;
             this.splitContainer1.TabIndex = 1;
+            this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
             // 
             // comboBox1
             // 
@@ -336,6 +338,55 @@
             this.stockdataView.Size = new System.Drawing.Size(843, 150);
             this.stockdataView.TabIndex = 5;
             this.stockdataView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellContentClick);
+            // 
+            // date
+            // 
+            this.date.HeaderText = "日期";
+            this.date.Name = "date";
+            this.date.ReadOnly = true;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "操作";
+            this.Column9.Name = "Column9";
+            // 
+            // price
+            // 
+            this.price.HeaderText = "價格";
+            this.price.Name = "price";
+            this.price.ReadOnly = true;
+            // 
+            // quantity
+            // 
+            this.quantity.HeaderText = "數量";
+            this.quantity.Name = "quantity";
+            this.quantity.ReadOnly = true;
+            // 
+            // tax
+            // 
+            this.tax.HeaderText = "稅率";
+            this.tax.Name = "tax";
+            this.tax.ReadOnly = true;
+            // 
+            // commission
+            // 
+            this.commission.HeaderText = "佣金";
+            this.commission.Name = "commission";
+            this.commission.ReadOnly = true;
+            // 
+            // change
+            // 
+            this.change.HeaderText = "修改";
+            this.change.Name = "change";
+            this.change.Text = "修改";
+            this.change.UseColumnTextForButtonValue = true;
+            // 
+            // del
+            // 
+            this.del.HeaderText = "刪除";
+            this.del.Name = "del";
+            this.del.Text = "刪除";
+            this.del.UseColumnTextForButtonValue = true;
             // 
             // StoDataName
             // 
@@ -511,55 +562,6 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
-            // date
-            // 
-            this.date.HeaderText = "日期";
-            this.date.Name = "date";
-            this.date.ReadOnly = true;
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "操作";
-            this.Column9.Name = "Column9";
-            // 
-            // price
-            // 
-            this.price.HeaderText = "價格";
-            this.price.Name = "price";
-            this.price.ReadOnly = true;
-            // 
-            // quantity
-            // 
-            this.quantity.HeaderText = "數量";
-            this.quantity.Name = "quantity";
-            this.quantity.ReadOnly = true;
-            // 
-            // tax
-            // 
-            this.tax.HeaderText = "稅率";
-            this.tax.Name = "tax";
-            this.tax.ReadOnly = true;
-            // 
-            // commission
-            // 
-            this.commission.HeaderText = "佣金";
-            this.commission.Name = "commission";
-            this.commission.ReadOnly = true;
-            // 
-            // change
-            // 
-            this.change.HeaderText = "修改";
-            this.change.Name = "change";
-            this.change.Text = "修改";
-            this.change.UseColumnTextForButtonValue = true;
-            // 
-            // del
-            // 
-            this.del.HeaderText = "刪除";
-            this.del.Name = "del";
-            this.del.Text = "刪除";
-            this.del.UseColumnTextForButtonValue = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -640,7 +642,11 @@
 
 
 
-
+        //窗口狀態
+        bool show_PerFor = false;//個人資信
+        bool show_TakSto = false;//持倉情況
+        bool show_StoInf = false;//股票資訊
+        bool show_StoGra = false;//股票收益
 
         void Display(System.Windows.Forms.Panel target)
         {
@@ -665,11 +671,7 @@
 
         }
 
-        //窗口狀態
-        bool show_PerFor = false;//個人資信
-        bool show_TakSto = false;//持倉情況
-        bool show_StoInf = false;//股票資訊
-        bool show_StoGra = false;//股票收益
+
         private System.Windows.Forms.PictureBox KLineGraph;
         public System.Windows.Forms.DataVisualization.Charting.Chart StoGrachart;
         private System.Windows.Forms.DataGridViewTextBoxColumn date;

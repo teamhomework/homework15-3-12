@@ -14,7 +14,6 @@ namespace personremainer
         public static float StoPrice;//股價
         public static string OP;//操作
         public static string StoName;//股票名
-        public static string Stocode;
         public static int StoNum;//數量
         public static float Tax;//稅率
         //其他數據

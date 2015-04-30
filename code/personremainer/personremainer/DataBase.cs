@@ -336,16 +336,16 @@ namespace personremainer
                             //刪除記錄
                 //   DELETE FROM UserOp WHERE     (id = 3) DATA
                 else if (1 == op)
-                {//已完成 有BUG 現在是根據日期刪 同日期刪會出事
-                    commsql = "DELETE FROM UserOp WHERE (" + "\"" + search[0] + "\"" + "=" + "'" + value[0] + "'" + ")";
+                {//已完成 
+                    //DELETE FROM UserOp WHERE     (id = '601169') AND (type = '买入') AND (price = '10.69')
+                    commsql = "DELETE FROM UserOp WHERE (" + "\"" + search[0] + "\"" + "=" + "'" + value[0] + "'" + ") AND (" + "\"" + search[1] + "\"" + "=" + "'" + value[1] + "'" + ") AND (" + "\"" + search[2] + "\"" + "=" + "'" + value[2] + "'" + ") AND (" + "\"" + search[3] + "\"" + "=" + "'" + value[3] + "'" + ") ";
+                 
                 }
                 else if (2 == op)
                 {
-                    //UPDATE    UserOpSET              id = 3 WHERE     (id = 601398)
-                    //SET              name = 1, id = 1, date = 0, type = 0, price = 0, quantity = 0, taxrate = 0, commission = 0
-                    //要改 日 操 價 量 稅 傭
-                    //待測
-                    commsql = "UPDATE    UserOp SET name =" + "'" + value[1] + "'," + "\"" + " id =" + "'" + value[2] + "'," + " date =" + "'" + value[3] + "'," + " type = " + "'" + value[4] + "'," + " price =" + "'" + value[5] + "'," + " quantity =" + "'" + value[6] + "'," + " taxrate =" + "'" + value[7] + "'," + " commission =" + "'" + value[8] + "'," + "where(" + "\"" + search[0] + "\"" + "=" + "'" + value[0] + "'" + ")";
+                    //已完成
+                    commsql = "UPDATE UserOp SET name =" + "'" + value[4] + "',"  + " id =" + "'" + value[5] + "'," + " date =" + "'" + value[6] + "'," + " type = " + "'" + value[7] + "'," + " price =" + "'" + value[8] + "'," + " quantity =" + "'" + value[9] + "'," + " taxrate =" + "'" + value[10] + "'," + " commission =" + "'" + value[11] +"'" + "WHERE (" +  search[0] +  "=" + "'" + value[0] + "'" + ") AND ("  + search[1] + "=" + "'" + value[1] + "'" + ") AND ("  + search[2]  + "=" + "'" + value[2] + "'" + ") AND (" + search[3]  + "=" + "'" + value[3] + "'" + ") ";
+                   
 
                 }
 
