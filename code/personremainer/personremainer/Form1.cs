@@ -40,19 +40,13 @@ namespace personremainer
             
             if (true == show_PerFor)
             {
-                splitContainer1.SplitterDistance = 150;
+                splitContainer1.SplitterDistance = 200;
             }
             else if(false == show_PerFor)
                 splitContainer1.SplitterDistance = 0;
         }
 
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            comboBox1.Show();
-            
-   
-        }
 
 
         private void 導入數據ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -230,6 +224,22 @@ namespace personremainer
             frm2.ShowDialog();
             show_stock_data(personremainer.commo_data.stockcode);
            // personremainer.create_form.create_changeOpData();   
+
+
+            //重算個人信息
+            DataBase DB = new DataBase();
+            DataSet DS = new DataSet();
+            personremainer.commo_data.chagra = 0;
+            personremainer.commo_data.marketprice = 0;
+            personremainer.commo_data.grain = 0;
+
+            DS = DB.ReadDB("userop", "id", 0);
+            int ROWS = int.Parse(DS.Tables[0].Rows.Count.ToString());
+            for (int row = 0; row < ROWS; row++)
+            {
+                show_take_sto(DS.Tables[0].Rows[row][0].ToString());
+            }
+            CalPerData();
         }
 
         private void change_data_Load(object sender, EventArgs e)
@@ -337,7 +347,21 @@ namespace personremainer
               frm4.ShowDialog();
 
               show_stock_data(personremainer.commo_data.stockcode);
-                
+
+              //重算個人信息
+              DataBase DB = new DataBase();
+              DataSet DS = new DataSet();
+              personremainer.commo_data.chagra = 0;
+              personremainer.commo_data.marketprice = 0;
+              personremainer.commo_data.grain = 0;
+
+              DS = DB.ReadDB("userop", "id", 0);
+              int ROWS = int.Parse(DS.Tables[0].Rows.Count.ToString());
+              for (int row = 0; row < ROWS; row++)
+              {
+                  show_take_sto(DS.Tables[0].Rows[row][0].ToString());
+              }
+              CalPerData();
                 
             }
             else if (stockdataView[e.ColumnIndex, e.RowIndex].Value == "刪除")
@@ -357,6 +381,19 @@ namespace personremainer
                 DB.changeDB(1,Type,Date);
 
                 show_stock_data(personremainer.commo_data.stockcode);
+                //重算個人信息
+                DataSet DS = new DataSet();
+                personremainer.commo_data.chagra = 0;
+                personremainer.commo_data.marketprice = 0;
+                personremainer.commo_data.grain = 0;
+
+                DS = DB.ReadDB("userop", "id", 0);
+                int ROWS = int.Parse(DS.Tables[0].Rows.Count.ToString());
+                for (int row = 0; row < ROWS; row++)
+                {
+                    show_take_sto(DS.Tables[0].Rows[row][0].ToString());
+                }
+                CalPerData();
                 
             }
 
@@ -366,8 +403,8 @@ namespace personremainer
         private void label1_Click(object sender, EventArgs e)
         {
             personremainer.create_form.create_cash();
+            CalPerData();
 
-            label1.Text = "本金:" + personremainer.commo_data.cash;
         }
 
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
@@ -416,161 +453,7 @@ namespace personremainer
             }
         }
 
-
-        //持倉信息  
-        public void show_take_sto(string stockcode)
-        {
-            //提取數據
-            DataBase DB = new DataBase();
-            GetNetStockData GNSD = new GetNetStockData();
-            DataSet DS = new DataSet();
-            int bs;
-            float bsp = 0;//買賣
-            int sc = 0;//做空 補倉         买入      卖出      补仓      卖空 
-            float scp = 0;
-            int quantity = 0;
-
-
-
-
-            int bstquantity = 0, sctquantity = 0;//交易量
-            float tax = 0, comm = 0, tcost = 0, cost = 0,tcost2 =0,cost2 =0;
-            string ttax, tcomm;
-           
-            DS = DB.ReadDB("UserOp", "*", "id", stockcode);
-
-            string StrDate;
-            string stoname = null;
-            //畫圖
-            if (DS.Tables[0].Rows.Count != 0)
-            {
-                stoname = DS.Tables[0].Rows[0][0].ToString();
-              
-
-                addtastoser(stoname);
-            }
-
-
-            int row = int.Parse(DS.Tables[0].Rows.Count.ToString());
-        //因為要計算持倉成本所以 由舊的記錄算起
-            for (row = row - 1; row > 0; row--)
-            {
-          
-
-                if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "买入")
-                {
-                    //买入
-                    ttax = DS.Tables[0].Rows[row][6].ToString();
-                    tcomm = DS.Tables[0].Rows[row][7].ToString();
-
-                    tax = float.Parse(ttax.Substring(0, ttax.Length - 1)) / 100;
-                    comm = float.Parse(tcomm.Substring(0, tcomm.Length - 1)) / 100;
-
-                    bs = int.Parse(DS.Tables[0].Rows[row][5].ToString());
-                    bsp = float.Parse(DS.Tables[0].Rows[row][4].ToString());
-
-                     
-                   
-                    tcost = (bstquantity * cost + (bs * bsp * (1 + tax) * (1 + comm))) / (bstquantity + bs);
-                    bstquantity = bstquantity + bs;
-
-                     quantity =bstquantity;
-                    cost = tcost;
-                    if (bstquantity == 0)
-                    {
-                        cost = 0;
-                    }
-              
-                }
-                else if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "卖出")
-                {
-                    //卖出
-                    bs = int.Parse(DS.Tables[0].Rows[row][5].ToString());
-                    bsp = float.Parse(DS.Tables[0].Rows[row][4].ToString());
-                    tcost = (bstquantity * cost - (bs * bsp * (1 - tax) * (1 - comm))) / (bstquantity - bs);
-                    bstquantity = bstquantity - bs;
-                    cost = tcost;
-                       quantity =bstquantity;
-
-                    if (bstquantity == 0)
-                    {
-                        cost = 0;
-                    }
-                }
-                else if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "补仓")
-                {
-                    //补仓
-                    sc = int.Parse(DS.Tables[0].Rows[row][5].ToString());
-                    scp = float.Parse(DS.Tables[0].Rows[row][4].ToString());
-                    tcost2 = (sctquantity * cost - (sc * scp * (1 + tax) * (1 + comm))) / (sctquantity - sc);
-                    tcost2 = cost2;
-                    sctquantity = sctquantity + sc;
-                     quantity =sctquantity;
-                    if (sctquantity == 0)
-                    {
-                        cost = 0;
-                    }
-
-
-
-                }
-                else if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "卖空")
-                {
-                    //卖空 
-                    ttax = DS.Tables[0].Rows[row][6].ToString();
-                    tcomm = DS.Tables[0].Rows[row][7].ToString();
-
-                    tax = float.Parse(ttax.Substring(0, ttax.Length - 1)) / 100;
-                    comm = float.Parse(tcomm.Substring(0, tcomm.Length - 1)) / 100;
-
-                    sc = int.Parse(DS.Tables[0].Rows[row][5].ToString());
-                    scp = float.Parse(DS.Tables[0].Rows[row][4].ToString());
-
-
-
-                    tcost = (sctquantity * cost + (sc * scp * (1 - tax) * (1 - comm))) / (sctquantity + sc);
-                    sctquantity = sctquantity - sc;
-                     quantity =bstquantity;
-                    cost = tcost;
-                       quantity =sctquantity;
-                    if (sctquantity == 0)
-                    {
-                        cost = 0;
-                    }
-                }
-                
-                //畫持倉圖
-                if (DS.Tables[0].Rows.Count != 0)
-                {
-                    StrDate = DS.Tables[0].Rows[row][2].ToString();
-                    DateTime Date = Convert.ToDateTime(StrDate);
-                    TaStochart.Series[stoname].Points.AddXY(Date, quantity);
-                }
-
-            }
-            if (bstquantity > 0)
-            {
-                //當前價上网現抓 第6個返回值
-
-                
-
-               string d = GNSD.GetNetData(stockcode);
-               string[] price = GNSD.TreatmentString(d);
-               TaStodataView.Rows.Add(DS.Tables[0].Rows[row][0].ToString(),price[6],cost,"不會算","不會算");
-             
-            }
-            else if (sctquantity < 0)
-            {
-              
-                string d = GNSD.GetNetData(stockcode);
-                string[] price = GNSD.TreatmentString(d);
-                TaStodataView.Rows.Add(DS.Tables[0].Rows[row][0].ToString(), price[6], cost, "不會算", "不會算");
-
-
-            }
-            
-        }
-        //持倉信息 文本框內容
+        //股票信息 文本框內容
         public void show_take_sto_textbox(string stockcode)
         {
             GetNetStockData GNSD =new GetNetStockData();
@@ -674,7 +557,7 @@ namespace personremainer
             int row = int.Parse(DS.Tables[0].Rows.Count.ToString());
             int test = row-1;
        
-            for (row = row - 1; row > 0; row--)
+            for (row = row - 1; row >= 0; row--)
             {
                 if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "买入")
                 {
@@ -718,8 +601,9 @@ namespace personremainer
                     //补仓
                     sc = int.Parse(DS.Tables[0].Rows[row][5].ToString());
                     scp = float.Parse(DS.Tables[0].Rows[row][4].ToString());
-                    tcost2 = (sctquantity * cost - (sc * scp * (1 + tax) * (1 + comm))) / (sctquantity - sc);
-                    tcost2 = cost2;
+                    tcost = (sctquantity * cost - (sc * scp * (1 + tax) * (1 + comm))) / (sctquantity - sc);
+                    cost = tcost;
+
                     sctquantity = sctquantity + sc;
                     if (sctquantity == 0)
                     {
@@ -746,6 +630,7 @@ namespace personremainer
                     tcost = (sctquantity * cost + (sc * scp * (1 - tax) * (1 - comm))) / (sctquantity + sc);
                     sctquantity = sctquantity - sc;
                     cost = tcost;
+              
                     if (sctquantity == 0)
                     {
                         cost = 0;
@@ -781,6 +666,10 @@ namespace personremainer
 
                         float nowprice = float.Parse(price[6]);*/
                     float totallprice = nowprice * quantity;
+                    if (quantity < 0)
+                    {
+                        totallprice = -totallprice;
+                    }
 
                     float increase = ((nowprice - costprice) / costprice) / 100;
                     StoGradataView.Rows[0].SetValues(quantity, totallprice.ToString(), increase.ToString());
@@ -830,7 +719,7 @@ namespace personremainer
             TaStochart.Series.Add(name);
 
             TaStochart.Series[name].BorderWidth = 3;
-            TaStochart.Series[name].ChartType = SeriesChartType.Line;
+            TaStochart.Series[name].ChartType = SeriesChartType.Range;
             TaStochart.Series[name].IsValueShownAsLabel = false;//是否顯示點的值
             TaStochart.Series[name].XValueType = ChartValueType.Date; 
         }
@@ -841,7 +730,7 @@ namespace personremainer
             //设置图案颜色
             StoGrachart.Series.Add(name);
             StoGrachart.Series[name].BorderWidth = 3;
-            StoGrachart.Series[name].ChartType = SeriesChartType.Line;
+            StoGrachart.Series[name].ChartType = SeriesChartType.Range;
             StoGrachart.Series[name].IsValueShownAsLabel = false;//是否顯示點的值
             StoGrachart.Series[name].XValueType = ChartValueType.Date;
         }
@@ -866,7 +755,183 @@ namespace personremainer
         {
 
         }
-        
+
+
+
+
+
+
+        //持倉信息  
+        public void show_take_sto(string stockcode)
+        {
+            //提取數據
+            DataBase DB = new DataBase();
+            GetNetStockData GNSD = new GetNetStockData();
+            DataSet DS = new DataSet();
+
+            float price = 0;
+            int quantity = 0, holdquan = 0;
+            //浮動盈虧 盈虧
+            float chagra = 0, totgra = 0;
+            float tax = 0, comm = 0, tcost = 0, cost = 0;
+            string ttax, tcomm;
+
+            DS = DB.ReadDB("UserOp", "*", "id", stockcode);
+
+            string StrDate;
+            string stoname = null;
+            //畫圖
+            if (DS.Tables[0].Rows.Count != 0)
+            {
+                stoname = DS.Tables[0].Rows[0][0].ToString();
+
+
+                addtastoser(stoname);
+            }
+
+
+            int row = int.Parse(DS.Tables[0].Rows.Count.ToString());
+            //因為要計算持倉成本所以 由舊的記錄算起
+            for (row = row - 1; row >= 0; row--)
+            {
+                ttax = DS.Tables[0].Rows[row][6].ToString();
+                tcomm = DS.Tables[0].Rows[row][7].ToString();
+                tax = float.Parse(ttax.Substring(0, ttax.Length - 1)) / 100;
+                comm = float.Parse(tcomm.Substring(0, tcomm.Length - 1)) / 100;
+                quantity = int.Parse(DS.Tables[0].Rows[row][5].ToString());
+                price = float.Parse(DS.Tables[0].Rows[row][4].ToString());
+
+                if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "买入")
+                {
+                    //买入
+                    tcost = (holdquan * cost + (quantity * price * (1 + tax) * (1 + comm))) / (quantity + holdquan);
+                    holdquan += quantity;
+                    cost = tcost;
+                    if (holdquan == 0)
+                    {
+                        cost = 0;
+                    }
+                }
+                else if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "卖出")
+                {
+                    //卖出
+                    tcost = (holdquan * cost - (quantity * price * (1 - tax) * (1 - comm))) / (quantity - holdquan);
+                    holdquan = holdquan - quantity;
+
+                    cost = tcost;
+                    if (holdquan == 0)
+                    {
+                        cost = 0;
+                    }
+                }
+                else if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "补仓")
+                {
+                    //补仓
+                    tcost = (holdquan * cost - (quantity * price * (1 + tax) * (1 + comm))) / (quantity + holdquan);
+                    holdquan = holdquan + quantity;
+                    cost = tcost;
+                    if (holdquan == 0)
+                    {
+                        cost = 0;
+                    }
+                }
+                else if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "卖空")
+                {
+                    //卖空 
+
+                    tcost = (holdquan * cost + (quantity * price * (1 - tax) * (1 - comm))) / (quantity - holdquan);
+                    holdquan = holdquan - quantity;
+                    cost = tcost;
+                    if (holdquan == 0)
+                    {
+                        cost = 0;
+                    }
+    
+
+                }
+
+                //畫持倉圖
+                if (DS.Tables[0].Rows.Count != 0)
+                {
+                    StrDate = DS.Tables[0].Rows[row][2].ToString();
+                    DateTime Date = Convert.ToDateTime(StrDate);
+                    TaStochart.Series[stoname].Points.AddXY(Date, holdquan);
+                }
+
+            }
+                //當前價上网現抓 第6個返回值
+            if (holdquan != 0)
+            {
+                float markprice = 0;
+                string d = GNSD.GetNetData(stockcode);
+                string[] nowprice = GNSD.TreatmentString(d);
+                if (holdquan > 0)
+                {
+                    markprice = float.Parse(nowprice[6]) * holdquan;
+                    chagra = (float.Parse(nowprice[6]) - cost) / cost;
+                    totgra = chagra * holdquan;
+                }
+                else if (holdquan < 0)
+                {
+                    markprice = float.Parse(nowprice[6]) * holdquan;
+                    chagra = -(float.Parse(nowprice[6]) - cost) / cost;
+                    totgra = chagra * holdquan;
+                }
+
+                personremainer.commo_data.marketprice += markprice;
+                personremainer.commo_data.chagra += chagra;
+                personremainer.commo_data.grain += totgra;
+                TaStodataView.Rows.Add(DS.Tables[0].Rows[0][0].ToString(), nowprice[6], cost, holdquan, markprice, totgra, chagra);
+            }
+
+
+            
+
+        }
+
+
+
+        public void CalPerData()
+        {
+            
+
+            personremainer.commo_data.acctocash = float.Parse(personremainer.commo_data.capital) + personremainer.commo_data.grain;
+            personremainer.commo_data.cash = personremainer.commo_data.acctocash - personremainer.commo_data.marketprice;
+            label1.Text = "本金:" + personremainer.commo_data.capital;
+            label7.Text = "現金:" + personremainer.commo_data.cash.ToString();
+            label3.Text = "浮動盈虧(%):" + personremainer.commo_data.chagra.ToString();
+            label4.Text = "盈虧:" + personremainer.commo_data.grain.ToString();
+            label5.Text = "帳戶總資產" + personremainer.commo_data.acctocash.ToString();
+            label6.Text = "市值:" + personremainer.commo_data.marketprice.ToString();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+         GetNetStockData GNDS =  new GetNetStockData();
+         KLineGraph.ImageLocation = @GNDS.GetNetGraph(personremainer.commo_data.stockcode, 0);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            GetNetStockData GNDS = new GetNetStockData();
+            if(personremainer.commo_data.stockcode!=null)
+            KLineGraph.ImageLocation = @GNDS.GetNetGraph(personremainer.commo_data.stockcode, 1);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            GetNetStockData GNDS = new GetNetStockData();
+            if (personremainer.commo_data.stockcode != null)
+            KLineGraph.ImageLocation = @GNDS.GetNetGraph(personremainer.commo_data.stockcode, 2);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            GetNetStockData GNDS = new GetNetStockData();
+            if (personremainer.commo_data.stockcode != null)
+            KLineGraph.ImageLocation = @GNDS.GetNetGraph(personremainer.commo_data.stockcode, 3);
+        }
+
 
 
 

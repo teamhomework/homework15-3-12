@@ -18,14 +18,16 @@ namespace personremainer
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             Application.OpenForms[1].Close();
             Application.OpenForms[1].Dispose();
-           //Label  = textBox1.Text;
+       
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-          personremainer.commo_data.cash = textBox1.Text;
+          personremainer.commo_data.capital = textBox1.Text;
+
         }
     }
 }

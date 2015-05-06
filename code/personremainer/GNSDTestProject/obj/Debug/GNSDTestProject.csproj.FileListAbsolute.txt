@@ -1,0 +1,14 @@
+C:\Users\user\Desktop\雜\团隊留底\GNSDTestProject\bin\Debug\GNSDTestProject.dll
+C:\Users\user\Desktop\雜\团隊留底\GNSDTestProject\bin\Debug\GNSDTestProject.pdb
+C:\Users\user\Desktop\雜\团隊留底\GNSDTestProject\bin\Debug\personremainer.exe
+C:\Users\user\Desktop\雜\团隊留底\GNSDTestProject\bin\Debug\personremainer.pdb
+C:\Users\user\Desktop\雜\团隊留底\GNSDTestProject\obj\Debug\GNSDTestProject.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\雜\团隊留底\GNSDTestProject\obj\Debug\GNSDTestProject.dll
+C:\Users\user\Desktop\雜\团隊留底\GNSDTestProject\obj\Debug\GNSDTestProject.pdb
+C:\Users\user\Desktop\personremainer\GNSDTestProject\bin\Debug\GNSDTestProject.dll
+C:\Users\user\Desktop\personremainer\GNSDTestProject\bin\Debug\GNSDTestProject.pdb
+C:\Users\user\Desktop\personremainer\GNSDTestProject\bin\Debug\personremainer.exe
+C:\Users\user\Desktop\personremainer\GNSDTestProject\bin\Debug\personremainer.pdb
+C:\Users\user\Desktop\personremainer\GNSDTestProject\obj\Debug\GNSDTestProject.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\personremainer\GNSDTestProject\obj\Debug\GNSDTestProject.dll
+C:\Users\user\Desktop\personremainer\GNSDTestProject\obj\Debug\GNSDTestProject.pdb
