@@ -9,76 +9,24 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 
 
+//SELECT     name, id, date, type, price, quantity, taxrate, commissionFROM         UserOpWHERE     (name = '伊利股份 ')ORDER BY date
 
 namespace personremainer
 {
     class DataBase
     {
-        //可以用這句換掉現有的連接字身符串
-        //  string consqlser = "server = .;integrated security=SSPI;database=master";
         string consqlser = "server = .\\SQLEXPRESS;integrated security=SSPI;database=test";
-
-        //測試用
-    /*    public string ConectDB()
-        {
-            // string connectionString = "server=.\\SQLEXPRESS;uid=数据库用户名;pwd=数据库密码;database=数据库名称";
-            string ConnectionString = "server = .\\SQLEXPRESS;uid =chanmen;pwd=123456;database=test";
- 
-            SqlConnection conn = new SqlConnection(ConnectionString);
-            SqlCommand sqlComm =new SqlCommand();
-            conn.Open();
-            sqlComm.Connection = conn;
-         sqlComm.CommandText  = "select * from test2";
-         sqlComm.CommandType = CommandType.Text;
-         SqlDataReader sdr = sqlComm.ExecuteReader();
-        //    string a= sdr[0].ToString();
-      //   MessageBox.Show(a);
-         sdr.Read();
-             string a= sdr[0].ToString();
-            MessageBox.Show(a);
-         return "1";
-
-
-        }*/
-        // 有點權限問題不好搞  所以不另行新創數據庫
-   /*     public void CreateDB()
-        {
-            //連接數據庫SQLEXPRESS  "server=.;database=master;integrated security=SSPI"; 
-            string consqlser = "server = .\\SQLEXPRESS;integrated security=SSPI;database=test";
-            SqlConnection conn = new SqlConnection(consqlser);
-            //SqlCommand sqlComm =new SqlCommand();
-
-            if (conn.State != ConnectionState.Open)
-            {
-                conn.Open();
-            }
-
-            string createtablesql = "CREATE DATABASE MyDB ON PRIMARY" + "(name=UserOpTable, filename =  'C:\\Users\\user\\Desktop\\ss\\UserOpTable.mdf', size=3," + "maxsize=5, filegrowth=10%)log on" + "(name=mydbb_log, filename='C:\\Users\\user\\Desktop\\ss\\UserOpTable_log.ldf',size=3," + "maxsize=20,filegrowth=1)";
-            SqlCommand comsql = new SqlCommand(createtablesql, conn);
-            try
-            {
-                comsql.ExecuteNonQuery();
-            }
-            catch (SqlException err)
-            {
-                MessageBox.Show(err.Message.ToString());
-            }
-        }*/
-
-
-
 
         //創表
         public void CreateTable()
         {
-            //連接數據庫SQLEXPRESS  "server=.;database=master;integrated security=SSPI"; 
             SqlConnection conn = new SqlConnection(consqlser);
             if (conn.State != ConnectionState.Open)
             {
                 conn.Open();
             }
 
-            string createuseroptabble = "CREATE TABLE UserOp"+  "(name CHAR(10),id INT, date CHAR(20), type  CHAR(10),price float,quantity int,taxrate varchar(10),commission varchar(10))";
+            string createuseroptabble = "CREATE TABLE UserOp" + "(name CHAR(10),id INT, date datetime, type  CHAR(10),price float,quantity int,taxrate varchar(10),commission varchar(10))";
             string createstotable = "CREATE TABLE StockInf" + "( name char(10)," + "id int CONSTRAINT PKeyid PRIMARY KEY,"  +  "openingpriceT float,closepriceY float,maxprice float,minprice float,increase varchar(max) )";
             
             SqlCommand comsql = new SqlCommand(createuseroptabble, conn);
@@ -117,6 +65,7 @@ namespace personremainer
                 catch (Exception err)
                 {
                     MessageBox.Show(err.Message.ToString());
+                    
                 }
                 UserOp = UserOp.next;
             }
@@ -132,7 +81,7 @@ namespace personremainer
         public void AddStockData(string[] StockInf,string Stockcode)
         {
 
-           // string consqlser = "server = .\\SQLEXPRESS;integrated security=SSPI;database=test";
+
             SqlConnection conn = new SqlConnection(consqlser);
             if (conn.State != ConnectionState.Open)
             {
@@ -198,11 +147,11 @@ namespace personremainer
                 string searchsql;
                 if (search != "*")
                 {
-                    searchsql = " select" + "\"" + search + "\"" + "from" + "\"" + tablename + "\"";
+                    searchsql = " select" + "\"" + search + "\"" + "from" + "\"" + tablename + "\"" +" ORDER BY date ";
                 }
                 else
                 {
-                    searchsql = " select * from" + "\"" + tablename + "\"";
+                    searchsql = " select * from" + "\"" + tablename + "\"" + " ORDER BY date ";
                 }
                 SqlCommand comm = new SqlCommand(searchsql, conn);
                 SqlDataAdapter sda = new SqlDataAdapter();
@@ -236,11 +185,12 @@ namespace personremainer
             {
                 if (search != "*")
                 {
-                    searchsql = " select" + "\"" + search + "\"" + "from" + "\"" + tablename + "\"" + "where" + "(\"" + condition + "\"" + "=" + "'" + vaule + "'" + ")";
+                    searchsql = " select" + "\"" + search + "\"" + "from" + "\"" + tablename + "\"" + "where" + "(\"" + condition + "\"" + "=" + "'" + vaule + "'" + ")" + " ORDER BY date ";
                 }
                 else
                 {
-                    searchsql = " select * from" + "\"" + tablename + "\"" + "where" + "(\"" + condition + "\"" + "=" + "'" + vaule + "'" + ")";
+                    searchsql = " select * from" + "\"" + tablename + "\"" + "where" + "(\"" + condition + "\"" + "=" + "'" + vaule + "'" + ")" +" ORDER BY date ";
+      
                 }
                 SqlCommand comm = new SqlCommand(searchsql, conn);
                 SqlDataAdapter sda = new SqlDataAdapter();
@@ -279,7 +229,7 @@ namespace personremainer
                 }
                 else
                 {
-                    searchsql = " select * from" + "\"" + tablename + "\"";
+                    searchsql = " select * from" + "\"" + tablename + "\"" ;
                 }
                 SqlCommand comm = new SqlCommand(searchsql, conn);
                 SqlDataAdapter sda = new SqlDataAdapter();
