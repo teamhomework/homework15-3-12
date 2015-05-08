@@ -6,11 +6,11 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2AFCB69F-660E-458D-A292-14A21C6C3A5C}</ProjectGuid>
+    <ProjectGuid>{88977980-9321-46EC-BC63-D882C9A748F9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GNSDTestProject</RootNamespace>
-    <AssemblyName>GNSDTestProject</AssemblyName>
+    <RootNamespace>OptExcelTestProject</RootNamespace>
+    <AssemblyName>OptExcelTestProject</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -57,8 +57,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataBaseTest.cs" />
-    <Compile Include="GetNetStockDataTest.cs" />
+    <Compile Include="OptExcelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

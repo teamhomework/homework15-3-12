@@ -103,7 +103,7 @@ namespace personremainer
 
             string commsql =null;
             //檢查股票是否已存 如果是則更新 否則 插入新記錄
-            DataSet ds = ReadDB("StockInf", "id", "id", Stockcode);
+            DataSet ds = ReadDB("StockInf", "id", "id", Stockcode,0);
            
             if (ds.Tables[0].Rows.Count.ToString() == "0")
             {
@@ -171,7 +171,7 @@ namespace personremainer
 
         }
         //重載 讀數據字函數
-        public DataSet ReadDB(string tablename, string search, string condition,string vaule)
+        public DataSet ReadDB(string tablename, string search, string condition,string vaule,int i)
         {
             SqlConnection conn = new SqlConnection(consqlser);
             conn.Close();
@@ -183,14 +183,28 @@ namespace personremainer
             string searchsql = null;
             try
             {
-                if (search != "*")
+                if (search != "*"&&i==1)
                 {
                     searchsql = " select" + "\"" + search + "\"" + "from" + "\"" + tablename + "\"" + "where" + "(\"" + condition + "\"" + "=" + "'" + vaule + "'" + ")" + " ORDER BY date ";
+                    
                 }
-                else
+                else if (search == "*" && i == 1)
                 {
                     searchsql = " select * from" + "\"" + tablename + "\"" + "where" + "(\"" + condition + "\"" + "=" + "'" + vaule + "'" + ")" +" ORDER BY date ";
+                    
       
+                }
+
+                if (search != "*" && i == 0)
+                {
+                    searchsql = " select" + "\"" + search + "\"" + "from" + "\"" + tablename + "\"" + "where" + "(\"" + condition + "\"" + "=" + "'" + vaule + "'" + ")";
+                    
+                }
+                else if (search == "*" && i == 0)
+                {
+                    searchsql = " select * from" + "\"" + tablename + "\"" + "where" + "(\"" + condition + "\"" + "=" + "'" + vaule + "'" + ")" ;
+                    
+
                 }
                 SqlCommand comm = new SqlCommand(searchsql, conn);
                 SqlDataAdapter sda = new SqlDataAdapter();

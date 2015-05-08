@@ -86,7 +86,7 @@ namespace personremainer
                 int ROWS = int.Parse(DS.Tables[0].Rows.Count.ToString());
                 for (int row = 0; row < ROWS; row++)
                 {
-                    show_take_sto(DS.Tables[0].Rows[row][0].ToString());
+                    show_take_sto(DS.Tables[0].Rows[row][0].ToString(),1);
                     Draw_takchart(DS.Tables[0].Rows[row][0].ToString());
                 }
 
@@ -128,17 +128,11 @@ namespace personremainer
 
         private void 股票收益ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*NotDisplay();
+            NotDisplay();
             if (StoGrachart.Series.Count != 0)
             {
                 StoGrachart.Series.Clear();
             }
-
-            if (TaStochart.Series.Count != 0)
-            {
-                TaStochart.Series.Clear();
-            }
-
               if (false == show_StoGra)
                 show_StoGra = true;
             else if (true == show_StoGra)
@@ -146,12 +140,12 @@ namespace personremainer
 
             if (true == show_StoGra)
             {
-                show_sto_gra("601398");
+             //   show_sto_gra("601398");
                 show_gra_listbox();
                 Display(panel3);
             }
             else if (false == show_StoGra)
-                NotDisplay();*/
+                NotDisplay();
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -192,15 +186,12 @@ namespace personremainer
             //重算個人信息
             DataBase DB = new DataBase();
             DataSet DS = new DataSet();
-            personremainer.commo_data.chagra = 0;
-            personremainer.commo_data.marketprice = 0;
-            personremainer.commo_data.grain = 0;
-
+            ClearPerData();
             DS = DB.ReadDB("userop", "id", 0);
             int ROWS = int.Parse(DS.Tables[0].Rows.Count.ToString());
             for (int row = 0; row < ROWS; row++)
             {
-                show_take_sto(DS.Tables[0].Rows[row][0].ToString());
+                show_take_sto(DS.Tables[0].Rows[row][0].ToString(),0);
             }
             CalPerData();
         }
@@ -305,15 +296,12 @@ namespace personremainer
               //重算個人信息
               DataBase DB = new DataBase();
               DataSet DS = new DataSet();
-              personremainer.commo_data.chagra = 0;
-              personremainer.commo_data.marketprice = 0;
-              personremainer.commo_data.grain = 0;
-
+              ClearPerData();
               DS = DB.ReadDB("userop", "id", 0);
               int ROWS = int.Parse(DS.Tables[0].Rows.Count.ToString());
               for (int row = 0; row < ROWS; row++)
               {
-                  show_take_sto(DS.Tables[0].Rows[row][0].ToString());
+                  show_take_sto(DS.Tables[0].Rows[row][0].ToString(),0);
               }
               CalPerData();
                 
@@ -335,15 +323,12 @@ namespace personremainer
                 show_stock_data(personremainer.commo_data.stockcode);
                 //重算個人信息
                 DataSet DS = new DataSet();
-                personremainer.commo_data.chagra = 0;
-                personremainer.commo_data.marketprice = 0;
-                personremainer.commo_data.grain = 0;
-
+                ClearPerData();
                 DS = DB.ReadDB("userop", "id", 0);
                 int ROWS = int.Parse(DS.Tables[0].Rows.Count.ToString());
                 for (int row = 0; row < ROWS; row++)
                 {
-                    show_take_sto(DS.Tables[0].Rows[row][0].ToString());
+                    show_take_sto(DS.Tables[0].Rows[row][0].ToString(),0);
                 }
                 CalPerData();
                 
@@ -358,11 +343,12 @@ namespace personremainer
 
             DataBase DB = new DataBase();
             DataSet DS = new DataSet();
+            ClearPerData();
             DS = DB.ReadDB("userop", "id", 0);
             int ROWS = int.Parse(DS.Tables[0].Rows.Count.ToString());
             for (int row = 0; row < ROWS; row++)
             {
-                show_take_sto(DS.Tables[0].Rows[row][0].ToString());
+                show_take_sto(DS.Tables[0].Rows[row][0].ToString(),0);
             }
             CalPerData();
 
@@ -392,7 +378,7 @@ namespace personremainer
             DataBase DB = new DataBase();
             GetNetStockData GNSD = new GetNetStockData();
             DataSet DS =new DataSet();
-            DS = DB.ReadDB("UserOp","*","id",stockcode);
+            DS = DB.ReadDB("UserOp","*","id",stockcode,1);
             if (DS.Tables[0].Rows.Count != 0)
             {
                 personremainer.commo_data.StoName = DS.Tables[0].Rows[0][0].ToString();
@@ -417,6 +403,8 @@ namespace personremainer
         //股票信息 文本框內容
         public void show_take_sto_textbox(string stockcode)
         {
+            if (stockcode.Length > 5) 
+            stockcode = stockcode.Substring(0, 6);
             GetNetStockData GNSD =new GetNetStockData();
             DataBase DB =new DataBase();
             DataSet DS =new DataSet();
@@ -424,7 +412,7 @@ namespace personremainer
            string d = GNSD.GetNetData(stockcode);
            string[] stoinf = GNSD.TreatmentString(d);
        
-            DS = DB.ReadDB("stockinf","*","id",stockcode);
+            DS = DB.ReadDB("stockinf","*","id",stockcode,0);
             if (DS.Tables[0].Rows.Count == 0 && stoinf[0].Length>2)
             {
 
@@ -495,7 +483,7 @@ namespace personremainer
             string stockname = StoGralistBox.SelectedValue.ToString();
             DataBase DB = new DataBase();
             DataSet DS = new DataSet();
-            DS = DB.ReadDB("stockinf", "id", "name", stockname);
+          //  DS = DB.ReadDB("stockinf", "id", "name", stockname);
             if (DS.Tables[0].Rows.Count != 0)
             {
                 personremainer.commo_data.stockcode = DS.Tables[0].Rows[0][0].ToString();
@@ -548,7 +536,7 @@ namespace personremainer
 
 
         //持倉信息  
-        public void show_take_sto(string stockcode)
+        public void show_take_sto(string stockcode,int i)
         {
             //提取數據
             DataBase DB = new DataBase();
@@ -563,7 +551,7 @@ namespace personremainer
             float temgra = 0;
             string ttax, tcomm;
 
-            DS = DB.ReadDB("UserOp", "*", "id", stockcode);
+            DS = DB.ReadDB("UserOp", "*", "id", stockcode,1);
             int row = int.Parse(DS.Tables[0].Rows.Count.ToString());
             //因為要計算持倉成本所以 由舊的記錄算起
             for (row = row - 1; row >= 0; row--)
@@ -651,6 +639,7 @@ namespace personremainer
             personremainer.commo_data.chagra += chagra;
             personremainer.commo_data.grain += totgra;
             personremainer.commo_data.dailygrain += holdquan * (float.Parse(nowprice[6]) - float.Parse(nowprice[2]));
+            if(1==i)
             TaStodataView.Rows.Add(DS.Tables[0].Rows[0][0].ToString(), nowprice[6], cost, holdquan, markprice, totgra, chagra);
         }
 
@@ -662,7 +651,7 @@ namespace personremainer
             DataBase DB = new DataBase();
             GetNetStockData GNSD = new GetNetStockData();
             DataSet DS = new DataSet();
-            DS = DB.ReadDB("UserOp", "*", "id", stockcode);
+            DS = DB.ReadDB("UserOp", "*", "id", stockcode,1);
             string StrDate;
             string stoname = null;
             int holdquan = 0, quantity = 0;
@@ -726,6 +715,14 @@ namespace personremainer
             label2.Text = "日盈虧:" + personremainer.commo_data.dailygrain.ToString();
         }
 
+        public void ClearPerData()
+        {
+            personremainer.commo_data.chagra = 0;
+            personremainer.commo_data.marketprice = 0;
+            personremainer.commo_data.grain = 0;
+            personremainer.commo_data.dailygrain = 0;
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
          GetNetStockData GNDS =  new GetNetStockData();
@@ -751,6 +748,30 @@ namespace personremainer
             GetNetStockData GNDS = new GetNetStockData();
             if (personremainer.commo_data.stockcode != null)
             KLineGraph.ImageLocation = @GNDS.GetNetGraph(personremainer.commo_data.stockcode, 3);
+        }
+
+        private void StoGralistBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TaStodataView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int row = TaStodataView.CurrentRow.Index;
+            string stockname = TaStodataView[0,row].Value.ToString();
+            DataBase DB = new DataBase();
+            DataSet DS = new DataSet();
+            DS = DB.ReadDB("UserOp", "id", "name", stockname,1);
+            if (DS.Tables[0].Rows.Count != 0)
+            {
+                personremainer.commo_data.stockcode = DS.Tables[0].Rows[0][0].ToString();
+            }
+            NotDisplay();
+            show_StoInf = true;
+            Display(panel2);
+            show_stock_data(personremainer.commo_data.stockcode);
+            show_take_sto_textbox(personremainer.commo_data.stockcode);
+            show_take_kgraph(personremainer.commo_data.stockcode);
         }
 
 

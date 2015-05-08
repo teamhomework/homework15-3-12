@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend11 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend12 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea15 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend15 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea16 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend16 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
@@ -469,15 +469,16 @@
             this.TaStodataView.RowTemplate.Height = 23;
             this.TaStodataView.Size = new System.Drawing.Size(745, 150);
             this.TaStodataView.TabIndex = 1;
+            this.TaStodataView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TaStodataView_CellContentClick);
             // 
             // TaStochart
             // 
             this.TaStochart.BackColor = System.Drawing.Color.Empty;
             this.TaStochart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            chartArea11.Name = "ChartArea1";
-            this.TaStochart.ChartAreas.Add(chartArea11);
-            legend11.Name = "Legend1";
-            this.TaStochart.Legends.Add(legend11);
+            chartArea15.Name = "ChartArea1";
+            this.TaStochart.ChartAreas.Add(chartArea15);
+            legend15.Name = "Legend1";
+            this.TaStochart.Legends.Add(legend15);
             this.TaStochart.Location = new System.Drawing.Point(114, 220);
             this.TaStochart.Name = "TaStochart";
             this.TaStochart.Size = new System.Drawing.Size(730, 261);
@@ -500,10 +501,10 @@
             // 
             // StoGrachart
             // 
-            chartArea12.Name = "ChartArea1";
-            this.StoGrachart.ChartAreas.Add(chartArea12);
-            legend12.Name = "Legend1";
-            this.StoGrachart.Legends.Add(legend12);
+            chartArea16.Name = "ChartArea1";
+            this.StoGrachart.ChartAreas.Add(chartArea16);
+            legend16.Name = "Legend1";
+            this.StoGrachart.Legends.Add(legend16);
             this.StoGrachart.Location = new System.Drawing.Point(428, 54);
             this.StoGrachart.Name = "StoGrachart";
             this.StoGrachart.Size = new System.Drawing.Size(403, 300);
@@ -518,6 +519,7 @@
             this.StoGralistBox.Name = "StoGralistBox";
             this.StoGralistBox.Size = new System.Drawing.Size(120, 196);
             this.StoGralistBox.TabIndex = 2;
+            this.StoGralistBox.SelectedIndexChanged += new System.EventHandler(this.StoGralistBox_SelectedIndexChanged);
             this.StoGralistBox.DoubleClick += new System.EventHandler(this.StoGralistBox_DoubleClick);
             // 
             // StoGradataView
