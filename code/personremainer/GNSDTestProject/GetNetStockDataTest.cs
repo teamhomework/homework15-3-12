@@ -92,12 +92,24 @@ namespace GNSDTestProject
         ///GetNetGraph 的测试
         ///</summary>
         [TestMethod()]
-        public void GetNetGraphTest()
+        public void GetNetGraphTest_right()
         {
             GetNetStockData target = new GetNetStockData(); // TODO: 初始化为适当的值
             string StockNum = "601001"; // TODO: 初始化为适当的值
             int n = 0; // TODO: 初始化为适当的值
             string expected = "http://image.sinajs.cn/newchart/min/n/sh601001.gif"; // TODO: 初始化为适当的值
+            string actual;
+            actual = target.GetNetGraph(StockNum, n);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void GetNetGraphTest_wong()
+        {
+            GetNetStockData target = new GetNetStockData(); // TODO: 初始化为适当的值
+            string StockNum = ""; // TODO: 初始化为适当的值
+            int n = 0; // TODO: 初始化为适当的值
+            string expected = "http://image.sinajs.cn/newchart/min/n/sz00.gif"; // TODO: 初始化为适当的值
             string actual;
             actual = target.GetNetGraph(StockNum, n);
             Assert.AreEqual(expected, actual);

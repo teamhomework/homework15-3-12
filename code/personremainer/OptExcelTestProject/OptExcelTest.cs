@@ -67,42 +67,64 @@ namespace OptExcelTestProject
         /// <summary>
         ///OptExcel 构造函数 的测试
         ///</summary>
-        [TestMethod()]
-        public void OptExcelConstructorTest()
-        {
-            OptExcel target = new OptExcel();
-            Assert.Inconclusive("TODO: 实现用来验证目标的代码");
-        }
 
         /// <summary>
         ///Open_Excel 的测试
         ///</summary>
         [TestMethod()]
-        public void Open_ExcelTest()
+        public void Open_ExcelTest_wong()
         {
             OptExcel target = new OptExcel(); // TODO: 初始化为适当的值
             string ExcelStr = string.Empty; // TODO: 初始化为适当的值
-            bool expected = false; // TODO: 初始化为适当的值
+            bool expected = true; // TODO: 初始化为适当的值
             bool actual;
             actual = target.Open_Excel(ExcelStr);
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("验证此测试方法的正确性。");
         }
+
+
+        [TestMethod()]
+        public void Open_ExcelTest_right()
+        {
+            OptExcel target = new OptExcel(); // TODO: 初始化为适当的值
+            string ExcelStr = "C:\\Users\\user\\Desktop\\股票数据.xls"; // TODO: 初始化为适当的值
+            bool expected = true; // TODO: 初始化为适当的值
+            bool actual;
+            actual = target.Open_Excel(ExcelStr);
+            Assert.AreEqual(expected, actual);
+        }
+
 
         /// <summary>
         ///Read_ExData 的测试
         ///</summary>
         [TestMethod()]
-        public void Read_ExDataTest()
+        public void Read_ExDataTest_wong()
+        {
+            OptExcel target = new OptExcel(); // TODO: 初始化为适当的值
+            int row = 0; // TODO: 初始化为适当的值
+            int col = 9; // TODO: 初始化为适当的值
+            string ExcelStr = "";
+            target.Open_Excel(ExcelStr);
+            string expected = ""; // TODO: 初始化为适当的值
+            string actual;
+            actual = target.Read_ExData(row, col);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void Read_ExDataTest_right()
         {
             OptExcel target = new OptExcel(); // TODO: 初始化为适当的值
             int row = 0; // TODO: 初始化为适当的值
             int col = 0; // TODO: 初始化为适当的值
-            string expected = string.Empty; // TODO: 初始化为适当的值
+            string ExcelStr = "C:\\Users\\user\\Desktop\\股票数据.xls";
+            target.Open_Excel(ExcelStr);
+            string expected = "伊利股份"; // TODO: 初始化为适当的值
             string actual;
             actual = target.Read_ExData(row, col);
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("验证此测试方法的正确性。");
         }
+
     }
 }

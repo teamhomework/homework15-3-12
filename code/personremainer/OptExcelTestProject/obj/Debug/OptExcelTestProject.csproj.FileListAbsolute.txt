@@ -1,0 +1,7 @@
+C:\Users\user\Desktop\personremainer\OptExcelTestProject\bin\Debug\OptExcelTestProject.dll
+C:\Users\user\Desktop\personremainer\OptExcelTestProject\bin\Debug\OptExcelTestProject.pdb
+C:\Users\user\Desktop\personremainer\OptExcelTestProject\bin\Debug\personremainer.exe
+C:\Users\user\Desktop\personremainer\OptExcelTestProject\bin\Debug\personremainer.pdb
+C:\Users\user\Desktop\personremainer\OptExcelTestProject\obj\Debug\OptExcelTestProject.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\personremainer\OptExcelTestProject\obj\Debug\OptExcelTestProject.dll
+C:\Users\user\Desktop\personremainer\OptExcelTestProject\obj\Debug\OptExcelTestProject.pdb

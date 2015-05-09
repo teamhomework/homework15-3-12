@@ -16,9 +16,9 @@ namespace personremainer
     class OptExcel
     {
 
-        public static string[] SheetName=new string[10];
-        public static DataTable MyTable = new DataTable();
-        public static DataSet MySet = new DataSet();//表
+        string[] SheetName=new string[10];
+        DataTable MyTable = new DataTable();
+        DataSet MySet = new DataSet();//表
         //導入部份代碼測試
         // <param name="ExcelStr">文件的全路径</param>
         // <param name="SheetName">Excel文档里的表名称</param>
