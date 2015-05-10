@@ -52,6 +52,16 @@ namespace personremainer
 
         private void Form2_Load(object sender, EventArgs e)
         {
+            Log.WriteLog(LOGLEVEL.DEBUG, LOGTYPE.USEROP, "修改股票记录");
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
+        {
 
         }
     }

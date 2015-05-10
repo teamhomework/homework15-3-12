@@ -16,7 +16,7 @@ namespace personremainer
     class DataBase
     {
         string consqlser = "server = .\\SQLEXPRESS;integrated security=SSPI;database=test";
-
+        
         //創表
         public void CreateTable()
         {
@@ -24,15 +24,18 @@ namespace personremainer
             if (conn.State != ConnectionState.Open)
             {
                 conn.Open();
+                Log.WriteLog(LOGLEVEL.DEBUG, LOGTYPE.DATABASE, "打开数据库成功");
             }
             string droptable = "DROP TABLE UserOp";
             try
             {
                 SqlCommand droptablecomm =new SqlCommand(droptable,conn);
                 droptablecomm.ExecuteNonQuery();
+                Log.WriteLog(LOGLEVEL.DEBUG, LOGTYPE.DATABASE, "删除表UserOp成功");
             }
             catch(Exception err)
             {
+                Log.WriteLog(LOGLEVEL.DEBUG, LOGTYPE.DATABASE, "删除表UserOp出错");
             }
 
             string createuseroptabble = "CREATE TABLE UserOp" + "(name CHAR(10),id INT, date datetime, type  CHAR(10),price float,quantity int,taxrate varchar(10),commission varchar(10))";
@@ -40,7 +43,7 @@ namespace personremainer
             
             SqlCommand comsql = new SqlCommand(createuseroptabble, conn);
             SqlCommand comsql2 = new SqlCommand(createstotable,conn);
-
+            Log.WriteLog(LOGLEVEL.DEBUG, LOGTYPE.DATABASE, "创建表用戶操作表股票資料表");
             try
             {
                 comsql.ExecuteNonQuery();
@@ -86,7 +89,7 @@ namespace personremainer
                 }
                 UserOp = UserOp.next;
             }
-
+            Log.WriteLog(LOGLEVEL.DEBUG, LOGTYPE.DATABASE, "向用户操作表中添加操作信息");
             conn.Close();
 
         }
@@ -144,6 +147,7 @@ namespace personremainer
                 {
                     MessageBox.Show(err.Message.ToString());
                 }
+                //Log.WriteLog(LOGLEVEL.DEBUG, LOGTYPE.DATABASE, "添加股票信息");
                 conn.Close();
         }
         
@@ -178,6 +182,7 @@ namespace personremainer
 
                 sda.Fill(DS);
                 conn.Close();
+                Log.WriteLog(LOGLEVEL.DEBUG, LOGTYPE.DATABASE, "读取数据库信息");
                 return DS;
             }
             catch (Exception err)

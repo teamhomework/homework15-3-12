@@ -55,6 +55,7 @@
             // 
             resources.ApplyResources(this.monthCalendar1, "monthCalendar1");
             this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
             // 
             // comboBox1
             // 
@@ -66,6 +67,7 @@
             resources.GetString("comboBox1.Items3")});
             resources.ApplyResources(this.comboBox1, "comboBox1");
             this.comboBox1.Name = "comboBox1";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // button1
             // 

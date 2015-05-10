@@ -15,10 +15,11 @@ namespace personremainer
         [STAThread]
         static void Main()
         {
+            Log.StartUp();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-            
+            Log.LogOver();
         }
     }
 }

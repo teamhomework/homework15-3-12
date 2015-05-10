@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea15 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend15 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea16 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend16 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,6 +40,7 @@
             this.股票收益ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.導入數據ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -48,6 +49,23 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.TaStodataView = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TaStochart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.StoGrachart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.StoGralistBox = new System.Windows.Forms.ListBox();
+            this.StoGradataView = new System.Windows.Forms.DataGridView();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
@@ -67,39 +85,21 @@
             this.StoDataName = new System.Windows.Forms.Label();
             this.StoInc = new System.Windows.Forms.RichTextBox();
             this.StockDataInf = new System.Windows.Forms.RichTextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.TaStodataView = new System.Windows.Forms.DataGridView();
-            this.TaStochart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.StoGrachart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.StoGralistBox = new System.Windows.Forms.ListBox();
-            this.StoGradataView = new System.Windows.Forms.DataGridView();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.KLineGraph)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stockdataView)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TaStodataView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TaStochart)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StoGrachart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StoGradataView)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.KLineGraph)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stockdataView)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -111,6 +111,7 @@
             this.menuStrip1.Size = new System.Drawing.Size(991, 25);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // toolStripMenuItem1
             // 
@@ -189,6 +190,15 @@
             this.splitContainer1.TabIndex = 1;
             this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(28, 152);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 12);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "日盈虧:";
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -264,6 +274,166 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.TaStodataView);
+            this.panel1.Controls.Add(this.TaStochart);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(2241, 1143);
+            this.panel1.TabIndex = 2;
+            this.panel1.Visible = false;
+            // 
+            // TaStodataView
+            // 
+            this.TaStodataView.AllowUserToAddRows = false;
+            this.TaStodataView.AllowUserToDeleteRows = false;
+            this.TaStodataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TaStodataView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column10,
+            this.Column11,
+            this.Column4,
+            this.Column5});
+            this.TaStodataView.Location = new System.Drawing.Point(99, 64);
+            this.TaStodataView.Name = "TaStodataView";
+            this.TaStodataView.ReadOnly = true;
+            this.TaStodataView.RowTemplate.Height = 23;
+            this.TaStodataView.Size = new System.Drawing.Size(745, 150);
+            this.TaStodataView.TabIndex = 1;
+            this.TaStodataView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TaStodataView_CellContentClick);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "股票";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "當前價";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "持倉成本";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "持有量";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "持有市值";
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "盈虧";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "浮動盈虧(%)";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // TaStochart
+            // 
+            this.TaStochart.BackColor = System.Drawing.Color.Empty;
+            this.TaStochart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            chartArea1.Name = "ChartArea1";
+            this.TaStochart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.TaStochart.Legends.Add(legend1);
+            this.TaStochart.Location = new System.Drawing.Point(114, 220);
+            this.TaStochart.Name = "TaStochart";
+            this.TaStochart.Size = new System.Drawing.Size(730, 261);
+            this.TaStochart.TabIndex = 0;
+            this.TaStochart.Text = "chart1";
+            this.TaStochart.Click += new System.EventHandler(this.TaStochart_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.AutoScroll = true;
+            this.panel3.AutoSize = true;
+            this.panel3.Controls.Add(this.StoGrachart);
+            this.panel3.Controls.Add(this.StoGralistBox);
+            this.panel3.Controls.Add(this.StoGradataView);
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(2188, 1076);
+            this.panel3.TabIndex = 4;
+            this.panel3.Visible = false;
+            // 
+            // StoGrachart
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.StoGrachart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.StoGrachart.Legends.Add(legend2);
+            this.StoGrachart.Location = new System.Drawing.Point(428, 54);
+            this.StoGrachart.Name = "StoGrachart";
+            this.StoGrachart.Size = new System.Drawing.Size(403, 300);
+            this.StoGrachart.TabIndex = 3;
+            this.StoGrachart.Text = "chart1";
+            // 
+            // StoGralistBox
+            // 
+            this.StoGralistBox.FormattingEnabled = true;
+            this.StoGralistBox.ItemHeight = 12;
+            this.StoGralistBox.Location = new System.Drawing.Point(35, 46);
+            this.StoGralistBox.Name = "StoGralistBox";
+            this.StoGralistBox.Size = new System.Drawing.Size(120, 196);
+            this.StoGralistBox.TabIndex = 2;
+            this.StoGralistBox.SelectedIndexChanged += new System.EventHandler(this.StoGralistBox_SelectedIndexChanged);
+            this.StoGralistBox.DoubleClick += new System.EventHandler(this.StoGralistBox_DoubleClick);
+            // 
+            // StoGradataView
+            // 
+            this.StoGradataView.AllowUserToDeleteRows = false;
+            this.StoGradataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.StoGradataView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column6,
+            this.Column7,
+            this.Column8});
+            this.StoGradataView.Location = new System.Drawing.Point(35, 286);
+            this.StoGradataView.Name = "StoGradataView";
+            this.StoGradataView.ReadOnly = true;
+            this.StoGradataView.RowTemplate.Height = 23;
+            this.StoGradataView.Size = new System.Drawing.Size(347, 45);
+            this.StoGradataView.TabIndex = 1;
+            this.StoGradataView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "總持有量";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "總價值";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "增幅";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
             // 
             // panel2
             // 
@@ -438,179 +608,10 @@
             this.StockDataInf.TabIndex = 2;
             this.StockDataInf.Text = "";
             // 
-            // panel1
-            // 
-            this.panel1.AutoScroll = true;
-            this.panel1.AutoSize = true;
-            this.panel1.Controls.Add(this.TaStodataView);
-            this.panel1.Controls.Add(this.TaStochart);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(2241, 1143);
-            this.panel1.TabIndex = 2;
-            this.panel1.Visible = false;
-            // 
-            // TaStodataView
-            // 
-            this.TaStodataView.AllowUserToAddRows = false;
-            this.TaStodataView.AllowUserToDeleteRows = false;
-            this.TaStodataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TaStodataView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column10,
-            this.Column11,
-            this.Column4,
-            this.Column5});
-            this.TaStodataView.Location = new System.Drawing.Point(99, 64);
-            this.TaStodataView.Name = "TaStodataView";
-            this.TaStodataView.ReadOnly = true;
-            this.TaStodataView.RowTemplate.Height = 23;
-            this.TaStodataView.Size = new System.Drawing.Size(745, 150);
-            this.TaStodataView.TabIndex = 1;
-            this.TaStodataView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TaStodataView_CellContentClick);
-            // 
-            // TaStochart
-            // 
-            this.TaStochart.BackColor = System.Drawing.Color.Empty;
-            this.TaStochart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            chartArea15.Name = "ChartArea1";
-            this.TaStochart.ChartAreas.Add(chartArea15);
-            legend15.Name = "Legend1";
-            this.TaStochart.Legends.Add(legend15);
-            this.TaStochart.Location = new System.Drawing.Point(114, 220);
-            this.TaStochart.Name = "TaStochart";
-            this.TaStochart.Size = new System.Drawing.Size(730, 261);
-            this.TaStochart.TabIndex = 0;
-            this.TaStochart.Text = "chart1";
-            this.TaStochart.Click += new System.EventHandler(this.TaStochart_Click);
-            // 
-            // panel3
-            // 
-            this.panel3.AutoScroll = true;
-            this.panel3.AutoSize = true;
-            this.panel3.Controls.Add(this.StoGrachart);
-            this.panel3.Controls.Add(this.StoGralistBox);
-            this.panel3.Controls.Add(this.StoGradataView);
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(2188, 1076);
-            this.panel3.TabIndex = 4;
-            this.panel3.Visible = false;
-            // 
-            // StoGrachart
-            // 
-            chartArea16.Name = "ChartArea1";
-            this.StoGrachart.ChartAreas.Add(chartArea16);
-            legend16.Name = "Legend1";
-            this.StoGrachart.Legends.Add(legend16);
-            this.StoGrachart.Location = new System.Drawing.Point(428, 54);
-            this.StoGrachart.Name = "StoGrachart";
-            this.StoGrachart.Size = new System.Drawing.Size(403, 300);
-            this.StoGrachart.TabIndex = 3;
-            this.StoGrachart.Text = "chart1";
-            // 
-            // StoGralistBox
-            // 
-            this.StoGralistBox.FormattingEnabled = true;
-            this.StoGralistBox.ItemHeight = 12;
-            this.StoGralistBox.Location = new System.Drawing.Point(35, 46);
-            this.StoGralistBox.Name = "StoGralistBox";
-            this.StoGralistBox.Size = new System.Drawing.Size(120, 196);
-            this.StoGralistBox.TabIndex = 2;
-            this.StoGralistBox.SelectedIndexChanged += new System.EventHandler(this.StoGralistBox_SelectedIndexChanged);
-            this.StoGralistBox.DoubleClick += new System.EventHandler(this.StoGralistBox_DoubleClick);
-            // 
-            // StoGradataView
-            // 
-            this.StoGradataView.AllowUserToDeleteRows = false;
-            this.StoGradataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.StoGradataView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column6,
-            this.Column7,
-            this.Column8});
-            this.StoGradataView.Location = new System.Drawing.Point(35, 286);
-            this.StoGradataView.Name = "StoGradataView";
-            this.StoGradataView.ReadOnly = true;
-            this.StoGradataView.RowTemplate.Height = 23;
-            this.StoGradataView.Size = new System.Drawing.Size(347, 45);
-            this.StoGradataView.TabIndex = 1;
-            this.StoGradataView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "總持有量";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "總價值";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "增幅";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "股票";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "當前價";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "持倉成本";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "持有量";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "持有市值";
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "盈虧";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "浮動盈虧(%)";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(28, 152);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 12);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "日盈虧:";
             // 
             // Form1
             // 
@@ -631,16 +632,16 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.KLineGraph)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.stockdataView)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TaStodataView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TaStochart)).EndInit();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.StoGrachart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StoGradataView)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.KLineGraph)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stockdataView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

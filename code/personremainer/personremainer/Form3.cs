@@ -27,7 +27,7 @@ namespace personremainer
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
           personremainer.commo_data.capital = textBox1.Text;
-
+          Log.WriteLog(LOGLEVEL.DEBUG, LOGTYPE.USEROP, "添加本金" + textBox1.Text);
         }
     }
 }

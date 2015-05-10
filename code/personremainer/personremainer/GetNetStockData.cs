@@ -50,8 +50,8 @@ namespace personremainer
 
             string url = string.Format(UrlList,StockNum);
             string StockData = client.DownloadString(url);
-
-            return StockData;        
+            //Log.WriteLog(LOGLEVEL.DEBUG, LOGTYPE.FILE, "访问新浪API返回股票" + StockData);
+            return StockData;
         }
         /*日K線
         http://image.sinajs.cn/newchart/daily/n/sh000001.gif
