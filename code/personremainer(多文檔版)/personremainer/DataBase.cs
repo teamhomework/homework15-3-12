@@ -299,7 +299,7 @@ namespace personremainer
         //刪除記錄
      //   DELETE FROM UserOp WHERE     (id = 3)
         // op=0 插,op=1 刪,op=2 改
-        public bool changeDB(int op, string[] search, string[] value)
+        public bool changeDB(string TableName ,int op, string[] search, string[] value)
         {
 
             SqlConnection conn = new SqlConnection(consqlser);
@@ -316,7 +316,7 @@ namespace personremainer
                 {
 
                     //已完成
-                    commsql = "INSERT INTO userop(name , id ,date ,type ,price ,quantity ,taxrate , commission  )" + "VALUES ( " + "'" + value[0] + "','" + value[1] + "','" + value[2] + "','" + value[3] + "','" + value[4] + "','" + value[5] + "','" + value[6] + "','" + value[7]  + "'"+")";
+                    commsql = "INSERT INTO " + "\"" + TableName + "\"" + "(name , id ,date ,type ,price ,quantity ,taxrate , commission  )" + "VALUES ( " + "'" + value[0] + "','" + value[1] + "','" + value[2] + "','" + value[3] + "','" + value[4] + "','" + value[5] + "','" + value[6] + "','" + value[7] + "'" + ")";
 
 
                 }
@@ -326,13 +326,13 @@ namespace personremainer
                 else if (1 == op)
                 {//已完成 
                     //DELETE FROM UserOp WHERE     (id = '601169') AND (type = '买入') AND (price = '10.69')
-                    commsql = "DELETE FROM UserOp WHERE (" + "\"" + search[0] + "\"" + "=" + "'" + value[0] + "'" + ") AND (" + "\"" + search[1] + "\"" + "=" + "'" + value[1] + "'" + ") AND (" + "\"" + search[2] + "\"" + "=" + "'" + value[2] + "'" + ") AND (" + "\"" + search[3] + "\"" + "=" + "'" + value[3] + "'" + ") ";
+                    commsql = "DELETE FROM " + "\"" + TableName + "\"" + " WHERE (" + "\"" + search[0] + "\"" + "=" + "'" + value[0] + "'" + ") AND (" + "\"" + search[1] + "\"" + "=" + "'" + value[1] + "'" + ") AND (" + "\"" + search[2] + "\"" + "=" + "'" + value[2] + "'" + ") AND (" + "\"" + search[3] + "\"" + "=" + "'" + value[3] + "'" + ") ";
                  
                 }
                 else if (2 == op)
                 {
                     //已完成
-                    commsql = "UPDATE UserOp SET name =" + "'" + value[4] + "',"  + " id =" + "'" + value[5] + "'," + " date =" + "'" + value[6] + "'," + " type = " + "'" + value[7] + "'," + " price =" + "'" + value[8] + "'," + " quantity =" + "'" + value[9] + "'," + " taxrate =" + "'" + value[10] + "'," + " commission =" + "'" + value[11] +"'" + "WHERE (" +  search[0] +  "=" + "'" + value[0] + "'" + ") AND ("  + search[1] + "=" + "'" + value[1] + "'" + ") AND ("  + search[2]  + "=" + "'" + value[2] + "'" + ") AND (" + search[3]  + "=" + "'" + value[3] + "'" + ") ";
+                    commsql = "UPDATE " + "\"" + TableName + "\"" + " SET name =" + "'" + value[4] + "'," + " id =" + "'" + value[5] + "'," + " date =" + "'" + value[6] + "'," + " type = " + "'" + value[7] + "'," + " price =" + "'" + value[8] + "'," + " quantity =" + "'" + value[9] + "'," + " taxrate =" + "'" + value[10] + "'," + " commission =" + "'" + value[11] + "'" + "WHERE (" + search[0] + "=" + "'" + value[0] + "'" + ") AND (" + search[1] + "=" + "'" + value[1] + "'" + ") AND (" + search[2] + "=" + "'" + value[2] + "'" + ") AND (" + search[3] + "=" + "'" + value[3] + "'" + ") ";
                    
 
                 }

@@ -251,7 +251,7 @@ namespace GNSDTestProject
             value[7] = "0.3";
             bool expected = true; // TODO: 初始化为适当的值
             bool actual;
-            actual = target.changeDB(op, value, value);
+            actual = target.changeDB(OwnName, op, value, value);
             Assert.AreEqual(expected, actual);
         }
 
@@ -264,7 +264,7 @@ namespace GNSDTestProject
             string[] value = null; // TODO: 初始化为适当的值
             bool expected = false; // TODO: 初始化为适当的值
             bool actual;
-            actual = target.changeDB(op, search, value);
+            actual = target.changeDB(OwnName,op, search, value);
             Assert.AreEqual(expected, actual);
         }
     }

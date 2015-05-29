@@ -89,3 +89,16 @@ C:\Users\user\Desktop\text\personremainer\obj\x86\Debug\personremainer.UI.resour
 C:\Users\user\Desktop\text\personremainer\obj\x86\Debug\personremainer.csproj.GenerateResource.Cache
 C:\Users\user\Desktop\text\personremainer\bin\Debug\personremainer.exe
 C:\Users\user\Desktop\text\personremainer\bin\Debug\personremainer.pdb
+C:\Users\user\Desktop\personremainer(多文檔版)\personremainer\obj\x86\Debug\personremainer.exe
+C:\Users\user\Desktop\personremainer(多文檔版)\personremainer\obj\x86\Debug\personremainer.pdb
+C:\Users\user\Desktop\personremainer(多文檔版)\personremainer\bin\Debug\personremainer.exe
+C:\Users\user\Desktop\personremainer(多文檔版)\personremainer\bin\Debug\personremainer.pdb
+C:\Users\user\Desktop\personremainer(多文檔版)\personremainer\obj\x86\Debug\personremainer.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\personremainer(多文檔版)\personremainer\obj\x86\Debug\personremainer.Form1.resources
+C:\Users\user\Desktop\personremainer(多文檔版)\personremainer\obj\x86\Debug\personremainer.Form2.resources
+C:\Users\user\Desktop\personremainer(多文檔版)\personremainer\obj\x86\Debug\personremainer.Form3.resources
+C:\Users\user\Desktop\personremainer(多文檔版)\personremainer\obj\x86\Debug\personremainer.Form4.resources
+C:\Users\user\Desktop\personremainer(多文檔版)\personremainer\obj\x86\Debug\personremainer.AccountName.resources
+C:\Users\user\Desktop\personremainer(多文檔版)\personremainer\obj\x86\Debug\personremainer.Properties.Resources.resources
+C:\Users\user\Desktop\personremainer(多文檔版)\personremainer\obj\x86\Debug\personremainer.UI.resources
+C:\Users\user\Desktop\personremainer(多文檔版)\personremainer\obj\x86\Debug\personremainer.csproj.GenerateResource.Cache

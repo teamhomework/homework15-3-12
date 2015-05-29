@@ -208,7 +208,7 @@ namespace personremainer
         //增加交易記錄後
         private void button2_Click(object sender, EventArgs e)
         {
-            Form2 frm2 = new Form2();
+            Form2 frm2 = new Form2(OwnName);
             frm2.label1.Text = personremainer.commo_data.StoName;
             frm2.ShowDialog();
             show_stock_data(personremainer.commo_data.stockcode);
@@ -224,6 +224,7 @@ namespace personremainer
                 show_take_sto(DS.Tables[0].Rows[row][0].ToString(), 0);
             }
             CalPerData();
+           
         }
 
         private void change_data_Load(object sender, EventArgs e)
@@ -326,7 +327,7 @@ namespace personremainer
         {
             if (stockdataView[e.ColumnIndex, e.RowIndex].Value == "修改")
             {
-                Form4 frm4 = new Form4();
+                Form4 frm4 = new Form4(OwnName);
 
 
                 //先傳數據給STATIC 再傳給文本
@@ -340,20 +341,23 @@ namespace personremainer
                 frm4.monthCalendar1.SelectionStart = Convert.ToDateTime(personremainer.commo_data.DATE);
                 frm4.monthCalendar1.SelectionEnd = Convert.ToDateTime(personremainer.commo_data.DATE);
                 frm4.textBox2.Text = personremainer.commo_data.price.ToString();
+                
                 frm4.ShowDialog();
-
+               
                 show_stock_data(personremainer.commo_data.stockcode);
-
+            
                 //重算個人信息
                 DataBase DB = new DataBase();
                 DataSet DS = new DataSet();
                 ClearPerData();
                 DS = DB.ReadDB(OwnName, "id", 0);
                 int ROWS = int.Parse(DS.Tables[0].Rows.Count.ToString());
+                
                 for (int row = 0; row < ROWS; row++)
                 {
                     show_take_sto(DS.Tables[0].Rows[row][0].ToString(), 0);
                 }
+
                 CalPerData();
 
             }
@@ -377,7 +381,7 @@ namespace personremainer
                     if (true == CanChange(personremainer.commo_data.stockcode, Convert.ToDateTime(Date[0]), Date[0].ToString(), int.Parse(Date[2])))
                     {
                         Date[3] = personremainer.commo_data.StoName;
-                        DB.changeDB(1, Type, Date);
+                        DB.changeDB(OwnName, 1, Type, Date);
                         show_stock_data(personremainer.commo_data.stockcode);
                         //重算個人信息
                         DataSet DS = new DataSet();
@@ -449,13 +453,16 @@ namespace personremainer
             {
                 stockdataView.Rows.Clear();
             }
+            //加列 日期 操作 價格 數量 稅率 傭金  修改 刪除 
 
             int ROWS = int.Parse(DS.Tables[0].Rows.Count.ToString());
             for (int row = 0; row < ROWS; row++)
             {
-
+                
                 stockdataView.Rows.Add(DS.Tables[0].Rows[row][2].ToString(), DS.Tables[0].Rows[row][3].ToString(), DS.Tables[0].Rows[row][4].ToString(), DS.Tables[0].Rows[row][5].ToString(), DS.Tables[0].Rows[row][6].ToString(), DS.Tables[0].Rows[row][7].ToString());
+              //  MessageBox.Show(stockdataView.Columns.Count.ToString());
             }
+           
             if (DS.Tables[0].Rows.Count != 0)
             {
                 personremainer.commo_data.StoName = DS.Tables[0].Rows[0][0].ToString();
@@ -552,7 +559,7 @@ namespace personremainer
 
         private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
         {
-
+           
         }
 
 

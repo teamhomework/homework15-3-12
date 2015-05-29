@@ -11,9 +11,11 @@ namespace personremainer
 {
     public partial class Form4 : Form
     {
-        public Form4()
+        string DBTableName;
+        public Form4(string Input)
         {
             InitializeComponent();
+            DBTableName = Input;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -62,12 +64,15 @@ namespace personremainer
             value[11] = "0.3%";
             if (true == CanChange(personremainer.commo_data.stockcode,Convert.ToDateTime(personremainer.commo_data.DATE),personremainer.commo_data.opt,personremainer.commo_data.qty))
             {
-                DB.changeDB(2, search, value);
-                Application.OpenForms[1].Close();
-                Application.OpenForms[1].Dispose();
+                DB.changeDB(DBTableName,2, search, value);
+                this.Close();
+                this.Dispose();
+               // Application.OpenForms[1].Close();
+               // Application.OpenForms[1].Dispose();
             }
             else
             {
+                
                 MessageBox.Show("非法輸入 請重新輸入");
             }
 
@@ -88,7 +93,8 @@ namespace personremainer
             DataBase DB = new DataBase();
             DataSet DS = new DataSet();
             int holdquan = 0, quantity = 0;
-            DS = DB.ReadDB("UserOp", "*", "id", stockcode, 1);
+            DS = DB.ReadDB(DBTableName, "*", "id", stockcode, 1);
+            //MessageBox.Show(.stockdataView.Columns.Count.ToString());
             int ROWS = DS.Tables[0].Rows.Count;
             for (int row = 0; row < ROWS; row++)
             {

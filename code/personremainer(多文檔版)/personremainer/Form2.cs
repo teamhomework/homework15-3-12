@@ -11,9 +11,11 @@ namespace personremainer
 {
     public partial class Form2 : Form
     {
-        public Form2()
+        string DBTableName;
+        public Form2(string Input)
         {
             InitializeComponent();
+            DBTableName = Input;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -49,8 +51,10 @@ namespace personremainer
             value[7] = "0.3%";
             if (true == CanChange(personremainer.commo_data.stockcode, monthCalendar1.SelectionStart, personremainer.commo_data.opt, personremainer.commo_data.qty))
             {
-               
-                DB.changeDB(0, value, value);
+
+                DB.changeDB(DBTableName, 0, value, value);
+                this.Close();
+                this.Dispose();
             }
             else
             {
@@ -59,8 +63,8 @@ namespace personremainer
             }
 
 
-            Application.OpenForms[1].Close();
-            Application.OpenForms[1].Dispose();
+          //  Application.OpenForms[1].Close();
+         //   Application.OpenForms[1].Dispose();
         }
 
         private void Form2_Load(object sender, EventArgs e)
@@ -79,7 +83,7 @@ namespace personremainer
             DataBase DB = new DataBase();
             DataSet DS = new DataSet();
             int holdquan = 0, quantity = 0;
-            DS = DB.ReadDB("UserOp", "*", "id", stockcode, 1);
+            DS = DB.ReadDB(DBTableName, "*", "id", stockcode, 1);
             int ROWS = DS.Tables[0].Rows.Count;
             int test =1;
             for (int row = 0; row < ROWS; row++)

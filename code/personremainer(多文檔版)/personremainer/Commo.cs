@@ -47,7 +47,7 @@ namespace personremainer
 
         public static void create_changeOpData()
         {
-            frm2 = new Form2();
+            frm2 = new Form2(personremainer.commo_data.AccountName);
             frm2.ShowDialog();
         }
         public static void create_cash()

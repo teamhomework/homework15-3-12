@@ -19,3 +19,10 @@ C:\Users\user\Desktop\text\GNSDTestProject\bin\Debug\personremainer.pdb
 C:\Users\user\Desktop\text\GNSDTestProject\obj\Debug\GNSDTestProject.csprojResolveAssemblyReference.cache
 C:\Users\user\Desktop\text\GNSDTestProject\obj\Debug\GNSDTestProject.dll
 C:\Users\user\Desktop\text\GNSDTestProject\obj\Debug\GNSDTestProject.pdb
+C:\Users\user\Desktop\personremainer(多文檔版)\GNSDTestProject\bin\Debug\GNSDTestProject.dll
+C:\Users\user\Desktop\personremainer(多文檔版)\GNSDTestProject\bin\Debug\GNSDTestProject.pdb
+C:\Users\user\Desktop\personremainer(多文檔版)\GNSDTestProject\bin\Debug\personremainer.exe
+C:\Users\user\Desktop\personremainer(多文檔版)\GNSDTestProject\bin\Debug\personremainer.pdb
+C:\Users\user\Desktop\personremainer(多文檔版)\GNSDTestProject\obj\Debug\GNSDTestProject.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\personremainer(多文檔版)\GNSDTestProject\obj\Debug\GNSDTestProject.dll
+C:\Users\user\Desktop\personremainer(多文檔版)\GNSDTestProject\obj\Debug\GNSDTestProject.pdb
