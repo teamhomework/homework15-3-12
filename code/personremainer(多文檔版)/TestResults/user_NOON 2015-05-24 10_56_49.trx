@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="d20483a9-305d-4a92-a58f-6543d05b2b4c" name="user@NOON 2015-05-24 10:56:49" runUser="NOON\user" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="本地" id="adb3dea1-ed18-40e7-a164-e4915d020c2e">
+    <Description>这些设置为本地测试运行的默认测试设置。</Description>
+    <Deployment enabled="false" runDeploymentRoot="user_NOON 2015-05-24 10_56_49">
+      <DeploymentItem filename="C:\Users\user\Desktop\personremainer\personremainer\bin\Debug\personremainer.exe" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2015-05-24T10:56:49.8969177+08:00" queuing="2015-05-24T10:56:53.5869658+08:00" start="2015-05-24T10:56:53.7769661+08:00" finish="2015-05-24T10:59:05.5882807+08:00" />
+  <ResultSummary outcome="Error">
+    <Counters total="19" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="19" disconnected="0" warning="0" passed="0" completed="0" inProgress="0" pending="0" />
+    <RunInfos>
+      <RunInfo computerName="NOON" outcome="Error" timestamp="2015-05-24T10:59:05.5882807+08:00">
+        <Text>测试宿主进程意外退出。</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="GetNetGraphTest_right" storage="c:\users\user\desktop\personremainer\gnsdtestproject\bin\debug\gnsdtestproject.dll" id="3fe20870-ac74-9597-9a9e-ca0bb4941e04">
+      <Execution id="c34738c8-fcb4-496f-af83-ddd519cc680f" />
+      <TestMethod codeBase="C:/Users/user/Desktop/personremainer/GNSDTestProject/bin/Debug/GNSDTestProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="GNSDTestProject.GetNetStockDataTest, GNSDTestProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GetNetGraphTest_right" />
+    </UnitTest>
+    <UnitTest name="CreateTableTest" storage="c:\users\user\desktop\personremainer\gnsdtestproject\bin\debug\gnsdtestproject.dll" id="a59150c2-67c8-61fd-50b6-53a8fba3a0ff">
+      <Execution id="1236ff9d-488b-484e-bf07-2f317c48a02c" />
+      <TestMethod codeBase="C:/Users/user/Desktop/personremainer/GNSDTestProject/bin/Debug/GNSDTestProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="GNSDTestProject.DataBaseTest, GNSDTestProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="CreateTableTest" />
+    </UnitTest>
+    <UnitTest name="TreatmentStringTest" storage="c:\users\user\desktop\personremainer\gnsdtestproject\bin\debug\gnsdtestproject.dll" id="de8dfa0b-37d8-c0e3-56bd-2da4b8cc9cb6">
+      <Execution id="35a3f861-6a88-46f9-aa71-f41833104f9d" />
+      <TestMethod codeBase="C:/Users/user/Desktop/personremainer/GNSDTestProject/bin/Debug/GNSDTestProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="GNSDTestProject.GetNetStockDataTest, GNSDTestProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TreatmentStringTest" />
+    </UnitTest>
+    <UnitTest name="AddUserOpTest" storage="c:\users\user\desktop\personremainer\gnsdtestproject\bin\debug\gnsdtestproject.dll" id="a1ae2cc3-848b-640a-0ca6-3672268e332b">
+      <Execution id="35883708-6047-4b4f-8c4d-133962ff3556" />
+      <TestMethod codeBase="C:/Users/user/Desktop/personremainer/GNSDTestProject/bin/Debug/GNSDTestProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="GNSDTestProject.DataBaseTest, GNSDTestProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="AddUserOpTest" />
+    </UnitTest>
+    <UnitTest name="DataBaseConstructorTest" storage="c:\users\user\desktop\personremainer\gnsdtestproject\bin\debug\gnsdtestproject.dll" id="d42f9aca-ffe1-393a-b11c-e86552554fe1">
+      <Execution id="2e02880f-2c39-4f0d-946f-3956211acec4" />
+      <TestMethod codeBase="C:/Users/user/Desktop/personremainer/GNSDTestProject/bin/Debug/GNSDTestProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="GNSDTestProject.DataBaseTest, GNSDTestProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="DataBaseConstructorTest" />
+    </UnitTest>
+    <UnitTest name="Open_ExcelTest_right" storage="c:\users\user\desktop\personremainer\optexceltestproject\bin\debug\optexceltestproject.dll" id="88a5da34-eb67-3743-4b9f-622829ad0029">
+      <Execution id="1a834871-80b0-447f-b139-fd59866756bd" />
+      <TestMethod codeBase="C:/Users/user/Desktop/personremainer/OptExcelTestProject/bin/Debug/OptExcelTestProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="OptExcelTestProject.OptExcelTest, OptExcelTestProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Open_ExcelTest_right" />
+    </UnitTest>
+    <UnitTest name="changeDBTest_wong" storage="c:\users\user\desktop\personremainer\gnsdtestproject\bin\debug\gnsdtestproject.dll" id="2822a90c-7678-b8e9-1e49-06787203f721">
+      <Execution id="48fe7e57-d2b5-426a-bc14-ab36e5f72aa2" />
+      <TestMethod codeBase="C:/Users/user/Desktop/personremainer/GNSDTestProject/bin/Debug/GNSDTestProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="GNSDTestProject.DataBaseTest, GNSDTestProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="changeDBTest_wong" />
+    </UnitTest>
+    <UnitTest name="ReadDBTest" storage="c:\users\user\desktop\personremainer\gnsdtestproject\bin\debug\gnsdtestproject.dll" id="962e51b3-85cb-63d5-4f43-50e1541ca79a">
+      <Execution id="865ce268-0b15-4074-a359-9d1cc9812c03" />
+      <TestMethod codeBase="C:/Users/user/Desktop/personremainer/GNSDTestProject/bin/Debug/GNSDTestProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="GNSDTestProject.DataBaseTest, GNSDTestProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ReadDBTest" />
+    </UnitTest>
+    <UnitTest name="Read_ExDataTest_right" storage="c:\users\user\desktop\personremainer\optexceltestproject\bin\debug\optexceltestproject.dll" id="5a066c7e-f713-fa21-8f43-235071aeae88">
+      <Execution id="c0747542-b99c-4442-85cb-d7e0da411247" />
+      <TestMethod codeBase="C:/Users/user/Desktop/personremainer/OptExcelTestProject/bin/Debug/OptExcelTestProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="OptExcelTestProject.OptExcelTest, OptExcelTestProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Read_ExDataTest_right" />
+    </UnitTest>
+    <UnitTest name="ReadDBTest2" storage="c:\users\user\desktop\personremainer\gnsdtestproject\bin\debug\gnsdtestproject.dll" id="c89d5d1d-bd0d-c250-31f6-9d8c4cdd4819">
+      <Execution id="9e31c476-a6ef-4608-b2f6-68ee0cba4f20" />
+      <TestMethod codeBase="C:/Users/user/Desktop/personremainer/GNSDTestProject/bin/Debug/GNSDTestProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="GNSDTestProject.DataBaseTest, GNSDTestProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ReadDBTest2" />
+    </UnitTest>
+    <UnitTest name="GetNetDataTest" storage="c:\users\user\desktop\personremainer\gnsdtestproject\bin\debug\gnsdtestproject.dll" id="3b8da6a5-ad6d-7427-7091-dd6632d3d7e7">
+      <Execution id="531e314a-a4c2-4e46-9fcf-2cccab9d42b5" />
+      <TestMethod codeBase="C:/Users/user/Desktop/personremainer/GNSDTestProject/bin/Debug/GNSDTestProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="GNSDTestProject.GetNetStockDataTest, GNSDTestProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GetNetDataTest" />
+    </UnitTest>
+    <UnitTest name="ReadDBTest1" storage="c:\users\user\desktop\personremainer\gnsdtestproject\bin\debug\gnsdtestproject.dll" id="dd312f66-62aa-7879-f467-dcc798a61da5">
+      <Execution id="f5ffb649-4596-4ebb-a156-91410d3f4d7e" />
+      <TestMethod codeBase="C:/Users/user/Desktop/personremainer/GNSDTestProject/bin/Debug/GNSDTestProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="GNSDTestProject.DataBaseTest, GNSDTestProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ReadDBTest1" />
+    </UnitTest>
+    <UnitTest name="Open_ExcelTest_wong" storage="c:\users\user\desktop\personremainer\optexceltestproject\bin\debug\optexceltestproject.dll" id="6497bf62-c6b0-3a6a-61d7-c6f91b38816b">
+      <Execution id="6a3b1521-4d89-4be7-a732-1c3be0304f4f" />
+      <TestMethod codeBase="C:/Users/user/Desktop/personremainer/OptExcelTestProject/bin/Debug/OptExcelTestProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="OptExcelTestProject.OptExcelTest, OptExcelTestProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Open_ExcelTest_wong" />
+    </UnitTest>
+    <UnitTest name="GetNetStockDataConstructorTest" storage="c:\users\user\desktop\personremainer\gnsdtestproject\bin\debug\gnsdtestproject.dll" id="7b6ecc13-887d-9578-8aca-533729ecf5cb">
+      <Execution id="c9bf905a-b0c9-42f1-9d2a-9e242dcadb7a" />
+      <TestMethod codeBase="C:/Users/user/Desktop/personremainer/GNSDTestProject/bin/Debug/GNSDTestProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="GNSDTestProject.GetNetStockDataTest, GNSDTestProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GetNetStockDataConstructorTest" />
+    </UnitTest>
+    <UnitTest name="GetNetGraphTest_wong" storage="c:\users\user\desktop\personremainer\gnsdtestproject\bin\debug\gnsdtestproject.dll" id="1571d346-ca66-45ca-2e02-f391d043828c">
+      <Execution id="ad18d76f-ce6b-44a0-8dc3-2afc73107595" />
+      <TestMethod codeBase="C:/Users/user/Desktop/personremainer/GNSDTestProject/bin/Debug/GNSDTestProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="GNSDTestProject.GetNetStockDataTest, GNSDTestProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GetNetGraphTest_wong" />
+    </UnitTest>
+    <UnitTest name="changeDBTest" storage="c:\users\user\desktop\personremainer\gnsdtestproject\bin\debug\gnsdtestproject.dll" id="8dd35d4c-e4cb-a50a-9c94-d2c6f3c29a55">
+      <Execution id="98131d08-1cbc-4802-8456-65b8f7216963" />
+      <TestMethod codeBase="C:/Users/user/Desktop/personremainer/GNSDTestProject/bin/Debug/GNSDTestProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="GNSDTestProject.DataBaseTest, GNSDTestProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="changeDBTest" />
+    </UnitTest>
+    <UnitTest name="Read_ExDataTest_wong" storage="c:\users\user\desktop\personremainer\optexceltestproject\bin\debug\optexceltestproject.dll" id="577853cb-2180-6a89-066d-43387c85e746">
+      <Execution id="46ecfbd8-06f1-4dd3-8730-1f747e5a23de" />
+      <TestMethod codeBase="C:/Users/user/Desktop/personremainer/OptExcelTestProject/bin/Debug/OptExcelTestProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="OptExcelTestProject.OptExcelTest, OptExcelTestProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="Read_ExDataTest_wong" />
+    </UnitTest>
+    <UnitTest name="ReadDBTest2_wong" storage="c:\users\user\desktop\personremainer\gnsdtestproject\bin\debug\gnsdtestproject.dll" id="9dd7cbdb-c648-bcf9-6882-4dbbfc54d021">
+      <Execution id="3f99763c-1ade-4f60-b669-fd9de32bcb5b" />
+      <TestMethod codeBase="C:/Users/user/Desktop/personremainer/GNSDTestProject/bin/Debug/GNSDTestProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="GNSDTestProject.DataBaseTest, GNSDTestProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ReadDBTest2_wong" />
+    </UnitTest>
+    <UnitTest name="ReadDBTest1_wong" storage="c:\users\user\desktop\personremainer\gnsdtestproject\bin\debug\gnsdtestproject.dll" id="c49dd45a-216e-fc58-d1c9-030ee53085b5">
+      <Execution id="75c28f68-13ce-46e8-bdf8-bca40ef0ac37" />
+      <TestMethod codeBase="C:/Users/user/Desktop/personremainer/GNSDTestProject/bin/Debug/GNSDTestProject.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="GNSDTestProject.DataBaseTest, GNSDTestProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="ReadDBTest1_wong" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="列表中未列出的结果" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="所有已加载的结果" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="1571d346-ca66-45ca-2e02-f391d043828c" executionId="ad18d76f-ce6b-44a0-8dc3-2afc73107595" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2822a90c-7678-b8e9-1e49-06787203f721" executionId="48fe7e57-d2b5-426a-bc14-ab36e5f72aa2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3b8da6a5-ad6d-7427-7091-dd6632d3d7e7" executionId="531e314a-a4c2-4e46-9fcf-2cccab9d42b5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3fe20870-ac74-9597-9a9e-ca0bb4941e04" executionId="c34738c8-fcb4-496f-af83-ddd519cc680f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="577853cb-2180-6a89-066d-43387c85e746" executionId="46ecfbd8-06f1-4dd3-8730-1f747e5a23de" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="5a066c7e-f713-fa21-8f43-235071aeae88" executionId="c0747542-b99c-4442-85cb-d7e0da411247" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6497bf62-c6b0-3a6a-61d7-c6f91b38816b" executionId="6a3b1521-4d89-4be7-a732-1c3be0304f4f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7b6ecc13-887d-9578-8aca-533729ecf5cb" executionId="c9bf905a-b0c9-42f1-9d2a-9e242dcadb7a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="88a5da34-eb67-3743-4b9f-622829ad0029" executionId="1a834871-80b0-447f-b139-fd59866756bd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="8dd35d4c-e4cb-a50a-9c94-d2c6f3c29a55" executionId="98131d08-1cbc-4802-8456-65b8f7216963" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="962e51b3-85cb-63d5-4f43-50e1541ca79a" executionId="865ce268-0b15-4074-a359-9d1cc9812c03" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9dd7cbdb-c648-bcf9-6882-4dbbfc54d021" executionId="3f99763c-1ade-4f60-b669-fd9de32bcb5b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a1ae2cc3-848b-640a-0ca6-3672268e332b" executionId="35883708-6047-4b4f-8c4d-133962ff3556" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a59150c2-67c8-61fd-50b6-53a8fba3a0ff" executionId="1236ff9d-488b-484e-bf07-2f317c48a02c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c49dd45a-216e-fc58-d1c9-030ee53085b5" executionId="75c28f68-13ce-46e8-bdf8-bca40ef0ac37" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c89d5d1d-bd0d-c250-31f6-9d8c4cdd4819" executionId="9e31c476-a6ef-4608-b2f6-68ee0cba4f20" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d42f9aca-ffe1-393a-b11c-e86552554fe1" executionId="2e02880f-2c39-4f0d-946f-3956211acec4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="dd312f66-62aa-7879-f467-dcc798a61da5" executionId="f5ffb649-4596-4ebb-a156-91410d3f4d7e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="de8dfa0b-37d8-c0e3-56bd-2da4b8cc9cb6" executionId="35a3f861-6a88-46f9-aa71-f41833104f9d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="ad18d76f-ce6b-44a0-8dc3-2afc73107595" testId="1571d346-ca66-45ca-2e02-f391d043828c" testName="GetNetGraphTest_wong" computerName="NOON" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ad18d76f-ce6b-44a0-8dc3-2afc73107595">
+    </UnitTestResult>
+    <UnitTestResult executionId="48fe7e57-d2b5-426a-bc14-ab36e5f72aa2" testId="2822a90c-7678-b8e9-1e49-06787203f721" testName="changeDBTest_wong" computerName="NOON" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="48fe7e57-d2b5-426a-bc14-ab36e5f72aa2">
+    </UnitTestResult>
+    <UnitTestResult executionId="531e314a-a4c2-4e46-9fcf-2cccab9d42b5" testId="3b8da6a5-ad6d-7427-7091-dd6632d3d7e7" testName="GetNetDataTest" computerName="NOON" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="531e314a-a4c2-4e46-9fcf-2cccab9d42b5">
+    </UnitTestResult>
+    <UnitTestResult executionId="c34738c8-fcb4-496f-af83-ddd519cc680f" testId="3fe20870-ac74-9597-9a9e-ca0bb4941e04" testName="GetNetGraphTest_right" computerName="NOON" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c34738c8-fcb4-496f-af83-ddd519cc680f">
+    </UnitTestResult>
+    <UnitTestResult executionId="46ecfbd8-06f1-4dd3-8730-1f747e5a23de" testId="577853cb-2180-6a89-066d-43387c85e746" testName="Read_ExDataTest_wong" computerName="NOON" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="46ecfbd8-06f1-4dd3-8730-1f747e5a23de">
+    </UnitTestResult>
+    <UnitTestResult executionId="c0747542-b99c-4442-85cb-d7e0da411247" testId="5a066c7e-f713-fa21-8f43-235071aeae88" testName="Read_ExDataTest_right" computerName="NOON" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c0747542-b99c-4442-85cb-d7e0da411247">
+    </UnitTestResult>
+    <UnitTestResult executionId="6a3b1521-4d89-4be7-a732-1c3be0304f4f" testId="6497bf62-c6b0-3a6a-61d7-c6f91b38816b" testName="Open_ExcelTest_wong" computerName="NOON" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6a3b1521-4d89-4be7-a732-1c3be0304f4f">
+    </UnitTestResult>
+    <UnitTestResult executionId="c9bf905a-b0c9-42f1-9d2a-9e242dcadb7a" testId="7b6ecc13-887d-9578-8aca-533729ecf5cb" testName="GetNetStockDataConstructorTest" computerName="NOON" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c9bf905a-b0c9-42f1-9d2a-9e242dcadb7a">
+    </UnitTestResult>
+    <UnitTestResult executionId="1a834871-80b0-447f-b139-fd59866756bd" testId="88a5da34-eb67-3743-4b9f-622829ad0029" testName="Open_ExcelTest_right" computerName="NOON" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1a834871-80b0-447f-b139-fd59866756bd">
+    </UnitTestResult>
+    <UnitTestResult executionId="98131d08-1cbc-4802-8456-65b8f7216963" testId="8dd35d4c-e4cb-a50a-9c94-d2c6f3c29a55" testName="changeDBTest" computerName="NOON" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="98131d08-1cbc-4802-8456-65b8f7216963">
+    </UnitTestResult>
+    <UnitTestResult executionId="865ce268-0b15-4074-a359-9d1cc9812c03" testId="962e51b3-85cb-63d5-4f43-50e1541ca79a" testName="ReadDBTest" computerName="NOON" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="865ce268-0b15-4074-a359-9d1cc9812c03">
+    </UnitTestResult>
+    <UnitTestResult executionId="3f99763c-1ade-4f60-b669-fd9de32bcb5b" testId="9dd7cbdb-c648-bcf9-6882-4dbbfc54d021" testName="ReadDBTest2_wong" computerName="NOON" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3f99763c-1ade-4f60-b669-fd9de32bcb5b">
+    </UnitTestResult>
+    <UnitTestResult executionId="35883708-6047-4b4f-8c4d-133962ff3556" testId="a1ae2cc3-848b-640a-0ca6-3672268e332b" testName="AddUserOpTest" computerName="NOON" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="35883708-6047-4b4f-8c4d-133962ff3556">
+    </UnitTestResult>
+    <UnitTestResult executionId="1236ff9d-488b-484e-bf07-2f317c48a02c" testId="a59150c2-67c8-61fd-50b6-53a8fba3a0ff" testName="CreateTableTest" computerName="NOON" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1236ff9d-488b-484e-bf07-2f317c48a02c">
+    </UnitTestResult>
+    <UnitTestResult executionId="75c28f68-13ce-46e8-bdf8-bca40ef0ac37" testId="c49dd45a-216e-fc58-d1c9-030ee53085b5" testName="ReadDBTest1_wong" computerName="NOON" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="75c28f68-13ce-46e8-bdf8-bca40ef0ac37">
+    </UnitTestResult>
+    <UnitTestResult executionId="9e31c476-a6ef-4608-b2f6-68ee0cba4f20" testId="c89d5d1d-bd0d-c250-31f6-9d8c4cdd4819" testName="ReadDBTest2" computerName="NOON" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9e31c476-a6ef-4608-b2f6-68ee0cba4f20">
+    </UnitTestResult>
+    <UnitTestResult executionId="2e02880f-2c39-4f0d-946f-3956211acec4" testId="d42f9aca-ffe1-393a-b11c-e86552554fe1" testName="DataBaseConstructorTest" computerName="NOON" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2e02880f-2c39-4f0d-946f-3956211acec4">
+    </UnitTestResult>
+    <UnitTestResult executionId="f5ffb649-4596-4ebb-a156-91410d3f4d7e" testId="dd312f66-62aa-7879-f467-dcc798a61da5" testName="ReadDBTest1" computerName="NOON" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f5ffb649-4596-4ebb-a156-91410d3f4d7e">
+    </UnitTestResult>
+    <UnitTestResult executionId="35a3f861-6a88-46f9-aa71-f41833104f9d" testId="de8dfa0b-37d8-c0e3-56bd-2da4b8cc9cb6" testName="TreatmentStringTest" computerName="NOON" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="NotExecuted" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="35a3f861-6a88-46f9-aa71-f41833104f9d">
+    </UnitTestResult>
+  </Results>
+</TestRun>
