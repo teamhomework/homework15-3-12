@@ -59,6 +59,7 @@
             this.CloseAccountToolStripMenuItem.Name = "CloseAccountToolStripMenuItem";
             this.CloseAccountToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.CloseAccountToolStripMenuItem.Text = "刪戶";
+            this.CloseAccountToolStripMenuItem.Click += new System.EventHandler(this.CloseAccountToolStripMenuItem_Click);
             // 
             // UI
             // 

@@ -23,6 +23,7 @@ namespace personremainer
         {
             public string name;
             public Form1 WindowName;
+            public ToolStripMenuItem TSM;
         };
         UserTable[] UT = new UserTable[100];
         int i = 0;
@@ -57,7 +58,7 @@ namespace personremainer
                     ++i;
                     fm.MdiParent = this;
                     fm.Text = HeaderName;
-                    AddContextMenu(fm.Text, subItem.DropDownItems, new EventHandler(MenuClicked));
+                    UT[i].TSM = AddContextMenu(fm.Text, subItem.DropDownItems, new EventHandler(MenuClicked));
                     fm.Show();
 
                     
@@ -94,7 +95,7 @@ namespace personremainer
             subItem = AddContextMenu("帳戶管理", menuStrip1.Items, null);
             foreach (System.Data.DataRow row in dt.Rows)
             {
-                AddContextMenu(row["Table_Name"].ToString(), subItem.DropDownItems, new EventHandler(MenuClicked));
+                UT[i].TSM = AddContextMenu(row["Table_Name"].ToString(), subItem.DropDownItems, new EventHandler(MenuClicked));
 
                 Form1 fm = new Form1(row["Table_Name"].ToString());
                 fm.Text = row["Table_Name"].ToString();
@@ -145,6 +146,39 @@ namespace personremainer
                    
                 }
             }
+        }
+
+        private void CloseAccountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form7 fm = new Form7();
+            DialogResult DR = fm.ShowDialog();
+            if(DR == DialogResult.OK)
+            {
+                //刪數據庫表 刪 對應子菜單 關掉對應窗口
+                string target = fm.textBox1.Text;
+                foreach (UserTable TempUT in UT)
+                {
+                    if (TempUT.name == target)
+                    {
+                        TempUT.WindowName.Dispose();
+                        ToolStripItemCollection TC = subItem.DropDownItems;
+                        TC.Remove(TempUT.TSM);
+                        //刪數據庫表
+                        string consqlser = "server = .\\SQLEXPRESS;integrated security=SSPI;database=test";
+
+                        SqlConnection sqlconn = new SqlConnection(consqlser);
+                        sqlconn.Open();
+                        string droptable = "DROP TABLE " +  TempUT.name ;
+                        SqlCommand droptablecomm = new SqlCommand(droptable, sqlconn);
+                        droptablecomm.ExecuteNonQuery();
+
+                    }
+                }
+
+
+            }
+
+
         }
 
 

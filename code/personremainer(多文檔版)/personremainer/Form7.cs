@@ -11,21 +11,15 @@ namespace personremainer
 {
     public partial class Form7 : Form
     {
-        struct FROMUI
-        {
-            string name;
-            Form1 WindowName;
-        };
-        FROMUI[] Temp = new FROMUI[1000];
+
         public Form7()
         {
             InitializeComponent();
-          //  Temp = Input;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+           
         }
     }
 }
