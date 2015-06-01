@@ -36,9 +36,9 @@ namespace personremainer
             }
 
             string createuseroptabble = "CREATE TABLE " + "\""+ TableName + "\"" + " (name CHAR(10),id INT, date datetime, type  CHAR(10),price float,quantity int,taxrate varchar(10),commission varchar(10))";
-            string createstotable = "CREATE TABLE StockInf" + "( name char(10)," + "id int CONSTRAINT PKeyid PRIMARY KEY,"  +  "openingpriceT float,closepriceY float,maxprice float,minprice float,increase varchar(max) )";
+           // string createstotable = "CREATE TABLE StockInf" + "( name char(10)," + "id int CONSTRAINT PKeyid PRIMARY KEY,"  +  "openingpriceT float,closepriceY float,maxprice float,minprice float,increase varchar(max) )";
             SqlCommand comsql = new SqlCommand(createuseroptabble, conn);
-            SqlCommand comsql2 = new SqlCommand(createstotable,conn);
+           // SqlCommand comsql2 = new SqlCommand(createstotable,conn);
 
             try
             {
@@ -49,13 +49,13 @@ namespace personremainer
             {
                 MessageBox.Show(err.Message.ToString());
             }
-            try
+          /*  try
             {
                 comsql2.ExecuteNonQuery();
             }
             catch (Exception err)
             {
-            }
+            }*/
 
             conn.Close();
         }

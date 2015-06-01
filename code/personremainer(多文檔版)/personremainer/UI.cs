@@ -6,18 +6,31 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Collections;
+using System.Data.SqlClient;
 
 namespace personremainer
 {
     public partial class UI : Form
     {
-        static int ExistTableNum = 1;
-        string[] ExistTableName = new string[ExistTableNum];
-        
+        //string[] ExistTableName = new string[ExistTableNum];
         bool IsTableExist = false;
+
+        ToolStripMenuItem subItem;
+        public struct UserTable
+        {
+            public string name;
+            public Form1 WindowName;
+        };
+        UserTable[] UT = new UserTable[100];
+        int i = 0;
+
         public UI()
         {
             InitializeComponent();
+            CheckAndShowExistTble();
         }
         private void 開戶ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -25,25 +38,30 @@ namespace personremainer
             AccountName AN = new AccountName();
             AN.ShowDialog();
             IsTableExist = false;
+           
             if (personremainer.commo_data.AccountName.Length > 0)
             {
-                foreach (string Index in ExistTableName)
+                foreach(UserTable MyUT in UT)
                 {
-                    MessageBox.Show(Index);
-                    if (Index == personremainer.commo_data.AccountName)
+                    if (MyUT.name == personremainer.commo_data.AccountName)
                     {
                         IsTableExist = true;
                     }
                 }
                 if (IsTableExist == false)
                 {
-                    ExistTableName[(ExistTableNum - 1)] = personremainer.commo_data.AccountName;
-                    ExistTableNum++;
+
                     string HeaderName = personremainer.commo_data.AccountName;
                     Form1 fm = new Form1(HeaderName);
+                    UT[i].name = personremainer.commo_data.AccountName;
+                    UT[i].WindowName = fm;
+                    ++i;
                     fm.MdiParent = this;
                     fm.Text = HeaderName;
+                    AddContextMenu(fm.Text, subItem.DropDownItems, new EventHandler(MenuClicked));
                     fm.Show();
+
+                    
                 }
                 else if (IsTableExist == true)
                 {
@@ -56,5 +74,81 @@ namespace personremainer
                 MessageBox.Show("請輸入公司名");
             }
         }
+
+        private void CreateNewForm()
+        {
+            string HeaderName = personremainer.commo_data.AccountName;
+            Form1 fm = new Form1(HeaderName);
+            fm.ShowDialog();
+        }
+
+      public  void CheckAndShowExistTble()
+        {
+
+            string consqlser = "server = .\\SQLEXPRESS;integrated security=SSPI;database=test";
+
+            SqlConnection sqlconn = new SqlConnection(consqlser);
+            DataTable dt = new DataTable();
+            sqlconn.Open();
+            dt = sqlconn.GetSchema("Tables");
+
+            subItem = AddContextMenu("帳戶管理", menuStrip1.Items, null);
+            foreach (System.Data.DataRow row in dt.Rows)
+            {
+                AddContextMenu(row["Table_Name"].ToString(), subItem.DropDownItems, new EventHandler(MenuClicked));
+
+                Form1 fm = new Form1(row["Table_Name"].ToString());
+                fm.Text = row["Table_Name"].ToString();
+                UT[i].name = fm.Text;
+                UT[i].WindowName = fm;
+                fm.toolStripMenuItem3.Enabled = true;
+                fm.toolStripMenuItem4.Enabled = true;
+                fm.toolStripMenuItem5.Enabled = true;
+                fm.ToolStripMenuItem6.Enabled = true;
+                ++i;
+
+            }
+            sqlconn.Close();
+
+        }
+        ToolStripMenuItem AddContextMenu(string text, ToolStripItemCollection cms, EventHandler callback)
+        {
+            if (text == "-")
+            {
+                ToolStripSeparator tsp = new ToolStripSeparator();
+                cms.Add(tsp);
+                return null;
+            }
+            else if (!string.IsNullOrEmpty(text))
+            {
+                ToolStripMenuItem tsmi = new ToolStripMenuItem(text);
+                tsmi.Tag = text + "TAG";
+                if (callback != null) tsmi.Click += callback;
+                cms.Add(tsmi);
+
+                return tsmi;
+            }
+
+            return null;
+        }
+
+        void MenuClicked(object sender, EventArgs e)
+        {
+            //以下主要是动态生成事件并打开窗体
+            string target = sender.ToString();
+            foreach (UserTable MyUT in UT)
+            {
+                if (MyUT.name == target)
+                {
+                    MyUT.WindowName.MdiParent = this;
+                    MyUT.WindowName.Show();
+                    MyUT.WindowName.show_take_inf() ;
+                   
+                }
+            }
+        }
+
+
+
     }
 }

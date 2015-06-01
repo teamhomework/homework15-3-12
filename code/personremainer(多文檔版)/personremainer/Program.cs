@@ -20,7 +20,7 @@ namespace personremainer
            // Application.Run(new Form1());
             UI BaseForm = new UI();
             Application.Run(BaseForm);
-            
+           
             // .AutoSize(this);
             
         }

@@ -23,6 +23,7 @@ namespace personremainer
         string TableName = null;
         public Form1(string Input)
         {
+          
             InitializeComponent();
             OwnName = Input;
             AutoSize(this);
@@ -37,7 +38,7 @@ namespace personremainer
 
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
-
+            
 
             if (false == show_PerFor)
                 show_PerFor = true;
@@ -305,18 +306,24 @@ namespace personremainer
                 ToolStripMenuItem6.Enabled = true;
 
                 //顯示默認介面
-                DataBase DB = new DataBase();
-                DS = DB.ReadDB(OwnName, "id", 0);
-                int ROWS = int.Parse(DS.Tables[0].Rows.Count.ToString());
-                for (int row = 0; row < ROWS; row++)
-                {
-                    show_take_sto(DS.Tables[0].Rows[row][0].ToString(), 1);
-                    Draw_takchart(DS.Tables[0].Rows[row][0].ToString());
-                }
-                //顯示準備完後 顯示
-                Display(panel1);
+                show_take_inf();
 
             }
+        }
+
+        public void show_take_inf()
+        {
+            DataBase DB = new DataBase();
+            DataSet DS = new DataSet();
+            DS = DB.ReadDB(OwnName, "id", 0);
+            int ROWS = int.Parse(DS.Tables[0].Rows.Count.ToString());
+            for (int row = 0; row < ROWS; row++)
+            {
+                show_take_sto(DS.Tables[0].Rows[row][0].ToString(), 1);
+                Draw_takchart(DS.Tables[0].Rows[row][0].ToString());
+            }
+            Display(panel1);
+            
         }
 
 
