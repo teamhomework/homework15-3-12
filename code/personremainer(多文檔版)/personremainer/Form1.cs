@@ -313,6 +313,15 @@ namespace personremainer
 
         public void show_take_inf()
         {
+            while (TaStodataView.Rows.Count != 0)
+            {
+                TaStodataView.Rows.Clear();
+            }
+            if (TaStochart.Series.Count != 0)
+            {
+                TaStochart.Series.Clear();
+            }
+
             DataBase DB = new DataBase();
             DataSet DS = new DataSet();
             DS = DB.ReadDB(OwnName, "id", 0);
@@ -1337,6 +1346,14 @@ namespace personremainer
             {
                 MessageBox.Show("結束日期大於開始日期");
             }
+        }
+
+
+        //重寫方法 點關閉  不釋放 只隱藏
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            e.Cancel = true;
+            this.Hide();
         }
     }
 }

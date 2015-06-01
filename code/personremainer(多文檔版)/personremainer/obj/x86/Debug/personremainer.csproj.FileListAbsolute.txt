@@ -102,3 +102,4 @@ C:\Users\user\Desktop\personremainer(多文檔版)\personremainer\obj\x86\Debug\
 C:\Users\user\Desktop\personremainer(多文檔版)\personremainer\obj\x86\Debug\personremainer.Properties.Resources.resources
 C:\Users\user\Desktop\personremainer(多文檔版)\personremainer\obj\x86\Debug\personremainer.UI.resources
 C:\Users\user\Desktop\personremainer(多文檔版)\personremainer\obj\x86\Debug\personremainer.csproj.GenerateResource.Cache
+C:\Users\user\Desktop\personremainer(多文檔版)\personremainer\obj\x86\Debug\personremainer.Form7.resources

@@ -30,6 +30,7 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.開戶ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CloseAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,10 +47,18 @@
             // 
             // 開戶ToolStripMenuItem
             // 
+            this.開戶ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CloseAccountToolStripMenuItem});
             this.開戶ToolStripMenuItem.Name = "開戶ToolStripMenuItem";
             this.開戶ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.開戶ToolStripMenuItem.Text = "開戶";
             this.開戶ToolStripMenuItem.Click += new System.EventHandler(this.開戶ToolStripMenuItem_Click);
+            // 
+            // CloseAccountToolStripMenuItem
+            // 
+            this.CloseAccountToolStripMenuItem.Name = "CloseAccountToolStripMenuItem";
+            this.CloseAccountToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.CloseAccountToolStripMenuItem.Text = "刪戶";
             // 
             // UI
             // 
@@ -72,5 +81,6 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 開戶ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem CloseAccountToolStripMenuItem;
     }
 }

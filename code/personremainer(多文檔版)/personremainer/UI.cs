@@ -38,8 +38,7 @@ namespace personremainer
             AccountName AN = new AccountName();
             AN.ShowDialog();
             IsTableExist = false;
-           
-            if (personremainer.commo_data.AccountName.Length > 0)
+            if (personremainer.commo_data.AccountName!= null &&personremainer.commo_data.AccountName.Length>0)
             {
                 foreach(UserTable MyUT in UT)
                 {

@@ -14,12 +14,18 @@ namespace personremainer
         public AccountName()
         {
             InitializeComponent();
+           
         }
 
-        private void EditButton_Click(object sender, EventArgs e)
+        public void EditButton_Click(object sender, EventArgs e)
         {
             personremainer.commo_data.AccountName = textBox1.Text;
             Dispose();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
