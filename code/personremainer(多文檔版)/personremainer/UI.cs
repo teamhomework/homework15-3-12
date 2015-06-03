@@ -32,6 +32,8 @@ namespace personremainer
         {
             InitializeComponent();
             CheckAndShowExistTble();
+            AutoSize(this);
+            this.LayoutMdi(MdiLayout.TileVertical);
         }
         private void 開戶ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -60,7 +62,7 @@ namespace personremainer
                     fm.Text = HeaderName;
                     UT[i].TSM = AddContextMenu(fm.Text, subItem.DropDownItems, new EventHandler(MenuClicked));
                     fm.Show();
-
+                    this.LayoutMdi(MdiLayout.TileVertical);
                     
                 }
                 else if (IsTableExist == true)
@@ -105,6 +107,7 @@ namespace personremainer
                 fm.toolStripMenuItem4.Enabled = true;
                 fm.toolStripMenuItem5.Enabled = true;
                 fm.ToolStripMenuItem6.Enabled = true;
+
                 ++i;
 
             }
@@ -143,7 +146,7 @@ namespace personremainer
                     MyUT.WindowName.MdiParent = this;
                     MyUT.WindowName.Show();
                     MyUT.WindowName.show_take_inf() ;
-                   
+                    this.LayoutMdi(MdiLayout.TileVertical);
                 }
             }
         }
@@ -181,7 +184,39 @@ namespace personremainer
 
         }
 
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
 
+        }
+
+        private void UI_Load(object sender, EventArgs e)
+        {
+        }
+
+        public void AutoSize(Form frm)
+        {
+            frm.Tag = frm.Width.ToString() + "," + frm.Height.ToString();
+            frm.SizeChanged += new EventHandler(frm_SizeChanged);
+
+        }
+        void frm_SizeChanged(object sender, EventArgs e)
+        {
+
+            string[] tmp = ((Form)sender).Tag.ToString().Split(',');
+            float width = (float)((Form)sender).Width / (float)Convert.ToInt16(tmp[0]);
+            float heigth = (float)((Form)sender).Height / (float)Convert.ToInt16(tmp[1]);
+
+            ((Form)sender).Tag = ((Form)sender).Width.ToString() + "," + ((Form)sender).Height;
+
+            foreach (Control control in ((Form)sender).Controls)
+            {
+                control.Scale(new SizeF(width, heigth));
+
+            }
+            this.LayoutMdi(MdiLayout.TileVertical);
+        }
 
     }
+
+
 }

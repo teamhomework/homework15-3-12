@@ -19,6 +19,53 @@ namespace personremainer
     
     public partial class Form1 : Form
     {
+
+
+        //計算個人信息 數據
+        string capital = "0";//本金
+        float marketprice = 0;//市價
+        float cash = 0;//現金
+        float acctocash = 0;//帳戶總資產
+        float chagra = 0;//浮動盈虧
+        float grain = 0;
+        float dailygrain = 0;
+
+
+
+        //窗口狀態
+        bool show_PerFor = false;//個人資信
+        bool show_TakSto = false;//持倉情況
+        bool show_StoInf = false;//股票資訊
+        bool show_StoGra = false;//股票收益
+
+        void Display(System.Windows.Forms.Panel target)
+        {
+
+            button1.Visible = true;
+            textBox1.Visible = true;
+            panel1.Visible = false;
+            panel2.Visible = false;
+            panel3.Visible = false;
+            target.Visible = true;
+        }
+        void NotDisplay()
+        {
+            button1.Visible = false;
+            textBox1.Visible = false;
+            panel1.Visible = false;
+            panel2.Visible = false;
+            panel3.Visible = false;
+            show_PerFor = false;
+            show_StoGra = false;
+            show_StoInf = false;
+            show_TakSto = false;
+
+        }
+
+
+
+
+
         string OwnName = null;
         string TableName = null;
         public Form1(string Input)
@@ -26,6 +73,7 @@ namespace personremainer
           
             InitializeComponent();
             OwnName = Input;
+            Not_Show_PerInf();
             AutoSize(this);
 
         }
@@ -49,13 +97,38 @@ namespace personremainer
             {
                 splitContainer1.SplitterDistance = 200;
                 CalPerData();
+                Show_PerInf();
                 
             }
             else if (false == show_PerFor)
+            {
+                Not_Show_PerInf();
                 splitContainer1.SplitterDistance = 0;
+            }
         }
 
+        public void Show_PerInf()
+        {
+            label1.Visible = true;
+            label3.Visible = true;
+            label5.Visible = true;
+            label6.Visible = true;
+            label7.Visible = true;
+            label2.Visible = true;
+            label4.Visible = true;
+        }
 
+        public void Not_Show_PerInf()
+        {
+            label1.Visible = false;
+            label3.Visible = false;
+            label5.Visible = false;
+            label6.Visible = false;
+            label7.Visible = false;
+            label2.Visible = false;
+            label4.Visible = false;
+        }
+        
 
 
 
@@ -422,19 +495,25 @@ namespace personremainer
 
         private void label1_Click(object sender, EventArgs e)
         {
-            personremainer.create_form.create_cash();
-
-            DataBase DB = new DataBase();
-            DataSet DS = new DataSet();
-            ClearPerData();
-            DS = DB.ReadDB(OwnName, "id", 0);
-            int ROWS = int.Parse(DS.Tables[0].Rows.Count.ToString());
-            for (int row = 0; row < ROWS; row++)
+            //personremainer.create_form.create_cash();
+            Form3 fm3 = new Form3();
+            fm3.ShowDialog();
+            if (fm3.button1.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
-                show_take_sto(DS.Tables[0].Rows[row][0].ToString(), 0);
+               capital =fm3.textBox1.Text;
+               fm3.Dispose();
+               fm3.Close();
+                DataBase DB = new DataBase();
+                DataSet DS = new DataSet();
+                ClearPerData();
+                DS = DB.ReadDB(OwnName, "id", 0);
+                int ROWS = int.Parse(DS.Tables[0].Rows.Count.ToString());
+                for (int row = 0; row < ROWS; row++)
+                {
+                    show_take_sto(DS.Tables[0].Rows[row][0].ToString(), 0);
+                }
+                CalPerData();
             }
-            CalPerData();
-
         }
 
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
@@ -685,10 +764,10 @@ namespace personremainer
                     chagra = 0;
                     totgra = temgra;
                 }
-                personremainer.commo_data.marketprice += markprice;
-                personremainer.commo_data.chagra += chagra;
-                personremainer.commo_data.grain += totgra;
-                personremainer.commo_data.dailygrain += holdquan * (float.Parse(nowprice[6]) - float.Parse(nowprice[2]));
+                marketprice += markprice;
+                chagra += chagra;
+                grain += totgra;
+                dailygrain += holdquan * (float.Parse(nowprice[6]) - float.Parse(nowprice[2]));
                 if (1 == i)
                     TaStodataView.Rows.Add(DS.Tables[0].Rows[0][0].ToString(), nowprice[6], cost, holdquan, markprice, totgra, chagra);
             }
@@ -875,23 +954,23 @@ namespace personremainer
         {
 
 
-            personremainer.commo_data.acctocash = float.Parse(personremainer.commo_data.capital) + personremainer.commo_data.grain;
-            personremainer.commo_data.cash = personremainer.commo_data.acctocash - personremainer.commo_data.marketprice;
-            label1.Text = "本金:" + Math.Round(float.Parse(personremainer.commo_data.capital), 2);
-            label7.Text = "現金:" + Math.Round(personremainer.commo_data.cash, 2);
-            label3.Text = "浮動盈虧(%):" + Math.Round(personremainer.commo_data.chagra, 2);
-            label4.Text = "盈虧:" + Math.Round(personremainer.commo_data.grain, 2);
-            label5.Text = "帳戶總資產" + Math.Round(personremainer.commo_data.acctocash, 2);
-            label6.Text = "市值:" + Math.Round(personremainer.commo_data.marketprice, 2);
-            label2.Text = "日盈虧:" + Math.Round(personremainer.commo_data.dailygrain, 2);
+            acctocash = float.Parse(capital) + grain;
+            cash = acctocash - marketprice;
+            label1.Text = "本金:" + Math.Round(float.Parse(capital), 2);
+            label7.Text = "現金:" + Math.Round(cash, 2);
+            label3.Text = "浮動盈虧(%):" + Math.Round(chagra, 2);
+            label4.Text = "盈虧:" + Math.Round(grain, 2);
+            label5.Text = "帳戶總資產" + Math.Round(acctocash, 2);
+            label6.Text = "市值:" + Math.Round(marketprice, 2);
+            label2.Text = "日盈虧:" + Math.Round(dailygrain, 2);
         }
 
         public void ClearPerData()
         {
-            personremainer.commo_data.chagra = 0;
-            personremainer.commo_data.marketprice = 0;
-            personremainer.commo_data.grain = 0;
-            personremainer.commo_data.dailygrain = 0;
+            chagra = 0;
+            marketprice = 0;
+            grain = 0;
+            dailygrain = 0;
         }
 
         private void button3_Click(object sender, EventArgs e)

@@ -44,6 +44,7 @@
             this.menuStrip1.Size = new System.Drawing.Size(704, 25);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // 開戶ToolStripMenuItem
             // 
@@ -57,7 +58,7 @@
             // CloseAccountToolStripMenuItem
             // 
             this.CloseAccountToolStripMenuItem.Name = "CloseAccountToolStripMenuItem";
-            this.CloseAccountToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.CloseAccountToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.CloseAccountToolStripMenuItem.Text = "刪戶";
             this.CloseAccountToolStripMenuItem.Click += new System.EventHandler(this.CloseAccountToolStripMenuItem_Click);
             // 
@@ -71,6 +72,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "UI";
             this.Text = "個人炒股系統";
+            this.Load += new System.EventHandler(this.UI_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

@@ -20,13 +20,13 @@ namespace personremainer
         public static int StoNum;//數量
         public static float Tax;//稅率
         //其他數據
-        public static string capital = "0";//本金
+     /*   public static string capital = "0";//本金
         public static float marketprice = 0;//市價
         public static float cash = 0;//現金
         public static float acctocash = 0;//帳戶總資產
         public static float chagra = 0;//浮動盈虧
         public static float grain = 0;
-        public static float dailygrain = 0;
+        public static float dailygrain = 0;*/
         //搜索關鍵字
         public static string find_key_word;//股票號或股票名 用作搜索
         public static string filename;//EXECL文件名
