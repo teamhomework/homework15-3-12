@@ -57,10 +57,10 @@ namespace personremainer
                     Form1 fm = new Form1(HeaderName);
                     UT[i].name = personremainer.commo_data.AccountName;
                     UT[i].WindowName = fm;
-                    ++i;
                     fm.MdiParent = this;
                     fm.Text = HeaderName;
                     UT[i].TSM = AddContextMenu(fm.Text, subItem.DropDownItems, new EventHandler(MenuClicked));
+                    ++i;
                     fm.Show();
                     this.LayoutMdi(MdiLayout.TileVertical);
                     
@@ -103,6 +103,7 @@ namespace personremainer
                 fm.Text = row["Table_Name"].ToString();
                 UT[i].name = fm.Text;
                 UT[i].WindowName = fm;
+                
                 fm.toolStripMenuItem3.Enabled = true;
                 fm.toolStripMenuItem4.Enabled = true;
                 fm.toolStripMenuItem5.Enabled = true;
@@ -168,13 +169,17 @@ namespace personremainer
                         TC.Remove(TempUT.TSM);
                         //刪數據庫表
                         string consqlser = "server = .\\SQLEXPRESS;integrated security=SSPI;database=test";
-
                         SqlConnection sqlconn = new SqlConnection(consqlser);
                         sqlconn.Open();
-                        string droptable = "DROP TABLE " +  TempUT.name ;
-                        SqlCommand droptablecomm = new SqlCommand(droptable, sqlconn);
-                        droptablecomm.ExecuteNonQuery();
-
+                        try
+                        {
+                            string droptable = "DROP TABLE " + "\"" + TempUT.name + "\"";
+                            SqlCommand droptablecomm = new SqlCommand(droptable, sqlconn);
+                            droptablecomm.ExecuteNonQuery();
+                        }
+                        catch(Exception er)
+                        {
+                        }
                     }
                 }
 
