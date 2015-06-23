@@ -259,9 +259,19 @@ namespace personremainer
         //搜索
         private void button1_Click(object sender, EventArgs e)
         {
-            NotDisplay();
+            StoInc.Clear();
+            StockDataInf.Clear();
+            stockdataView.Rows.Clear();
             string StockNum = textBox1.Text;
             personremainer.commo_data.stockcode = textBox1.Text;
+            try
+            {
+                personremainer.commo_data.stockcode = personremainer.commo_data.stockcode.Substring(0, 6);
+                StockNum = personremainer.commo_data.stockcode;
+            }
+            catch
+            {
+            }
             //跳轉到股票資訊界面
             NotDisplay();
             show_StoInf = true;
@@ -1021,29 +1031,6 @@ namespace personremainer
             show_take_kgraph(personremainer.commo_data.stockcode);
         }
 
-        //放大控件
-        public void AutoSize(Form frm)
-        {
-            frm.Tag = frm.Width.ToString() + "," + frm.Height.ToString();
-            frm.SizeChanged += new EventHandler(frm_SizeChanged);
-
-        }
-        void frm_SizeChanged(object sender, EventArgs e)
-        {
-
-            string[] tmp = ((Form)sender).Tag.ToString().Split(',');
-            float width = (float)((Form)sender).Width / (float)Convert.ToInt16(tmp[0]);
-            float heigth = (float)((Form)sender).Height / (float)Convert.ToInt16(tmp[1]);
-
-            ((Form)sender).Tag = ((Form)sender).Width.ToString() + "," + ((Form)sender).Height;
-
-            foreach (Control control in ((Form)sender).Controls)
-            {
-                control.Scale(new SizeF(width, heigth));
-
-            }
-        }
-
         private void StoGralistBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -1434,6 +1421,45 @@ namespace personremainer
             e.Cancel = true;
             this.Hide();
         }
+
+
+
+        public void AutoSize(Form frm)
+        {
+            frm.Tag = frm.Width.ToString() + "," + frm.Height.ToString();
+            frm.SizeChanged += new EventHandler(frm_SizeChanged);
+
+        }
+        void frm_SizeChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string[] tmp = ((Form)sender).Tag.ToString().Split(',');
+                float width = (float)((Form)sender).Width / (float)Convert.ToInt16(tmp[0]);
+                float heigth = (float)((Form)sender).Height / (float)Convert.ToInt16(tmp[1]);
+
+                ((Form)sender).Tag = ((Form)sender).Width.ToString() + "," + ((Form)sender).Height;
+
+                foreach (Control control in ((Form)sender).Controls)
+                {
+                    control.Scale(new SizeF(width, heigth));
+
+                }
+            }
+            catch (Exception err)
+            {
+            }
+        }
+
+
+
+
+
+
+
+
+
+
     }
 }
 

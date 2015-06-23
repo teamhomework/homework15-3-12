@@ -87,7 +87,7 @@ namespace OptExcelTestProject
         public void Open_ExcelTest_right()
         {
             OptExcel target = new OptExcel(); // TODO: 初始化为适当的值
-            string ExcelStr = "C:\\Users\\user\\Desktop\\股票数据.xls"; // TODO: 初始化为适当的值
+            string ExcelStr = "C:\\Users\\user\\Desktop\\股票数据1.xls"; // TODO: 初始化为适当的值
             bool expected = true; // TODO: 初始化为适当的值
             bool actual;
             actual = target.Open_Excel(ExcelStr);
@@ -118,7 +118,7 @@ namespace OptExcelTestProject
             OptExcel target = new OptExcel(); // TODO: 初始化为适当的值
             int row = 0; // TODO: 初始化为适当的值
             int col = 0; // TODO: 初始化为适当的值
-            string ExcelStr = "C:\\Users\\user\\Desktop\\股票数据.xls";
+            string ExcelStr = "C:\\Users\\user\\Desktop\\股票数据1.xls";
             target.Open_Excel(ExcelStr);
             string expected = "伊利股份"; // TODO: 初始化为适当的值
             string actual;

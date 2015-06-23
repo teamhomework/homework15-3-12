@@ -14,7 +14,7 @@ namespace GNSDTestProject
     [TestClass()]
     public class DataBaseTest
     {
-        string OwnName = "ForTest";
+        string OwnName = "userop";
 
         private TestContext testContextInstance;
 
