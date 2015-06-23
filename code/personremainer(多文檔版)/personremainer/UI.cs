@@ -206,24 +206,19 @@ namespace personremainer
         }
         void frm_SizeChanged(object sender, EventArgs e)
         {
-            try
+
+            string[] tmp = ((Form)sender).Tag.ToString().Split(',');
+            float width = (float)((Form)sender).Width / (float)Convert.ToInt16(tmp[0]);
+            float heigth = (float)((Form)sender).Height / (float)Convert.ToInt16(tmp[1]);
+
+            ((Form)sender).Tag = ((Form)sender).Width.ToString() + "," + ((Form)sender).Height;
+
+            foreach (Control control in ((Form)sender).Controls)
             {
-                string[] tmp = ((Form)sender).Tag.ToString().Split(',');
-                float width = (float)((Form)sender).Width / (float)Convert.ToInt16(tmp[0]);
-                float heigth = (float)((Form)sender).Height / (float)Convert.ToInt16(tmp[1]);
+                control.Scale(new SizeF(width, heigth));
 
-                ((Form)sender).Tag = ((Form)sender).Width.ToString() + "," + ((Form)sender).Height;
-
-                foreach (Control control in ((Form)sender).Controls)
-                {
-                    control.Scale(new SizeF(width, heigth));
-
-                }
-                this.LayoutMdi(MdiLayout.TileVertical);
             }
-            catch (Exception err)
-            {
-            }
+            this.LayoutMdi(MdiLayout.TileVertical);
         }
 
     }

@@ -128,6 +128,27 @@ namespace personremainer
                         holdquan += quan;
                     }
                   
+/*
+                    if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "买入")
+                    {
+                        //买入
+                        holdquan += quantity;
+                    }
+                    else if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "卖出")
+                    {
+                        //卖出
+                        holdquan = holdquan - quantity;
+                    }
+                    else if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "补仓")
+                    {
+                        //补仓
+                        holdquan = holdquan + quantity;
+                    }
+                    else if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "卖空")
+                    {
+                        //卖空 
+                        holdquan = holdquan - quantity;
+                    }*/
                 }
                 else
                 {
@@ -153,23 +174,6 @@ namespace personremainer
                     }
                
                 }
-                if (1 == test)
-                {
-                    test = 0;
-
-                    if (type == "卖出")
-                    {
-                        //卖出
-                        holdquan -= quan;
-                    }
-                    else if (type == "补仓")
-                    {
-                        //补仓
-                        holdquan += quan;
-                    }
-                }
-                  
-
 
                 if ((DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "卖出" || DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "买入") && holdquan < 0)
                 {
